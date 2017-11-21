@@ -1,2 +1,4 @@
-public class test {
+public class test
+{
+    int x;
 }
