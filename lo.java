@@ -1,1 +1,2 @@
-public main
+public class lo
+{}
