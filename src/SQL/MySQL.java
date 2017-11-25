@@ -37,6 +37,7 @@ public class MySQL {
                 String name = rs.getString("Name");
                 //Display values
                 System.out.println("Name: '" + name + "', FilmID: '" + FilmID + "'");
+            System.out.println("Connection good");
             }
         } catch(Exception e) { // handle errors:
             e.printStackTrace();
