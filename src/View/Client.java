@@ -34,7 +34,7 @@ public class Client extends Application {
             offset_x = event.getSceneX();
             offset_y = event.getSceneY();
         });
-
+        //Sets the new coords for the stage
         scene.setOnMouseDragged(event -> {
             primaryStage.setX(event.getScreenX() - offset_x);
             primaryStage.setY(event.getScreenY() - offset_y);
