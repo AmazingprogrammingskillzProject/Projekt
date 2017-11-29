@@ -1,3 +1,4 @@
+/*
 // COMPILE:
 // javac -cp mysql.jar MySQL.java 
 
@@ -16,7 +17,8 @@ public class MySQL {
 
     // JDBC driver name and database URL
     static final String DB_URL = "jdbc:mysql://mydb.itu.dk/" + MYDB;
-    public static void connectDB()
+    private static int FID = 10;
+    public static void main(String[]args)
     {
         Connection connection = null;
         Statement statement = null;
@@ -24,21 +26,29 @@ public class MySQL {
         ResultSet rs = null;
 
         try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver()); // STEP 2: Register JDBC driver
-            connection = DriverManager.getConnection(DB_URL, USER, PASS); // STEP 3: Open a connection
-            statement = connection.createStatement(); // STEP 4: Execute a query
-
-            sql = "SELECT * FROM FIlm"; // implicit semi-colon!
-            rs = statement.executeQuery(sql);
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement st = (Statement) connection.createStatement();
             //STEP 5: Extract data from result set
-            while (rs.next()) { //Retrieve by column name
-                // int id  = rs.getInt("id");
-                String FilmID = rs.getString("FilmID");
-                String name = rs.getString("Name");
-                //Display values
-                System.out.println("Name: '" + name + "', FilmID: '" + FilmID + "'");
+            for(int i=0; i< FID; i++) {
+
+                for(int r=0;r<=8;r++)
+                {
+                    for(int s = 0; s<=12; s++)
+                    {
+
+
+                    }
+                }
+
             }
-        } catch(Exception e) { // handle errors:
+            connection.close();
+        }
+
+
+
+
+
+        catch(Exception e) { // handle errors:
             e.printStackTrace();
         } finally {
             try {
@@ -49,4 +59,4 @@ public class MySQL {
             }
         }}
 
-}
+}*/
