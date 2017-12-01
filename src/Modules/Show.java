@@ -30,6 +30,7 @@ public class Show
         print();
     }
 
+
     public static void print()
     {
         for(Show s: shows)
@@ -74,6 +75,7 @@ public class Show
                 String date = rs.getString("Dato");
                 Show show = new Show(id,sal,name,timestamp,date);
                 shows.add(show);
+
                 System.out.println("ok");
             }
             //STEP 5: Extract data from result set
