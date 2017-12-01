@@ -3,7 +3,7 @@ package Modules;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Reservation {
+public class Booking {
     private String phone;
     private String movie;
     private String date;
@@ -11,10 +11,14 @@ public class Reservation {
     private int sal;
     private int row;
     private int seat;
-    private List<Reservation> reservations= new ArrayList<>();
+    private List<Booking> bookings = new ArrayList<>();
 
 
-    public Reservation(String phone, String movie, String date, String time, int sal, int row, int seat)
+
+
+
+
+    public Booking(String phone, String movie, String date, String time, int sal, int row, int seat)
     {
         this.phone = phone;
         this.movie = movie;
@@ -25,13 +29,13 @@ public class Reservation {
         this.seat = seat;
     }
 
-    public void addReservation(Reservation r)
+    public void addBooking(Booking b)
     {
-        reservations.add(r);
+        bookings.add(b);
     }
 
 
-    //public Reservation(String phone, String)
+    //public Booking(String phone, String)
 
 
 

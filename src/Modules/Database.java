@@ -1,14 +1,19 @@
 // COMPILE:
-// javac -cp mysql.jar MySQL.java 
+// javac -cp mysql.jar Database.java
 
 // RUN:
-// java -cp mysql.jar:. MySQL
+// java -cp mysql.jar:. Database
 
-package SQL;
+package Modules;
 
 import java.sql.*; // STEP 1: Import required packages
+import java.util.Date;
 
-public class MySQL {
+import static Modules.Show.print;
+
+
+public class Database
+{
     //  Database credentials
     static final String MYDB = "Gr_AR_Biograf";
     static final String USER = "Gruppe_AR";
@@ -16,37 +21,93 @@ public class MySQL {
 
     // JDBC driver name and database URL
     static final String DB_URL = "jdbc:mysql://mydb.itu.dk/" + MYDB;
+
+    public static void main(String[] args) {
+        connectDB();
+        print();
+    }
     public static void connectDB()
     {
+
         Connection connection = null;
         Statement statement = null;
         String sql = null;
         ResultSet rs = null;
 
         try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver()); // STEP 2: Register JDBC driver
-            connection = DriverManager.getConnection(DB_URL, USER, PASS); // STEP 3: Open a connection
-            statement = connection.createStatement(); // STEP 4: Execute a query
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement st = connection.createStatement();
+            rs = st.executeQuery("SELECT * FROM Shows");
 
-            sql = "SELECT * FROM FIlm"; // implicit semi-colon!
-            rs = statement.executeQuery(sql);
-            //STEP 5: Extract data from result set
-            while (rs.next()) { //Retrieve by column name
-                // int id  = rs.getInt("id");
-                String FilmID = rs.getString("FilmID");
-                String name = rs.getString("Name");
-                //Display values
-                System.out.println("Name: '" + name + "', FilmID: '" + FilmID + "'");
+            while(rs.next())
+            {
+                int id = rs.getInt("FID");
+                int sal = rs.getInt("CinemaNr");
+                String name = rs.getString("Movie");
+                String timestamp = rs.getString("Time");
+                Date date = rs.getDate("Date");
+                Show show = new Show(id,sal,name,timestamp,date);
+                show.addShow(show);
+
+                System.out.println("ok");
             }
-        } catch(Exception e) { // handle errors:
+
+            rs = st.executeQuery("SELECT * FROM Bookings");
+
+            while(rs.next())
+            {
+                String phone = rs.getString("Phone");
+                String movie = rs.getString("Movie");
+                String date = rs.getString("Date");
+                String time = rs.getString("Time");
+                int sal = rs.getInt("CinemaNr");
+                int row = rs.getInt("Row");
+                int seat = rs.getInt("Seat");
+
+                Booking booking = new Booking(phone, movie, date, time, sal, row, seat);
+                booking.addBooking(booking);
+            }
+
+            rs = st.executeQuery("SELECT * FROM SeatReservations");
+            while(rs.next())
+            {
+                int cinemanumber = rs.getInt("CinemaNr");
+                int fid = rs.getInt("FID");
+                int seat = rs.getInt("Seat");
+                int row = rs.getInt("Row");
+                boolean reserved = rs.getBoolean("Reserved");
+                Cinema cinema = new Cinema(cinemanumber, fid, seat, row, reserved);
+                cinema.addSeatInfo(cinema);
+
+
+            }
+
+
+
+
+            //STEP 5: Extract data from result set
+
+            connection.close();
+        }
+
+
+
+
+
+        catch(Exception e)
+        { // handle errors:
             e.printStackTrace();
-        } finally {
-            try {
+        }
+        finally
+        {
+            try
+            {
                 rs.close();
                 connection.close();
             } catch(Exception e) {
                 e.printStackTrace();
             }
-        }}
+        }
+    }
 
 }
