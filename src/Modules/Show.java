@@ -34,7 +34,7 @@ public class Show
     {
         for(Show s: shows)
         {
-            System.out.println("FID: "+s.fid+"  Sal:  "+s.sal+"  FilmNavn:   "+s.movieName+"  Tid:  "+s.time+"  Dato:  "+s.date);
+            System.out.println("FID: "+s.fid+"   Sal:  "+s.sal+"  FilmNavn:   "+s.movieName+"           Tid:  "+s.time+"  Dato:  "+s.date);
         }
     }
 
@@ -63,15 +63,15 @@ public class Show
         try {
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement st = connection.createStatement();
-            ResultSet result = st.executeQuery("SELECT * FROM Forestillinger");
+            rs = st.executeQuery("SELECT * FROM Forestillinger");
 
-            while(result.next())
+            while(rs.next())
             {
-                int id = result.getInt("FID");
-                int sal = result.getInt("Sal");
-                String name = result.getString("Film");
-                String timestamp = result.getString("Tidspunkt");
-                String date = result.getString("Dato");
+                int id = rs.getInt("FID");
+                int sal = rs.getInt("Sal");
+                String name = rs.getString("Film");
+                String timestamp = rs.getString("Tidspunkt");
+                String date = rs.getString("Dato");
                 Show show = new Show(id,sal,name,timestamp,date);
                 shows.add(show);
                 System.out.println("ok");
