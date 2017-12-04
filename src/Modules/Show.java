@@ -20,10 +20,7 @@ public class Show
     private Date date;
     private static List<Show> shows = new ArrayList<>();
 
-    public static void main(String[] args) {
-        connectDB();
-        print();
-    }
+
 
     public static void print()
     {

@@ -1,6 +1,8 @@
 package Modules;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Cinema
@@ -14,7 +16,7 @@ public class Cinema
     private boolean reserved;
     private List<Cinema> seatinfo = new ArrayList<>();
 
-    boolean[][] reservedseats = new boolean[seats][rows];
+    private boolean[][] reservedseats = new boolean[seats][rows];
 
     public void addSeatInfo(Cinema c)
     {
@@ -25,7 +27,7 @@ public class Cinema
 
 
 
-    public Cinema(int cinemanumber, int FID, int seat, int row, boolean reserved)
+    public Cinema(int cinemanumber, int FID, int seat, int row, boolean reserved) //Constructor
     {
         this.cinemanumber = cinemanumber;
         this.FID = FID;
@@ -36,10 +38,7 @@ public class Cinema
 
 
 
-    public boolean getReserved()
-    {
-        return reserved;
-    }
+
 
     public boolean sortReserved(int seat, int row)
     {
@@ -66,17 +65,10 @@ public class Cinema
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    public boolean getReserved()
+    {
+        return reserved;
+    }
 
 
     public int getCinemanumber() {
@@ -90,6 +82,8 @@ public class Cinema
     public int getSeat() {
         return seat;
     }
+
+
 
     public int getRow() {
         return row;
