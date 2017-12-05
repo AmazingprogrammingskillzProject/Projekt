@@ -78,6 +78,11 @@
                         <Font name="System Bold" size="11.0" />
                      </font>
                   </Label>
+                  <Label fx:id="day7" layoutX="1031.0" layoutY="43.0" text="7th day">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </content>

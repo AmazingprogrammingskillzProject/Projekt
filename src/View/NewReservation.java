@@ -16,16 +16,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import javafx.scene.shape.Line;
-import java.awt.*;
+
 
 import static Modules.V1_Database.LoadEntireDB;
 import static Modules.V1_Database.getNumbersOfMovies;
-import static javafx.scene.paint.Color.BLACK;
-import static javafx.scene.paint.Color.GREEN;
+
 
 
 public class NewReservation extends Application {
-    private static int buttoncollumns = 6;
+    private static int buttoncollumns = 7;
     private static int buttonrow = 3;
 
 
@@ -88,27 +87,29 @@ public class NewReservation extends Application {
                     b.setScaleX(visualBounds.getWidth()/2500);
                     b.setScaleY(visualBounds.getHeight()/1900);
 
-                    Line line1 = new Line();
-                    line1.setStartX(visualBounds.getWidth()/256);
-                    line1.setStartY(visualBounds.getHeight()/5.625+m*200);
-                    line1.setEndX(visualBounds.getWidth()/2.56);
-                    line1.setEndY(visualBounds.getHeight()/5.625+m*200);
-                    line1.setOpacity(0.5);
 
-
-
-                    anchorPane.getChildren().add(line1);
 
                     anchorPane.getChildren().add(b);
 
                 }
             }
-            Label moviename = new Label("Movie: "+(m+1));
-            moviename.setStyle("-fx-font: System, 15");
-            moviename.setStyle("-fx-font-weight: bold");
+            Line line1 = new Line();
+            line1.setStartX(visualBounds.getWidth()/256);
+            line1.setStartY(visualBounds.getHeight()/5.625+m*200);
+            line1.setEndX(visualBounds.getWidth()/2.56);
+            line1.setEndY(visualBounds.getHeight()/5.625+m*200);
+            line1.setOpacity(0.5);
+
+
+
+            anchorPane.getChildren().add(line1);
+
+
+            Label moviename = new Label("Movie "+(m+1));
+
+            moviename.setStyle("-fx-font: 20 system; -fx-font-weight: bold; ");
             moviename.setLayoutX(50);
             moviename.setLayoutY(120+m*200);
-
             anchorPane.getChildren().add(moviename);
 
         }

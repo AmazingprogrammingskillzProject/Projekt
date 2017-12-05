@@ -26,7 +26,7 @@ public class V1_Database
 
     static ArrayList<V1_Cinema> Cinemas;
     static ArrayList<V1_Bookings> Bookings;
-    static ArrayList<V1_Movies> Movies;
+     static ArrayList<V1_Movies> Movies;
     static ArrayList<V1_SeatBookings> SeatBookings;
     static ArrayList<V1_Showings> Showings;
 
@@ -46,7 +46,14 @@ public class V1_Database
     public static int getNumbersOfMovies()
     {
         //return Movies.size();
-        return 7;
+        return Movies.size();
+
+
+    }
+
+    public static ArrayList<V1_Bookings> getBookings() {
+        return Bookings;
+
     }
 
     public static void LoadEntireDB()
@@ -264,6 +271,10 @@ public class V1_Database
                 Showings.add(showing);
             }
 
+            for(V1_Showings showing: Showings){
+                showing.toString();
+            }
+
             connection.close();
         }
 
@@ -463,3 +474,4 @@ public class V1_Database
 
 
 }
+
