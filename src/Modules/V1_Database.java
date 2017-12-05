@@ -43,6 +43,11 @@ public class V1_Database
         System.out.println(rc);
 
     }
+    public static int getNumbersOfMovies()
+    {
+        //return Movies.size();
+        return 7;
+    }
 
     public static void LoadEntireDB()
     {
