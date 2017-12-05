@@ -22,7 +22,9 @@ public class V1_Movies {
         Description = description;
     }
 
-
+    public String getName() {
+        return Name;
+    }
 
     @Override
     public String toString() {

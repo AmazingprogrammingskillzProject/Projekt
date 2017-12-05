@@ -26,7 +26,7 @@ public class V1_Database
 
     static ArrayList<V1_Cinema> Cinemas;
     static ArrayList<V1_Bookings> Bookings;
-    static ArrayList<V1_Movies> Movies;
+     static ArrayList<V1_Movies> Movies;
     static ArrayList<V1_SeatBookings> SeatBookings;
     static ArrayList<V1_Showings> Showings;
 
