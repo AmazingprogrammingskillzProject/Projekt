@@ -46,7 +46,7 @@ public class V1_Database
     public static int getNumbersOfMovies()
     {
         //return Movies.size();
-        return 7;
+        return Movies.size();
     }
 
     public static void LoadEntireDB()
