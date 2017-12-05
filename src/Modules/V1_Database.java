@@ -47,13 +47,10 @@ public class V1_Database
     {
         //return Movies.size();
         return Movies.size();
-
-
     }
 
     public static ArrayList<V1_Bookings> getBookings() {
         return Bookings;
-
     }
 
     public static void LoadEntireDB()
