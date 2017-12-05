@@ -18,6 +18,10 @@ public class V1_Bookings {
         LastSeat = lastSeat;
     }
 
+    public String getPhone() {
+        return Phone;
+    }
+
     @Override
     public String toString() {
         return "V1_Bookings{" +

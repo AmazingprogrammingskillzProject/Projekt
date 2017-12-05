@@ -49,6 +49,10 @@ public class V1_Database
         return Movies.size();
     }
 
+    public static ArrayList<V1_Bookings> getBookings() {
+        return Bookings;
+    }
+
     public static void LoadEntireDB()
     {
         LoadBookings();
@@ -264,6 +268,10 @@ public class V1_Database
                 Showings.add(showing);
             }
 
+            for(V1_Showings showing: Showings){
+                showing.toString();
+            }
+
             connection.close();
         }
 
@@ -463,3 +471,4 @@ public class V1_Database
 
 
 }
+
