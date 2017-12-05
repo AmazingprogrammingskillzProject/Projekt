@@ -1,5 +1,6 @@
 .root{
 
-    -fx-background-color: rgba(0,0,0,1);
+    -fx-font: 30 System;
+    -fx-font-weight: bold
 
 }
