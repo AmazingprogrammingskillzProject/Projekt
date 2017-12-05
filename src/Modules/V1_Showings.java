@@ -1,9 +1,18 @@
 package Modules;
 
+import java.util.Date;
+
+import static Modules.V1_Database.getShowings;
+
 public class V1_Showings {
 
     private int ID;
     private int Cinema_ID;
+
+    public int getMovie_ID() {
+        return Movie_ID;
+    }
+
     private int Movie_ID;
     private String Date;
     private String Time;
@@ -18,6 +27,19 @@ public class V1_Showings {
 
     public String getTime() {
         return Time;
+    }
+
+    public String getTime(V1_Showings s, String date )
+    {
+        String k = "";
+        for(V1_Showings d: getShowings())
+        {
+            if(d==s&& d.getDate().equals(date))
+            {
+                k = d.getTime();
+            }
+        }
+        return k;
     }
 
     public V1_Showings(int ID, int cinema_ID, int movie_ID, String date, String time) {

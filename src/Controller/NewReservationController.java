@@ -46,7 +46,7 @@ public class NewReservationController {
 
     public void initialize() {
         Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String dateText = sdf.format(d);
         dateshow.setText(dateText);
 

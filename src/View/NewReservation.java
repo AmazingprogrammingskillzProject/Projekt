@@ -1,5 +1,6 @@
 package View;
 
+import Modules.V1_Showings;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,10 +18,11 @@ import javafx.stage.StageStyle;
 
 import javafx.scene.shape.Line;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-import static Modules.V1_Database.LoadEntireDB;
-import static Modules.V1_Database.getNumbersOfMovies;
-
+import static Modules.V1_Database.*;
 
 
 public class NewReservation extends Application {
@@ -32,10 +34,24 @@ public class NewReservation extends Application {
     private double offset_x; //Start x point on mouse click
     private double offset_y; //Start y point on mouse click
 
+    private static JFXButton[][][] buttons = new JFXButton[6][buttonrow][buttoncollumns];
+
+
+    static Date de = new Date();
+    static SimpleDateFormat sdff = new SimpleDateFormat("yyyy-MM-dd");
+    static String dateText = sdff.format(de);
+    static String todayString = dateText;
+
+
+
     public static void main(String[] args)
     {
+
         LoadEntireDB();
+
+
         launch(args);
+
 
 
     }
@@ -44,6 +60,7 @@ public class NewReservation extends Application {
     @Override
     public void start(Stage stage) throws Exception
     {
+        System.out.println(todayString);
         Parent root = FXMLLoader.load(getClass().getResource("reservation2.fxml"));
         Scene scene = new Scene(root);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -78,15 +95,27 @@ public class NewReservation extends Application {
                 for(int r = 0; r<buttoncollumns; r++)
                 {
                     JFXButton b = new JFXButton();
+
                     b.setStyle("-fx-background-color: Green");
                     b.setRipplerFill(Color.BLACK);
-                    b.setText("XX:XX");
+
                     b.setTextFill(Color.WHITE);
                     b.setLayoutX(visualBounds.getWidth()/6+r*100);
                     b.setLayoutY((visualBounds.getHeight()/19+c*50)+m*200);
                     b.setScaleX(visualBounds.getWidth()/2500);
                     b.setScaleY(visualBounds.getHeight()/1900);
+                    buttons[m][c][r] = b;
 
+                    final int movie = m;
+                    final int coloumn = c;
+                    final int row = r;
+
+
+
+                    b.setOnMouseClicked(event -> {
+                        System.out.println(getMovieName(movie)+": "+row+", "+coloumn);
+
+                    });
 
 
                     anchorPane.getChildren().add(b);
@@ -105,15 +134,40 @@ public class NewReservation extends Application {
             anchorPane.getChildren().add(line1);
 
 
-            Label moviename = new Label("Movie "+(m+1));
-
+            Label moviename = new Label();
+            moviename.setText(getMovieName(m));
             moviename.setStyle("-fx-font: 20 system; -fx-font-weight: bold; ");
             moviename.setLayoutX(50);
             moviename.setLayoutY(120+m*200);
             anchorPane.getChildren().add(moviename);
 
         }
+        loadShows();
 
+    }
+    public static void loadShows()
+    {
+        for(int m = 0; m<getNumbersOfMovies();m++)
+        {
+            for(int c = 0; c<buttoncollumns; c++)
+            {
+                for(int r = 0; r<buttonrow; r++)
+                {
+                    for(V1_Showings s: getShowings())
+                    {
+                        if(s.getDate().equals(todayString)&&s.getMovie_ID()==m+1)
+                        {
+                            buttons[m][r][c].setText(s.getTime());
+                        }
+                        else
+                        {
+                        }
+
+                    }
+
+                }
+            }
+        }
     }
 
 }

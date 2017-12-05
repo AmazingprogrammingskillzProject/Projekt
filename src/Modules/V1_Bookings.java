@@ -18,6 +18,26 @@ public class V1_Bookings {
         LastSeat = lastSeat;
     }
 
+    public int getShowing_ID() {
+        return Showing_ID;
+    }
+
+    public int getFirstSeat() {
+        return FirstSeat;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public int getLastSeat() {
+        return LastSeat;
+    }
+
+    public int getRow() {
+        return Row;
+    }
+
     public String getPhone() {
         return Phone;
     }

@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.*;
 
 
+
 public class V1_Database
 {
     //  Database credentials
@@ -25,10 +26,17 @@ public class V1_Database
 
 
     static ArrayList<V1_Cinema> Cinemas;
+
+    public static ArrayList<V1_Showings> getShowings() {
+        return Showings;
+    }
+
     static ArrayList<V1_Bookings> Bookings;
-     static ArrayList<V1_Movies> Movies;
+    static ArrayList<V1_Movies> Movies;
     static ArrayList<V1_SeatBookings> SeatBookings;
     static ArrayList<V1_Showings> Showings;
+
+
 
     public static void main(String[] args) {
         LoadEntireDB();
@@ -45,12 +53,35 @@ public class V1_Database
     }
     public static int getNumbersOfMovies()
     {
-        //return Movies.size();
         return Movies.size();
     }
+    public static ArrayList<V1_Movies> getMovies()
+    {
+        return Movies;
+    }
+    public static String getMovieName(int m)
+    {
+        return Movies.get(m).getName();
+    }
 
-    public static ArrayList<V1_Bookings> getBookings() {
+    public static String getShowingTime(int m)
+    {
+        return Showings.get(m).getTime();
+    }
+
+    public static V1_Movies getmovie(int m)
+    {
+        return Movies.get(m);
+    }
+
+
+
+    public static List<V1_Bookings> getBookings() {
         return Bookings;
+    }
+    public static String getPhone(V1_Bookings b)
+    {
+        return b.getPhone();
     }
 
     public static void LoadEntireDB()
