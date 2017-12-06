@@ -1,3 +1,4 @@
+/*
 package View;
 
 import javafx.application.Application;
@@ -33,8 +34,11 @@ public class Sal extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Group root1 = new Group();
-        Scene scene = new Scene(root1, visualBounds.getWidth()/3, visualBounds.getHeight()/2, Color.WHITE);
+        //Group root1 = new Group();
+        Parent root = FXMLLoader.load(getClass().getResource("sal.fxml"));
+        Scene scene = new Scene(*/
+/*//*
+root1, visualBounds.getWidth()/3, visualBounds.getHeight()/2, Color.WHITE);
 
 
         for (int i = 0; i< seats; i++)
@@ -45,7 +49,8 @@ public class Sal extends Application {
             r.setY(scene.getHeight()/5);
             r.setWidth(visualBounds.getHeight()/80);
             r.setHeight(visualBounds.getHeight()/80);
-            root1.getChildren().add(r);*/
+            root1.getChildren().add(r);*//*
+
 
             for (int q = 0; q<rows; q++)
             {
@@ -55,7 +60,7 @@ public class Sal extends Application {
                 s.setY(scene.getHeight()/6+q*30);
                 s.setWidth(visualBounds.getHeight()/60);
                 s.setHeight(visualBounds.getHeight()/60);
-                root1.getChildren().add(s);
+                root.getChildren().add(s);
                 rectangles[i][q] = s ;
 
                 final int row = q+1 ;
@@ -75,3 +80,4 @@ public class Sal extends Application {
     }
 
 }
+*/
