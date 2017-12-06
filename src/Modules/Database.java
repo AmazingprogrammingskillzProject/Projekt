@@ -9,7 +9,7 @@ package Modules;
 import java.sql.*; // STEP 1: Import required packages
 import java.util.Date;
 
-import static Modules.Show.print;
+
 
 
 public class Database
@@ -24,7 +24,7 @@ public class Database
 
     public static void main(String[] args) {
         connectDB();
-        print();
+
     }
     public static void connectDB()
     {
@@ -78,7 +78,6 @@ public class Database
                 boolean reserved = rs.getBoolean("Reserved");
                 Cinema cinema = new Cinema(cinemanumber, fid, seat, row, reserved);
                 cinema.addSeatInfo(cinema);
-
 
             }
 

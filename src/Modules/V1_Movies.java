@@ -1,6 +1,9 @@
 package Modules;
 
 import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+
+import static Modules.V1_Database.Movies;
 
 public class V1_Movies {
 
@@ -19,6 +22,12 @@ public class V1_Movies {
         Length = length;
         Description = description;
     }
+
+    public String getName() {
+        return Name;
+    }
+
+
 
     @Override
     public String toString() {

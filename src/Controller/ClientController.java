@@ -1,6 +1,6 @@
 package Controller;
 
-public class Controller
+public class ClientController
 {
     public void closeProgam()
     {

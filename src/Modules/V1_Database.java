@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.*;
 
 
+
 public class V1_Database
 {
     //  Database credentials
@@ -25,10 +26,17 @@ public class V1_Database
 
 
     static ArrayList<V1_Cinema> Cinemas;
+
+    public static ArrayList<V1_Showings> getShowings() {
+        return Showings;
+    }
+
     static ArrayList<V1_Bookings> Bookings;
     static ArrayList<V1_Movies> Movies;
     static ArrayList<V1_SeatBookings> SeatBookings;
     static ArrayList<V1_Showings> Showings;
+
+
 
     public static void main(String[] args) {
         LoadEntireDB();
@@ -43,12 +51,45 @@ public class V1_Database
         System.out.println(rc);
 
     }
+    public static int getNumbersOfMovies()
+    {
+        return Movies.size();
+    }
+    public static ArrayList<V1_Movies> getMovies()
+    {
+        return Movies;
+    }
+    public static String getMovieName(int m)
+    {
+        return Movies.get(m).getName();
+    }
+
+    public static String getShowingTime(int m)
+    {
+        return Showings.get(m).getTime();
+    }
+
+    public static V1_Movies getmovie(int m)
+    {
+        return Movies.get(m);
+    }
+
+
+
+    public static List<V1_Bookings> getBookings() {
+        return Bookings;
+    }
+    public static String getPhone(V1_Bookings b)
+    {
+        return b.getPhone();
+    }
 
     public static void LoadEntireDB()
     {
+        LoadMovies();
         LoadBookings();
         LoadCinema();
-        LoadMovies();
+
         LoadSeatBookings();
         LoadShowings();
     }
@@ -76,8 +117,10 @@ public class V1_Database
                 int row = rs.getInt("Row");
                 int firstSeat = rs.getInt("FirstSeat");
                 int lastSeat = rs.getInt("LastSeat");
+                String movieName = getmovie(getShowings().get(showing_ID-1).getMovie_ID()-1).getName();
 
-                V1_Bookings booking = new V1_Bookings(id, phone, showing_ID, row, firstSeat, lastSeat);
+
+                V1_Bookings booking = new V1_Bookings(id, phone, showing_ID, movieName, row, firstSeat, lastSeat);
                 Bookings.add(booking);
             }
 
@@ -255,8 +298,13 @@ public class V1_Database
                 int movie_ID = rs.getInt("Movie_ID");
                 String date = rs.getString("Date");
                 String time = rs.getString("Time");
-                V1_Showings showing = new V1_Showings(id,cinema_ID,movie_ID,date,time);
+
+                V1_Showings showing = new V1_Showings(id,cinema_ID,movie_ID, date,time);
                 Showings.add(showing);
+            }
+
+            for(V1_Showings showing: Showings){
+                showing.toString();
             }
 
             connection.close();
@@ -458,3 +506,4 @@ public class V1_Database
 
 
 }
+
