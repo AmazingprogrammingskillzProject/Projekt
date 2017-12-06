@@ -68,7 +68,7 @@ public class BookingsController implements Initializable {
 
             phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
             BID.setCellValueFactory(new PropertyValueFactory<>("ID"));
-            showid.setCellValueFactory(new PropertyValueFactory<>("movieName"));
+            showid.setCellValueFactory(new PropertyValueFactory<>("Showing_ID"));
             row.setCellValueFactory(new PropertyValueFactory<>("Row"));
             firstseat.setCellValueFactory(new PropertyValueFactory<>("FirstSeat"));
             lastseat.setCellValueFactory(new PropertyValueFactory<>("LastSeat"));
