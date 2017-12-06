@@ -13,11 +13,7 @@ public class Bookings implements ActionListener{
 
     private JFrame reservationWindow;
     private Container basePane;
-
-  //  private String PNR;
-
-    private int numberOfReservations;
-
+    private JTextArea bookingsField;
 
     public static void main(String[] args) {
         Bookings bookings = new Bookings();
@@ -36,6 +32,7 @@ public class Bookings implements ActionListener{
         reservationWindow = new JFrame("Reservation");
         reservationWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         reservationWindow.setVisible(true);
+        reservationWindow.setResizable(false);
 
         basePane = reservationWindow.getContentPane();
         basePane.setLayout(new BorderLayout(6,6));
@@ -45,12 +42,14 @@ public class Bookings implements ActionListener{
         makeCenterPane();
         makeSouthPane();
 
+
         reservationWindow.pack();
         reservationWindow.setSize(640, 480);
 
     }
 
     private void makeNorthPane() {
+
         JPanel northPanel = new JPanel();
         basePane.add(northPanel, BorderLayout.NORTH);
         northPanel.setLayout(new GridLayout(1, 3));
@@ -65,11 +64,21 @@ public class Bookings implements ActionListener{
         JButton search = new JButton("Search");
         search.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent search) {
+
+                V1_Database.LoadBookings();
+
+                bookingsField.setText("");
+
                 String PNR = phoneNumber.getText();
 
                 for(V1_Bookings booking: V1_Database.getBookings()) {
                     if(booking.getPhone().equals(PNR)) {
+                        String collectedStrings = bookingsField.getText();
+
+                        bookingsField.setText(collectedStrings + "Phone: " + booking.getPhone() + "    Booking ID: " + booking.getID() +
+                                "    Showing ID: " + booking.getShowing_ID() + "    Row: " + booking.getRow() + "    First Seat: " + booking.getFirstSeat() + "    Last Seat: " + booking.getLastSeat() + "\n");
                         System.out.println(booking);
+
                     }
                 }
 
@@ -83,8 +92,18 @@ public class Bookings implements ActionListener{
 
         JPanel centerPanel = new JPanel();
         basePane.add(centerPanel, BorderLayout.CENTER);
+        centerPanel.setLayout(new GridLayout(2,1));
 
-        centerPanel.setLayout(new FlowLayout());
+        JPanel centerNorth = new JPanel();
+        centerPanel.add(centerNorth);
+        centerNorth.setLayout(new GridLayout(1,6));
+
+        JPanel centerSouth = new JPanel();
+        bookingsField = new JTextArea();
+        bookingsField.setEditable(false);
+        centerSouth.setLayout(new GridLayout(1,1));
+        centerPanel.add(centerSouth);
+        centerSouth.add(bookingsField);
 
 
         JTextField phoneNr = new JTextField("Phone number");
@@ -94,17 +113,17 @@ public class Bookings implements ActionListener{
         JTextField firstSeat = new JTextField("First seat");
         JTextField lastSeat = new JTextField("Last seat");
 
-        centerPanel.add(phoneNr);
+        centerNorth.add(phoneNr);
         phoneNr.setHorizontalAlignment(JTextField.CENTER);
-        centerPanel.add(bookingID);
+        centerNorth.add(bookingID);
         bookingID.setHorizontalAlignment(JTextField.CENTER);
-        centerPanel.add(showingID);
+        centerNorth.add(showingID);
         showingID.setHorizontalAlignment(JTextField.CENTER);
-        centerPanel.add(row);
+        centerNorth.add(row);
         row.setHorizontalAlignment(JTextField.CENTER);
-        centerPanel.add(firstSeat);
+        centerNorth.add(firstSeat);
         firstSeat.setHorizontalAlignment(JTextField.CENTER);
-        centerPanel.add(lastSeat);
+        centerNorth.add(lastSeat);
         lastSeat.setHorizontalAlignment(JTextField.CENTER);
 
     }
@@ -130,12 +149,14 @@ public class Bookings implements ActionListener{
         delete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 V1_Database.DeleteBooking(phone.getText(), Integer.parseInt(BID.getText()));
+
+                JOptionPane.showMessageDialog(null, "Booking deleted");
             }
         });
 
     }
 
-   public void actionPerformed(ActionEvent search) {
+    public void actionPerformed(ActionEvent search) {
 
     }
 }

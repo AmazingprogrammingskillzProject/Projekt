@@ -8,17 +8,17 @@ public class V1_Bookings {
     private int Row;
     private int FirstSeat;
     private int LastSeat;
-    private String movieName;
 
 
-    public V1_Bookings(int ID, String phones, int showing_ID, String movieName,  int row, int firstSeat, int lastSeat) {
+
+    public V1_Bookings(int ID, String phones, int showing_ID, int row, int firstSeat, int lastSeat) {
         this.ID = ID;
         Phone = phones;
         Showing_ID = showing_ID;
         Row = row;
         FirstSeat = firstSeat;
         LastSeat = lastSeat;
-        this.movieName = movieName;
+
 
     }
 

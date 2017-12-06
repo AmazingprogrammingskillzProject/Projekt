@@ -25,17 +25,19 @@ public class V1_Database
     static final String DB_URL = "jdbc:mysql://mydb.itu.dk/" + MYDB;
 
 
-    static ArrayList<V1_Cinema> Cinemas;
+    private static ArrayList<V1_Cinema> Cinemas;
+    private static ArrayList<V1_Bookings> Bookings;
+    private static ArrayList<V1_Movies> Movies;
+    private static ArrayList<V1_SeatBookings> SeatBookings;
+    private static ArrayList<V1_Showings> Showings;
+
+    public static ArrayList<V1_Cinema> getCinemas() {
+        return Cinemas;
+    }
 
     public static ArrayList<V1_Showings> getShowings() {
         return Showings;
     }
-
-    static ArrayList<V1_Bookings> Bookings;
-    static ArrayList<V1_Movies> Movies;
-    static ArrayList<V1_SeatBookings> SeatBookings;
-    static ArrayList<V1_Showings> Showings;
-
 
 
     public static void main(String[] args) {
@@ -44,9 +46,9 @@ public class V1_Database
 
             System.out.println(cinema);
         }
-//        ReturnCode rc = CreateBooking("+4520112852", 1, 7, 6, 7);
+        ReturnCode rc = CreateBooking("+4520112852", 10, 5, 3, 5);
 //        ReturnCode rc = DeleteBooking("+4520112852", 10);
-        ReturnCode rc = InsertIntoShowings(1, 1, "2017-12-13","18:00:00");
+//        ReturnCode rc = InsertIntoShowings(1, 1, "2017-12-13","18:00:00");
 
         System.out.println(rc);
 
@@ -74,7 +76,9 @@ public class V1_Database
         return Movies.get(m);
     }
 
-
+    public static ArrayList<V1_SeatBookings> getSeatBookings() {
+        return SeatBookings;
+    }
 
     public static List<V1_Bookings> getBookings() {
         return Bookings;
@@ -89,7 +93,6 @@ public class V1_Database
         LoadMovies();
         LoadBookings();
         LoadCinema();
-
         LoadSeatBookings();
         LoadShowings();
     }
@@ -117,10 +120,10 @@ public class V1_Database
                 int row = rs.getInt("Row");
                 int firstSeat = rs.getInt("FirstSeat");
                 int lastSeat = rs.getInt("LastSeat");
-                String movieName = getmovie(getShowings().get(showing_ID-1).getMovie_ID()-1).getName();
 
 
-                V1_Bookings booking = new V1_Bookings(id, phone, showing_ID, movieName, row, firstSeat, lastSeat);
+
+                V1_Bookings booking = new V1_Bookings(id, phone, showing_ID, row, firstSeat, lastSeat);
                 Bookings.add(booking);
             }
 

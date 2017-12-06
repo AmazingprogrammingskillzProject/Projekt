@@ -11,11 +11,27 @@ public class V1_Cinema {
         return ID;
     }
 
+    public int getNumber() {
+        return Number;
+    }
+
+    public int getRows() {
+        return Rows;
+    }
+
+    public int getSeats() {
+        return Seats;
+    }
+
     public V1_Cinema(int ID, int number, int rows, int seats) {
         this.ID = ID;
         Number = number;
         Rows = rows;
         Seats = seats;
+    }
+
+    public V1_Cinema() {
+        this(-1, -1, 8, 12);
     }
 
     @Override

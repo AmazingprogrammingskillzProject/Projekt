@@ -4,6 +4,7 @@ import Modules.V1_Bookings;
 
 
 import Modules.V1_Database;
+import View.Bookings;
 import com.jfoenix.controls.*;
 
 import javafx.collections.FXCollections;
@@ -50,15 +51,12 @@ public class BookingsController implements Initializable {
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         searchbutt.setOnMouseClicked(event -> {
             ArrayList<V1_Bookings> bookingsFound = new ArrayList<>();
-            for(V1_Bookings b: getBookings())
-            {
+            for (V1_Bookings b : getBookings()) {
 
-                if (b.getPhone().equals(seachnumber.getText()))
-                {
+                if (b.getPhone().equals(seachnumber.getText())) {
                     bookingsFound.add(b);
 
                 }
@@ -75,21 +73,12 @@ public class BookingsController implements Initializable {
             tablevew.setItems(bookingsfoundO);
         });
         cancel.setRipplerFill(Color.RED);
-        if(!(seachnumber2.getText().equals("")&&bookingID.getText().equals("")))
-        {
+        if (!(seachnumber2.getText().equals("") && bookingID.getText().equals(""))) {
             cancel.setOnMouseClicked(event -> {
                 V1_Database.DeleteBooking(seachnumber2.getText(), Integer.parseInt(bookingID.getText()));
 
             });
         }
-
-
-
-
-
-
-
-
     }
 }
 
