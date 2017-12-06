@@ -34,7 +34,7 @@ public class Sal extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Group root1 = new Group();
-        Scene scene = new Scene(root1, visualBounds.getWidth()/4, visualBounds.getHeight()/3, Color.WHITE);
+        Scene scene = new Scene(root1, visualBounds.getWidth()/3, visualBounds.getHeight()/2, Color.WHITE);
 
 
         for (int i = 0; i< seats; i++)
@@ -51,17 +51,17 @@ public class Sal extends Application {
             {
                 Rectangle s = new Rectangle();
                 s.setFill(Color.GREEN);
-                s.setX(scene.getWidth()/5+i*30);
-                s.setY(scene.getHeight()/5+q*30);
-                s.setWidth(visualBounds.getHeight()/80);
-                s.setHeight(visualBounds.getHeight()/80);
+                s.setX(scene.getWidth()/6+i*30);
+                s.setY(scene.getHeight()/6+q*30);
+                s.setWidth(visualBounds.getHeight()/60);
+                s.setHeight(visualBounds.getHeight()/60);
                 root1.getChildren().add(s);
                 rectangles[i][q] = s ;
 
                 final int row = q+1 ;
                 final int seat = i+1 ;
                 s.setOnMouseClicked(event ->{
-
+                    s.setFill(Color.RED);
                     System.out.println(row+","+seat);
                 });
 
