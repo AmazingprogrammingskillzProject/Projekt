@@ -160,7 +160,7 @@ public class NewDateTimePicker implements ActionListener
         {
             if(s.getTime().equals(time)&&s.getDate().equals(date))
             {
-                movie.add(getMovie((s.getMovie_ID()-1)).getName());
+                movie.add(getmovie((s.getMovie_ID()-1)).getName());
             }
         }
         return movie;
@@ -178,7 +178,7 @@ public class NewDateTimePicker implements ActionListener
             {
                 if(s.getDate().equals(date)&&s.getTime().equals(time))
                 {
-                    movies.add(getMovie((s.getMovie_ID()-1)).getName());
+                    movies.add(getmovie((s.getMovie_ID()-1)).getName());
                 }
             }
         }

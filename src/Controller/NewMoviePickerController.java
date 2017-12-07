@@ -25,6 +25,18 @@ public class NewMoviePickerController
         }
         return dates;
     }
+    public static int getMovieIDbyName(String movieName)
+    {
+        int ID = 0;
+        for(V1_Movies m: getMovies())
+        {
+            if(m.getName().equals(movieName))
+            {
+                ID = m.getID();
+            }
+        }
+        return ID;
+    }
 
     public static ArrayList<String> getMoviesName()
     {

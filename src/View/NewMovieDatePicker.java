@@ -15,7 +15,7 @@ import static Controller.NewMoviePickerController.*;
 
 import static Modules.V1_Database.*;
 
-public class NewMoviePicker implements ActionListener {
+public class NewMovieDatePicker implements ActionListener {
     private JFrame window2;
 
     private JLabel pickAMovie;
@@ -39,13 +39,13 @@ public class NewMoviePicker implements ActionListener {
     public static void main(String[] args)
     {
         LoadEntireDB();
-        NewMoviePicker newDateTimeReservation = new NewMoviePicker();
+        NewMovieDatePicker newDateTimeReservation = new NewMovieDatePicker();
         newDateTimeReservation.makeFrame();
 
 
     }
 
-    public NewMoviePicker()
+    public NewMovieDatePicker()
     {
 
     }
