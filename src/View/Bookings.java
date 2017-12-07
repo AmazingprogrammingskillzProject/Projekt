@@ -1,5 +1,6 @@
 package View;
 
+import Controller.ButtonController;
 import Modules.V1_Bookings;
 import Modules.V1_Database;
 import javafx.beans.property.adapter.JavaBeanBooleanProperty;
@@ -12,15 +13,15 @@ import java.awt.event.ActionListener;
 
 public class Bookings implements ActionListener{
 
-    private JFrame reservationWindow;
-    private Container basePane;
-    private JTextArea bookingsField;
-    private JTextField phone;
-    private JButton deleteButton;
-    private JTextField BID;
-    private JButton searchButton;
-    private JTextField phoneNumber;
-    private JButton backButton;
+    private static JFrame reservationWindow;
+    private static Container basePane;
+    private static JTextArea bookingsField;
+    private static JTextField phone;
+    private static JButton deleteButton;
+    private static JTextField BID;
+    private static JButton searchButton;
+    private static JTextField phoneNumber;
+    private static JButton backButton;
 
     public static void main(String[] args) {
         Bookings bookings = new Bookings();
@@ -34,6 +35,42 @@ public class Bookings implements ActionListener{
             makeFrame();
             V1_Database.LoadBookings();
         }
+
+    public JFrame getReservationWindow() {
+        return reservationWindow;
+    }
+
+    public Container getBasePane() {
+        return basePane;
+    }
+
+    public static JTextArea getBookingsField() {
+        return bookingsField;
+    }
+
+    public static JTextField getPhone() {
+        return phone;
+    }
+
+    public static JButton getDeleteButton() {
+        return deleteButton;
+    }
+
+    public static JTextField getBID() {
+        return BID;
+    }
+
+    public static JButton getSearchButton() {
+        return searchButton;
+    }
+
+    public static JTextField getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public static JButton getBackButton() {
+        return backButton;
+    }
 
     private void makeFrame () {
         reservationWindow = new JFrame("Reservation");
@@ -148,40 +185,11 @@ public class Bookings implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         if(e.getSource() == deleteButton){
-            deleteBooking();
+            ButtonController.deleteBooking();
         }
         if(e.getSource() == searchButton) {
-            searchBooking();
+            ButtonController.searchBooking();
         }
-
-    }
-
-    private void deleteBooking() {
-        V1_Database.DeleteBooking(phone.getText(), Integer.parseInt(BID.getText()));
-
-        JOptionPane.showMessageDialog(null, "Booking deleted");
-        searchBooking();
-    }
-
-    private void searchBooking(){
-        V1_Database.LoadBookings();
-
-        bookingsField.setText("");
-
-        String PNR = phoneNumber.getText();
-
-        for(V1_Bookings booking: V1_Database.getBookings()) {
-            if(booking.getPhone().equals(PNR)) {
-                String collectedStrings = bookingsField.getText();
-
-                bookingsField.setText(collectedStrings + "Phone: " + booking.getPhone() + "    Booking ID: " + booking.getID() +
-                        "    Showing ID: " + booking.getShowing_ID() + "    Row: " + booking.getRow() + "    First Seat: " + booking.getFirstSeat() + "    Last Seat: " + booking.getLastSeat() + "\n");
-                System.out.println(booking);
-
-            }
-        }
-
-        phone.setText(phoneNumber.getText());
     }
     }
 

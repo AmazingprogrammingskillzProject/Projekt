@@ -1,5 +1,6 @@
 package View;
 
+import Controller.V1_DatabaseController;
 import Modules.ReturnCode;
 import Modules.V1_Cinema;
 import Modules.V1_Database;
@@ -303,7 +304,7 @@ public class Cinema implements ActionListener{
 
         System.out.println(phone + " " + showID + " " +row + " "+ fseat + " "+ lseat);
 
-        ReturnCode rtc = V1_Database.CreateBooking(phone, showID, row, fseat, lseat);
+        ReturnCode rtc = V1_DatabaseController.CreateBooking(phone, showID, row, fseat, lseat);
         makeCenterPane();
         switch (rtc){
             case SUCCESS:
