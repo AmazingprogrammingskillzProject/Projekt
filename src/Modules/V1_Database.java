@@ -26,9 +26,6 @@ public class V1_Database
     // JDBC driver name and database URL
     static final String DB_URL = "jdbc:mysql://mydb.itu.dk/" + MYDB;
 
-    public static String getMYDB() {
-        return MYDB;
-    }
 
     public static String getUSER() {
         return USER;
