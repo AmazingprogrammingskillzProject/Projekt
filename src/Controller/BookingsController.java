@@ -75,7 +75,7 @@ public class BookingsController implements Initializable {
         cancel.setRipplerFill(Color.RED);
         if (!(seachnumber2.getText().equals("") && bookingID.getText().equals(""))) {
             cancel.setOnMouseClicked(event -> {
-                V1_Database.DeleteBooking(seachnumber2.getText(), Integer.parseInt(bookingID.getText()));
+                V1_DatabaseController.DeleteBooking(seachnumber2.getText(), Integer.parseInt(bookingID.getText()));
 
             });
         }

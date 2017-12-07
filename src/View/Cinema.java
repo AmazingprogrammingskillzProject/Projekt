@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Cinema implements ActionListener{
@@ -35,9 +36,12 @@ public class Cinema implements ActionListener{
     private int selectedLSeat = -1;
     private int numberOfTickets = -1;
 
+    ArrayList<JButton> seatButtonArray;
+
+
     private Integer[] rowArray = {1, 2, 3, 4, 5, 6, 7, 8};
     private Integer[] seatArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-    private Integer[] ticketArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+    private Integer[] ticketArray;
 
     private JButton[][] bookedSeats;
 
@@ -78,6 +82,7 @@ public class Cinema implements ActionListener{
         this.cRows = selectedCinema.getRows();
         this.cSeats = selectedCinema.getSeats();
 
+        ticketArray = new Integer[cSeats];
         rowArray = new Integer[cRows];
         seatArray = new  Integer[cSeats];
 
@@ -145,7 +150,9 @@ public class Cinema implements ActionListener{
         JPanel centerPanel = new JPanel();
         basePane.add(centerPanel, BorderLayout.CENTER);
         //centerPanel.getHeight()
-        centerPanel.setLayout(new GridLayout(cRows, cSeats, 20, 20));
+        centerPanel.setLayout(new GridLayout(cRows, cSeats, 240/cSeats, 160/cRows));
+
+        seatButtonArray = new ArrayList<>();
 
         for (int r = 1; r <= cRows; r++){
             for(int s = 1; s <= cSeats; s++) {
@@ -156,7 +163,7 @@ public class Cinema implements ActionListener{
                 String bttLabel = "" + r + ", " + s;
 
                 JButton button = new JButton(bttLabel);
-                button.setFont(new Font("Times New Roman", Font.PLAIN, 9));
+                button.setFont(new Font("Times New Roman", Font.PLAIN, 10));
                 button.setBackground(Color.GREEN);
 
                 // gemmer række og sæde for knappen der blev trykket på
@@ -170,8 +177,12 @@ public class Cinema implements ActionListener{
                         selectedRow = bttRow;
                         selectedFSeat = bttSeat;
                         selectedLSeat = bttSeat + numberOfTickets -1;
+                        if(selectedLSeat > seatArray.length){
+                            JOptionPane.showMessageDialog(null, "Error selecting seats");
+                            selectedLSeat = bttSeat;
+                        }
                         selectSeat();
-                        button.setBackground(Color.YELLOW);
+
                     }
                 });
 
@@ -183,7 +194,9 @@ public class Cinema implements ActionListener{
                         }
                     }
                 }
+                seatButtonArray.add(button);
                 centerPanel.add(button);
+
 
             }
         }
@@ -193,14 +206,32 @@ public class Cinema implements ActionListener{
     // Kaldes på tryk af sæde knap
     private void selectSeat() {
 
+        for(JButton JB : seatButtonArray){
+            if(JB.getBackground() == Color.YELLOW) {
+                JB.setBackground(Color.GREEN);
+            }
+        }
         System.out.println(numberOfTickets);
 
         rowBox.setSelectedIndex(selectedRow -1);
         firstSeatbox.setSelectedIndex(selectedFSeat -1);
         lastSeatBox.setSelectedIndex(selectedLSeat -1);
         System.out.println(selectedLSeat);
+
+
+
         JOptionPane.showMessageDialog(null, "Row: " + selectedRow + " Seat: " + selectedFSeat + " - " + selectedLSeat);
-    }
+
+        for(int i = 0; i < seatButtonArray.size(); i ++)
+            if(i >= selectedFSeat - (cSeats + 1) + cSeats  * selectedRow && i <= selectedLSeat - (cSeats + 1) + cSeats * selectedRow){
+                if(seatButtonArray.get(i).getBackground() == Color.RED){
+                    JOptionPane.showMessageDialog(null, "Some picked seats already booked");
+                    return;
+                } else {
+                    seatButtonArray.get(i).setBackground(Color.YELLOW);
+                }
+            }
+        }
 
     private void makeSouthPane() {
 
@@ -289,7 +320,7 @@ public class Cinema implements ActionListener{
             makeBooking();
         }
         if(e.getSource() == backButton){
-
+            goBack();
         }
     }
 
@@ -305,7 +336,6 @@ public class Cinema implements ActionListener{
         System.out.println(phone + " " + showID + " " +row + " "+ fseat + " "+ lseat);
 
         ReturnCode rtc = V1_DatabaseController.CreateBooking(phone, showID, row, fseat, lseat);
-        makeCenterPane();
         switch (rtc){
             case SUCCESS:
                 JOptionPane.showMessageDialog(null, "Booking created");
@@ -319,5 +349,10 @@ public class Cinema implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Unexpected error happened: " + rtc);
                 break;
         }
+    }
+
+    private void goBack(){
+
+
     }
 }
