@@ -88,7 +88,7 @@ public class Bookings implements ActionListener{
 
 
         reservationWindow.pack();
-        reservationWindow.setSize(640, 480);
+        reservationWindow.setSize(840, 480);
 
     }
 

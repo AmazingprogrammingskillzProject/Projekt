@@ -9,13 +9,18 @@ public class V1_Showings {
     private int ID;
     private int Cinema_ID;
 
-    public int getMovie_ID() {
-        return Movie_ID;
-    }
 
     private int Movie_ID;
     private String Date;
     private String Time;
+
+    public int getID() {
+        return ID;
+    }
+
+    public int getMovie_ID() {
+        return Movie_ID;
+    }
 
 
     public int getCinema_ID() {

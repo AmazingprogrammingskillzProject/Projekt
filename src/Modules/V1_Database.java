@@ -6,6 +6,8 @@
 
 package Modules;
 
+import Controller.V1_DatabaseController;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -25,19 +27,31 @@ public class V1_Database
     static final String DB_URL = "jdbc:mysql://mydb.itu.dk/" + MYDB;
 
 
-    static ArrayList<V1_Cinema> Cinemas;
-
-    public static ArrayList<V1_Showings> getShowings()
-    {
-        return Showings;
+    public static String getUSER() {
+        return USER;
     }
 
-    static ArrayList<V1_Bookings> Bookings;
-    static ArrayList<V1_Movies> Movies;
-    static ArrayList<V1_SeatBookings> SeatBookings;
-    static ArrayList<V1_Showings> Showings;
+    public static String getPASS() {
+        return PASS;
+    }
 
+    public static String getDbUrl() {
+        return DB_URL;
+    }
 
+    private static ArrayList<V1_Cinema> Cinemas;
+    private static ArrayList<V1_Bookings> Bookings;
+    private static ArrayList<V1_Movies> Movies;
+    private static ArrayList<V1_SeatBookings> SeatBookings;
+    private static ArrayList<V1_Showings> Showings;
+
+    public static ArrayList<V1_Cinema> getCinemas() {
+        return Cinemas;
+    }
+
+    public static ArrayList<V1_Showings> getShowings() {
+        return Showings;
+    }
 
     public static void main(String[] args) {
         LoadEntireDB();
@@ -45,11 +59,16 @@ public class V1_Database
 
             System.out.println(cinema);
         }
-//        ReturnCode rc = CreateBooking("+4520112852", 1, 7, 6, 7);
+        ReturnCode rc = V1_DatabaseController.CreateBooking("+4520112852", 7, 5, 3, 5);
 //        ReturnCode rc = DeleteBooking("+4520112852", 10);
-        ReturnCode rc = InsertIntoShowings(1, 1, "2017-12-13","18:00:00");
+//        ReturnCode rc = InsertIntoShowings(1, 1, "2017-12-13","18:00:00");
 
         System.out.println(rc);
+
+        for(V1_Movies movie: Movies)
+        {
+            System.out.println(movie);
+        }
 
     }
     public static int getNumbersOfMovies()
@@ -70,29 +89,16 @@ public class V1_Database
         return Showings.get(m).getTime();
     }
 
-    public static V1_Movies getMovie(int m)
+    public static V1_Movies getmovie(int m)
     {
         return Movies.get(m);
     }
 
-    public static int getMovieIDbyName(String moviename)
-    {
-        int ID = 0;
-        for(V1_Movies m: getMovies())
-        {
-            if(m.getName().equals(moviename))
-            {
-                ID = m.getID();
-            }
-
-        }
-        return ID;
-
+    public static ArrayList<V1_SeatBookings> getSeatBookings() {
+        return SeatBookings;
     }
 
-
-
-    public static List<V1_Bookings> getBookings() {
+    public static ArrayList<V1_Bookings> getBookings() {
         return Bookings;
     }
     public static String getPhone(V1_Bookings b)
@@ -105,7 +111,6 @@ public class V1_Database
         LoadMovies();
         LoadBookings();
         LoadCinema();
-
         LoadSeatBookings();
         LoadShowings();
     }
@@ -133,6 +138,7 @@ public class V1_Database
                 int row = rs.getInt("Row");
                 int firstSeat = rs.getInt("FirstSeat");
                 int lastSeat = rs.getInt("LastSeat");
+
 
 
                 V1_Bookings booking = new V1_Bookings(id, phone, showing_ID, row, firstSeat, lastSeat);
@@ -304,7 +310,7 @@ public class V1_Database
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             statement = connection.createStatement();
 
-            sql = "SELECT * FROM V1_Showings ORDER BY 'Date' ASC";
+            sql = "SELECT * FROM `V1_Showings`";
             rs = statement.executeQuery(sql);
             while(rs.next())
             {
@@ -339,110 +345,6 @@ public class V1_Database
                 e.printStackTrace();
             }
         }
-    }
-
-    public static ReturnCode CreateBooking(String phone, int showing_ID, int row, int firstSeat, int lastSeat)
-    {
-        Connection connection = null;
-        Statement statement = null;
-        String sql = null;
-        ResultSet rs = null;
-
-        boolean isBooked = false;
-
-        LoadSeatBookings();
-
-        for(V1_SeatBookings sb: SeatBookings) {
-            if (sb.getShowing_ID() == showing_ID && sb.getRow() == row) {
-                if(sb.getSeat() >= firstSeat && sb.getSeat() <= lastSeat) {
-                    isBooked = true;
-                }
-            }
-        }
-
-        if (isBooked) {
-            return ReturnCode.IS_BOOKED;
-        }
-
-        try {
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
-            statement = connection.createStatement();
-
-            sql = "INSERT INTO `V1_Bookings`(`Phone`, `Showing_ID`, `Row`, `FirstSeat`, `LastSeat`) VALUES ('"+phone+"', "+showing_ID+", "+row+", "+firstSeat+", "+lastSeat+")";
-            statement.executeUpdate(sql);
-
-            sql = "SELECT * FROM `V1_Bookings` WHERE `Phone` = '"+phone+"' AND `Showing_ID` = "+showing_ID+" AND `Row` = "+row+" AND `FirstSeat` = "+firstSeat+" AND `LastSeat` = "+lastSeat;
-            rs = statement.executeQuery(sql);
-
-            rs.next();
-            int booking_ID = rs.getInt("ID");
-
-            for(int i = firstSeat; i <= lastSeat; i++){
-                sql = "INSERT INTO `V1_SeatBookings`(`Booking_ID`, `Showing_ID`, `Row`, `Seat`) VALUES ("+booking_ID+", "+showing_ID+", "+row+", "+i+")";
-                statement.executeUpdate(sql);
-            }
-
-            connection.close();
-        }
-
-        catch(Exception e)
-        { // handle errors:
-            e.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
-                rs.close();
-                connection.close();
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        LoadSeatBookings();
-        LoadBookings();
-
-        return ReturnCode.SUCCESS;
-    }
-
-    public static ReturnCode DeleteBooking(String phone, int booking_ID)
-    {
-        Connection connection = null;
-        Statement statement = null;
-        String sql = null;
-
-        try {
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
-            statement = connection.createStatement();
-
-            sql = "DELETE FROM `V1_Bookings` WHERE `Phone` = '"+phone+"' AND `ID` = "+booking_ID;
-            statement.executeUpdate(sql);
-
-            sql = "DELETE FROM `V1_SeatBookings` WHERE `Booking_ID` = "+booking_ID;
-            statement.executeUpdate(sql);
-
-            connection.close();
-        }
-
-        catch(Exception e)
-        { // handle errors:
-            e.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
-                connection.close();
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        LoadSeatBookings();
-        LoadBookings();
-
-        return ReturnCode.SUCCESS;
     }
 
     public static ReturnCode InsertIntoShowings(int cinema_ID, int movie_ID, String date, String time)
