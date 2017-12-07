@@ -27,8 +27,6 @@ public class V1_Movies {
         return Name;
     }
 
-
-
     @Override
     public String toString() {
         return "V1_Movies{" +

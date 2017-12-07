@@ -339,6 +339,12 @@ public class Cinema implements ActionListener{
         switch (rtc){
             case SUCCESS:
                 JOptionPane.showMessageDialog(null, "Booking created");
+
+                for(int i = 0; i < seatButtonArray.size(); i ++)
+                    if(i >= selectedFSeat - (cSeats + 1) + cSeats  * selectedRow && i <= selectedLSeat - (cSeats + 1) + cSeats * selectedRow) {
+                        seatButtonArray.get(i).setBackground(Color.RED);
+                    }
+
                 break;
 
             case IS_BOOKED:

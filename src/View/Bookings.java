@@ -3,7 +3,6 @@ package View;
 import Controller.ButtonController;
 import Modules.V1_Bookings;
 import Modules.V1_Database;
-import javafx.beans.property.adapter.JavaBeanBooleanProperty;
 
 import javax.swing.*;
 import java.awt.*;
@@ -88,7 +87,7 @@ public class Bookings implements ActionListener{
 
 
         reservationWindow.pack();
-        reservationWindow.setSize(640, 480);
+        reservationWindow.setSize(840, 480);
 
     }
 

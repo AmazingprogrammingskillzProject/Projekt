@@ -59,7 +59,7 @@ public class V1_Database
 
             System.out.println(cinema);
         }
-        ReturnCode rc = V1_DatabaseController.CreateBooking("+4520112852", 10, 5, 3, 5);
+        ReturnCode rc = V1_DatabaseController.CreateBooking("+4520112852", 7, 5, 3, 5);
 //        ReturnCode rc = DeleteBooking("+4520112852", 10);
 //        ReturnCode rc = InsertIntoShowings(1, 1, "2017-12-13","18:00:00");
 
@@ -98,7 +98,7 @@ public class V1_Database
         return SeatBookings;
     }
 
-    public static List<V1_Bookings> getBookings() {
+    public static ArrayList<V1_Bookings> getBookings() {
         return Bookings;
     }
     public static String getPhone(V1_Bookings b)
