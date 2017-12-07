@@ -53,7 +53,6 @@ public class V1_Database
         return Showings;
     }
 
-
     public static void main(String[] args) {
         LoadEntireDB();
         for(V1_Showings cinema: Showings) {
@@ -65,6 +64,11 @@ public class V1_Database
 //        ReturnCode rc = InsertIntoShowings(1, 1, "2017-12-13","18:00:00");
 
         System.out.println(rc);
+
+        for(V1_Movies movie: Movies)
+        {
+            System.out.println(movie);
+        }
 
     }
     public static int getNumbersOfMovies()

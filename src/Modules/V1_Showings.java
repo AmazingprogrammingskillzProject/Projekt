@@ -9,11 +9,11 @@ public class V1_Showings {
     private int ID;
     private int Cinema_ID;
 
-    public int getMovie_ID() {
+    public static int getMovie_ID() {
         return Movie_ID;
     }
 
-    private int Movie_ID;
+    private static int Movie_ID;
     private String Date;
     private String Time;
 

@@ -2,6 +2,7 @@ package Controller;
 
 import Modules.V1_Bookings;
 import Modules.V1_Database;
+import Modules.V1_Showings;
 import View.Bookings;
 
 import javax.swing.*;
@@ -27,7 +28,7 @@ public class ButtonController {
                 String collectedStrings = Bookings.getBookingsField().getText();
 
                 Bookings.getBookingsField().setText(collectedStrings + "Phone: " + booking.getPhone() + "    Booking ID: " + booking.getID() +
-                        "    Showing ID: " + booking.getShowing_ID() + "    Row: " + booking.getRow() + "    First Seat: " + booking.getFirstSeat() + "    Last Seat: " + booking.getLastSeat() + "\n");
+                        "    Showing ID: " +  V1_Database.getShowings() + "    Row: " + booking.getRow() + "    First Seat: " + booking.getFirstSeat() + "    Last Seat: " + booking.getLastSeat() + "\n");
                 System.out.println(booking);
 
             }
@@ -35,6 +36,7 @@ public class ButtonController {
 
         Bookings.getPhone().setText(Bookings.getPhoneNumber().getText());
     }
+
 
 
 }
