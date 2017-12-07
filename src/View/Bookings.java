@@ -2,6 +2,7 @@ package View;
 
 import Modules.V1_Bookings;
 import Modules.V1_Database;
+import javafx.beans.property.adapter.JavaBeanBooleanProperty;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,12 @@ public class Bookings implements ActionListener{
     private JFrame reservationWindow;
     private Container basePane;
     private JTextArea bookingsField;
+    private JTextField phone;
+    private JButton deleteButton;
+    private JTextField BID;
+    private JButton searchButton;
+    private JTextField phoneNumber;
+    private JButton backButton;
 
     public static void main(String[] args) {
         Bookings bookings = new Bookings();
@@ -52,39 +59,23 @@ public class Bookings implements ActionListener{
 
         JPanel northPanel = new JPanel();
         basePane.add(northPanel, BorderLayout.NORTH);
-        northPanel.setLayout(new GridLayout(1, 3));
+        northPanel.setLayout(new GridLayout(1, 4));
+
+        backButton = new JButton("Back");
+        backButton.addActionListener(this);
+        northPanel.add(backButton);
 
         JLabel phoneLabel = new JLabel("Phone number: ");
+        phoneLabel.setHorizontalAlignment(JLabel.RIGHT  );
         northPanel.add(phoneLabel);
 
-        JTextField phoneNumber = new JTextField();
+        phoneNumber = new JTextField();
         phoneNumber.setSize(150, 27);
         northPanel.add(phoneNumber);
 
-        JButton search = new JButton("Search");
-        search.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent search) {
-
-                V1_Database.LoadBookings();
-
-                bookingsField.setText("");
-
-                String PNR = phoneNumber.getText();
-
-                for(V1_Bookings booking: V1_Database.getBookings()) {
-                    if(booking.getPhone().equals(PNR)) {
-                        String collectedStrings = bookingsField.getText();
-
-                        bookingsField.setText(collectedStrings + "Phone: " + booking.getPhone() + "    Booking ID: " + booking.getID() +
-                                "    Showing ID: " + booking.getShowing_ID() + "    Row: " + booking.getRow() + "    First Seat: " + booking.getFirstSeat() + "    Last Seat: " + booking.getLastSeat() + "\n");
-                        System.out.println(booking);
-
-                    }
-                }
-
-            }
-        });
-        northPanel.add(search);
+        searchButton = new JButton("Search");
+        searchButton.addActionListener(this);
+        northPanel.add(searchButton);
 
     }
 
@@ -135,30 +126,64 @@ public class Bookings implements ActionListener{
         southPanel.setLayout(new GridLayout(1,5));
 
         JLabel phoneNr = new JLabel("Phone number:");
+        phoneNr.setHorizontalAlignment(JLabel.RIGHT);
         JLabel bookingID = new JLabel("Booking ID:");
-        JTextField phone = new JTextField("");
-        JTextField BID = new JTextField("");
-        JButton delete = new JButton("Delete");
+        bookingID.setHorizontalAlignment(JLabel.RIGHT);
+        phone = new JTextField("");
+        BID = new JTextField("");
+        deleteButton = new JButton("Delete");
+
+        phone.setEditable(false);
 
         southPanel.add(phoneNr);
         southPanel.add(phone);
         southPanel.add(bookingID);
         southPanel.add(BID);
-        southPanel.add(delete);
+        southPanel.add(deleteButton);
 
-        delete.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                V1_Database.DeleteBooking(phone.getText(), Integer.parseInt(BID.getText()));
+        deleteButton.addActionListener(this);
 
-                JOptionPane.showMessageDialog(null, "Booking deleted");
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource() == deleteButton){
+            deleteBooking();
+        }
+        if(e.getSource() == searchButton) {
+            searchBooking();
+        }
+
+    }
+
+    private void deleteBooking() {
+        V1_Database.DeleteBooking(phone.getText(), Integer.parseInt(BID.getText()));
+
+        JOptionPane.showMessageDialog(null, "Booking deleted");
+        searchBooking();
+    }
+
+    private void searchBooking(){
+        V1_Database.LoadBookings();
+
+        bookingsField.setText("");
+
+        String PNR = phoneNumber.getText();
+
+        for(V1_Bookings booking: V1_Database.getBookings()) {
+            if(booking.getPhone().equals(PNR)) {
+                String collectedStrings = bookingsField.getText();
+
+                bookingsField.setText(collectedStrings + "Phone: " + booking.getPhone() + "    Booking ID: " + booking.getID() +
+                        "    Showing ID: " + booking.getShowing_ID() + "    Row: " + booking.getRow() + "    First Seat: " + booking.getFirstSeat() + "    Last Seat: " + booking.getLastSeat() + "\n");
+                System.out.println(booking);
+
             }
-        });
+        }
 
+        phone.setText(phoneNumber.getText());
+    }
     }
 
-    public void actionPerformed(ActionEvent search) {
-
-    }
-}
 
 

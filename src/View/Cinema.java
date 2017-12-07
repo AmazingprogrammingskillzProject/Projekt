@@ -20,8 +20,9 @@ public class Cinema implements ActionListener{
     private JButton backButton;
     private JComboBox rowBox;
     private JComboBox firstSeatbox;
-    private JComboBox lastSeatBox   ;
+    private JComboBox lastSeatBox;
     private JTextField phoneField;
+    private JComboBox ticketBox;
 
     private int showID = -1;
 
@@ -31,9 +32,11 @@ public class Cinema implements ActionListener{
     private int selectedRow = -1;
     private int selectedFSeat = -1;
     private int selectedLSeat = -1;
+    private int numberOfTickets = -1;
 
     private Integer[] rowArray = {1, 2, 3, 4, 5, 6, 7, 8};
     private Integer[] seatArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+    private Integer[] ticketArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
     private JButton[][] bookedSeats;
 
@@ -81,7 +84,8 @@ public class Cinema implements ActionListener{
             rowArray[i] = i + 1;
         }
         for(int i = 0; i < cSeats; i++){
-            seatArray[i] = i+ 1;
+            seatArray[i] = i + 1;
+            ticketArray[i] = i + 1;
         }
         makeFrame();
     }
@@ -99,16 +103,13 @@ public class Cinema implements ActionListener{
         basePane.setVisible(true);
 
 
-        JTextField west = new JTextField("                 ");
-        basePane.add(west, BorderLayout.WEST);
-
-        JTextField east = new JTextField("                 ");
-        basePane.add(east, BorderLayout.EAST);
-
-
+//        JTextField west = new JTextField("                 ");
+//        basePane.add(west, BorderLayout.WEST);
+//
         makeNorthPane();
         makeCenterPane();
         makeSouthPane();
+        makeWestPane();
 
         cinemaWindow.pack();
         cinemaWindow.setSize(1024,768);
@@ -160,11 +161,16 @@ public class Cinema implements ActionListener{
                 // gemmer række og sæde for knappen der blev trykket på
                 button.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
+
+                        numberOfTickets = (int) ticketBox.getItemAt(ticketBox.getSelectedIndex());
+
+                        System.out.println(numberOfTickets);
+
                         selectedRow = bttRow;
                         selectedFSeat = bttSeat;
-                        selectedLSeat = bttSeat;
-                        //JOptionPane.showMessageDialog(null, "Row: " + bttRow + " Seat: " + bttSeat);
-                        test();
+                        selectedLSeat = bttSeat + numberOfTickets -1;
+                        selectSeat();
+                        button.setBackground(Color.YELLOW);
                     }
                 });
 
@@ -184,11 +190,15 @@ public class Cinema implements ActionListener{
     }
 
     // Kaldes på tryk af sæde knap
-    private void test() {
+    private void selectSeat() {
+
+        System.out.println(numberOfTickets);
+
         rowBox.setSelectedIndex(selectedRow -1);
         firstSeatbox.setSelectedIndex(selectedFSeat -1);
         lastSeatBox.setSelectedIndex(selectedLSeat -1);
-        JOptionPane.showMessageDialog(null, "Row: " + selectedRow + " Seat: " + selectedFSeat);
+        System.out.println(selectedLSeat);
+        JOptionPane.showMessageDialog(null, "Row: " + selectedRow + " Seat: " + selectedFSeat + " - " + selectedLSeat);
     }
 
     private void makeSouthPane() {
@@ -215,6 +225,7 @@ public class Cinema implements ActionListener{
             rowBox.addItem(rowArray[i]);
         }
         southOrderPanel.add(rowBox);
+        rowBox.setEnabled(false);
 
         JLabel FSLabel = new JLabel("First seat:");
         FSLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -225,6 +236,8 @@ public class Cinema implements ActionListener{
             firstSeatbox.addItem(seatArray[i]);
         }
         southOrderPanel.add(firstSeatbox);
+        firstSeatbox.setEnabled(false);
+
 
         JLabel LSLabel = new JLabel("Last seat:");
         LSLabel.setHorizontalAlignment(LSLabel.RIGHT);
@@ -235,6 +248,7 @@ public class Cinema implements ActionListener{
             lastSeatBox.addItem(seatArray[i]);
         }
         southOrderPanel.add(lastSeatBox);
+        lastSeatBox.setEnabled(false);
 
         JLabel phoneLabel = new JLabel("Phone:");
         phoneLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -251,11 +265,30 @@ public class Cinema implements ActionListener{
 
     }
 
+    private void makeWestPane() {
+
+        JPanel westPane = new JPanel();
+        basePane.add(westPane, BorderLayout.WEST);
+
+        JLabel ticketLabel = new JLabel("Tickets: ");
+        westPane.add(ticketLabel);
+
+
+        ticketBox = new JComboBox();
+        for(int i = 0; i < ticketArray.length; i++){
+            ticketBox.addItem(seatArray[i]);
+        }
+        westPane.add(ticketBox);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if(e.getSource() == orderButton){
             makeBooking();
+        }
+        if(e.getSource() == backButton){
+
         }
     }
 
@@ -264,6 +297,7 @@ public class Cinema implements ActionListener{
 
         String phone = phoneField.getText();
         int row = (int) rowBox.getItemAt(rowBox.getSelectedIndex());
+
         int fseat = (int) firstSeatbox.getItemAt(firstSeatbox.getSelectedIndex());
         int lseat = (int) lastSeatBox.getItemAt(lastSeatBox.getSelectedIndex());
 
