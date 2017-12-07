@@ -1,6 +1,7 @@
 package Controller;
 
 import Modules.ReturnCode;
+import Modules.V1_Cinema;
 import Modules.V1_Database;
 import Modules.V1_SeatBookings;
 
@@ -8,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class V1_DatabaseController {
 
@@ -114,5 +116,7 @@ public class V1_DatabaseController {
 
         return ReturnCode.SUCCESS;
     }
-
+    public static ArrayList<V1_Cinema> getCinemas() {
+        return V1_Database.getCinemas();
+    }
 }

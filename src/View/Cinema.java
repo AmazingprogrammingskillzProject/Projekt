@@ -62,7 +62,7 @@ public class Cinema implements ActionListener{
     public Cinema(int showID, int cinemaNumber){
         this.showID = showID;
 
-        ArrayList<V1_Cinema> cinemas = V1_Database.getCinemas();
+        ArrayList<V1_Cinema> cinemas = V1_DatabaseController.getCinemas();
 
         V1_Cinema selectedCinema = null;
 
