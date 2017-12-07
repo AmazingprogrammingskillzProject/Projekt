@@ -27,7 +27,8 @@ public class V1_Database
 
     static ArrayList<V1_Cinema> Cinemas;
 
-    public static ArrayList<V1_Showings> getShowings() {
+    public static ArrayList<V1_Showings> getShowings()
+    {
         return Showings;
     }
 
@@ -69,9 +70,24 @@ public class V1_Database
         return Showings.get(m).getTime();
     }
 
-    public static V1_Movies getmovie(int m)
+    public static V1_Movies getMovie(int m)
     {
         return Movies.get(m);
+    }
+
+    public static int getMovieIDbyName(String moviename)
+    {
+        int ID = 0;
+        for(V1_Movies m: getMovies())
+        {
+            if(m.getName().equals(moviename))
+            {
+                ID = m.getID();
+            }
+
+        }
+        return ID;
+
     }
 
 
@@ -117,10 +133,9 @@ public class V1_Database
                 int row = rs.getInt("Row");
                 int firstSeat = rs.getInt("FirstSeat");
                 int lastSeat = rs.getInt("LastSeat");
-                String movieName = getmovie(getShowings().get(showing_ID-1).getMovie_ID()-1).getName();
 
 
-                V1_Bookings booking = new V1_Bookings(id, phone, showing_ID, movieName, row, firstSeat, lastSeat);
+                V1_Bookings booking = new V1_Bookings(id, phone, showing_ID, row, firstSeat, lastSeat);
                 Bookings.add(booking);
             }
 
@@ -289,7 +304,7 @@ public class V1_Database
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             statement = connection.createStatement();
 
-            sql = "SELECT * FROM `V1_Showings`";
+            sql = "SELECT * FROM V1_Showings ORDER BY 'Date' ASC";
             rs = statement.executeQuery(sql);
             while(rs.next())
             {
