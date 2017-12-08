@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.Format;
+import java.text.NumberFormat;
 
 import static View.Main.getMainWindow;
 
@@ -22,7 +24,7 @@ public class Bookings implements ActionListener{
     private static JButton deleteButton;
     private static JTextField BID;
     private static JButton searchButton;
-    private static JTextField phoneNumber;
+    private static JFormattedTextField phoneNumber;
     private static JButton backButton;
 
 
@@ -110,7 +112,9 @@ public class Bookings implements ActionListener{
         phoneLabel.setHorizontalAlignment(JLabel.RIGHT  );
         northPanel.add(phoneLabel);
 
-        phoneNumber = new JTextField();
+        Format phoneNumberFormat = NumberFormat.getNumberInstance();
+
+        phoneNumber = new JFormattedTextField(phoneNumberFormat);
         phoneNumber.setSize(150, 27);
         northPanel.add(phoneNumber);
 
