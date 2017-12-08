@@ -61,7 +61,7 @@ public class ChooseBookingMode
         pickByMovieAndDate = new JLabel("Pick a show by movie and date");
         panel.add(pickByMovieAndDate);
 
-        pickByMovieAndTime = new JLabel("Pick a show by movioe and time");
+        pickByMovieAndTime = new JLabel("Pick a show by movie and time");
         panel.add(pickByMovieAndTime);
 
         pickByDateAndTime = new JLabel("Pick a show by date and time ");
