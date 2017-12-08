@@ -84,7 +84,6 @@ public class NewMovieDatePicker implements ActionListener {
         window2 = new JFrame("Make a new Reservation");
         window2.setVisible(true);
         window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window2.setSize(((int)(width/0.2)), ((int)(height/0.1)));
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(3,5));
         goBack = new JButton("Go back");
@@ -183,14 +182,10 @@ public class NewMovieDatePicker implements ActionListener {
             }
         });
 
-
         window2.add(panel);
-
-
-
-
         window2.pack();
-
+        window2.setSize(((int)(width/3)), ((int)(height/3)));
+        window2.setLocationRelativeTo(null);
 
     }
 

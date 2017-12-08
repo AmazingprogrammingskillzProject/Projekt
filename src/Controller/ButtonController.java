@@ -34,20 +34,18 @@ public class ButtonController {
         ArrayList<V1_Showings> showings = V1_Database.getShowings();
         ArrayList<V1_Movies> movies = V1_Database.getMovies();
 
-
-
         Bookings.getBookingsField().setText("");
 
         boolean bookingFound = false;
 
         String PNR = Bookings.getPhoneNumber().getText();
 
-        if(PNR.length()<8||PNR.length()>8||!(PNR.matches("[0-9]+")))
+        if(PNR.length() < 8 || PNR.length() > 8 || !(PNR.matches("[0-9]+")))
         {
             JOptionPane.showMessageDialog(null, "Error: Make sure the phone number is of 8 digits");
 
         }
-        else
+       else
         {
             for (V1_Bookings booking : bookings) {
                 if (booking.getPhone().equals(PNR)) {

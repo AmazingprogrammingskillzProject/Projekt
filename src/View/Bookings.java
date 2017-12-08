@@ -12,9 +12,6 @@ import java.awt.event.ActionListener;
 import java.text.Format;
 import java.text.NumberFormat;
 
-import static View.Main.getMainWindow;
-
-
 public class Bookings implements ActionListener{
 
     private static JFrame reservationWindow;
@@ -87,6 +84,7 @@ public class Bookings implements ActionListener{
 
         reservationWindow.pack();
         reservationWindow.setSize(840, 480);
+        reservationWindow.setLocationRelativeTo(null);
 
     }
 
@@ -103,7 +101,7 @@ public class Bookings implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 reservationWindow.setVisible(false);
-                getMainWindow().setVisible(true);
+                Main.getMainWindow().setVisible(true);
             }
         });
 

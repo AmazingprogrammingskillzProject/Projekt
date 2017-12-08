@@ -96,7 +96,6 @@ public class NewDateTimePicker implements ActionListener
         window1 = new JFrame("Make New Reservation");
         window1.setVisible(true);
         window1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window1.setSize(((int)(width/3)), ((int)(height/2)));
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(3,5,5,10));
 
@@ -191,7 +190,8 @@ public class NewDateTimePicker implements ActionListener
 
         window1.add(panel);
         window1.pack();
-
+        window1.setLocationRelativeTo(null);
+        window1.setSize(((int)(width/3)), ((int)(height/3)));
 
     }
 
@@ -228,8 +228,6 @@ public class NewDateTimePicker implements ActionListener
         }
         return movie;
     }*/
-
-
 
     public void setPickedMovie(ActionEvent evt)
     {

@@ -10,8 +10,6 @@ import static Modules.V1_Database.LoadEntireDB;
 public class Main
 {
 
-
-
     private static JFrame mainWindow;
     private JButton bookAnewReservation;
     private JButton searchOrCancelReservation;
@@ -26,6 +24,7 @@ public class Main
         Main client = new Main();
         client.makeFrame();
     }
+
     public static JFrame getMainWindow()
     {
         return mainWindow;
@@ -34,12 +33,14 @@ public class Main
 
     public void makeFrame()
     {
+
         mainWindow = new JFrame("Make a new Reservation");
         mainWindow.setVisible(true);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainWindow.setSize(((int)(width/3)), ((int)(height/4)));
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(1,2));
+        panel.setSize(640,480);
+        mainWindow.setSize(640,480);
 
         bookAnewReservation = new JButton("Book a new reservation");
         panel.add(bookAnewReservation);
@@ -67,6 +68,8 @@ public class Main
 
         mainWindow.add(panel);
         mainWindow.pack();
+        mainWindow.setSize(((int)(width/2)), ((int)(height/2)));
+        mainWindow.setLocationRelativeTo(null);
 
     }
 

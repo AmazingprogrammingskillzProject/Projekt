@@ -121,6 +121,7 @@ public class Cinema implements ActionListener{
 
         cinemaWindow.pack();
         cinemaWindow.setSize(1024,768);
+        cinemaWindow.setLocationRelativeTo(null);
 
 
     }

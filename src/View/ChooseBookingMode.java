@@ -35,7 +35,7 @@ public class ChooseBookingMode
         chooseBookingModeWindow = new JFrame("Make a new Reservation");
         chooseBookingModeWindow.setVisible(true);
         chooseBookingModeWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        chooseBookingModeWindow.setSize(((int)(width/3)), ((int)(height/4)));
+
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(3,3));
 
@@ -98,11 +98,10 @@ public class ChooseBookingMode
 
             }
         });
+
         chooseBookingModeWindow.add(panel);
         chooseBookingModeWindow.pack();
-
-
-
-
+        chooseBookingModeWindow.setSize(((int)(width/3)), ((int)(height/4)));
+        chooseBookingModeWindow.setLocationRelativeTo(null);
     }
 }

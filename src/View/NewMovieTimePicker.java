@@ -69,7 +69,6 @@ public class NewMovieTimePicker implements ActionListener {
         windows3 = new JFrame("Make a new Reservation");
         windows3.setVisible(true);
         windows3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        windows3.setSize(((int)(width/0.2)), ((int)(height/0.1)));
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(3,5));
         goBack = new JButton("Go back");
@@ -118,9 +117,6 @@ public class NewMovieTimePicker implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 timeBox.removeAllItems();
 
-
-
-
                 for(int i =0; i<getTimesByMovie(pickedMovie).length; i++)
                 {
                     String[] timeBoxItems = getTimesByMovie(pickedMovie);
@@ -128,10 +124,6 @@ public class NewMovieTimePicker implements ActionListener {
                     timeBox.addItem(timeBoxItems[i]);
 
                 }
-
-
-
-
             }
         });
 
@@ -174,7 +166,8 @@ public class NewMovieTimePicker implements ActionListener {
 
         windows3.add(panel);
         windows3.pack();
-
+        windows3.setSize(((int)(width/3)), ((int)(height/3)));
+        windows3.setLocationRelativeTo(null);
 
     }
 
@@ -250,7 +243,6 @@ public class NewMovieTimePicker implements ActionListener {
     }
 
 
-
     //sets picked time
     public void setPickedDate(ActionEvent evt)
     {
@@ -269,15 +261,6 @@ public class NewMovieTimePicker implements ActionListener {
         }
     }
 
-
-
-
-
-
-    public void actionPerformed(ActionEvent e)
-    {
-
-
-    }
+    public void actionPerformed(ActionEvent e) {    }
 
 }
