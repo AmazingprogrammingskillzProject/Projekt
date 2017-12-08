@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import static View.ChooseBookingMode.getChooseBookingModeWindow;
+
 
 public class Cinema implements ActionListener{
 
@@ -132,6 +134,14 @@ public class Cinema implements ActionListener{
 
         backButton = new JButton("back");
         northPanel.add(backButton);
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cinemaWindow.setVisible(false);
+                getChooseBookingModeWindow().setVisible(true);
+            }
+        });
 
         JLabel cinemaNumber = new JLabel("Cinema " + cinemaNR);
         cinemaNumber.setHorizontalAlignment(JLabel.CENTER);
