@@ -1,10 +1,7 @@
 package View;
 
 import Controller.V1_DatabaseController;
-import Modules.ReturnCode;
-import Modules.V1_Cinema;
-import Modules.V1_Database;
-import Modules.V1_SeatBookings;
+import Modules.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import static Modules.V1_Database.getMovieName;
+import static Modules.V1_Database.getShowings;
 import static View.ChooseBookingMode.getChooseBookingModeWindow;
 
 
@@ -147,7 +146,14 @@ public class Cinema implements ActionListener{
         cinemaNumber.setHorizontalAlignment(JLabel.CENTER);
         northPanel.add(cinemaNumber);
 
-        JLabel showingInfo = new JLabel("Movie, date....");
+        JLabel showingInfo = new JLabel();
+        for(V1_Showings s: getShowings())
+        {
+            if(s.getCinema_ID()==cinemaNR&&s.getID()==showID)
+            {
+                showingInfo.setText(getMovieName(s.getMovie_ID()-1)+" - "+s.getDate()+" - "+s.getTime());
+            }
+        }
         showingInfo.setHorizontalAlignment(JLabel.CENTER);
         northPanel.add(showingInfo);
 

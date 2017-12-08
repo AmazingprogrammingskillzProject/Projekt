@@ -4,12 +4,18 @@ import Modules.ReturnCode;
 import Modules.V1_Cinema;
 import Modules.V1_Database;
 import Modules.V1_SeatBookings;
+import View.Bookings;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import static Controller.ButtonController.searchBooking;
+import static View.Bookings.getBID;
+import static View.Bookings.getPhoneNumber;
 
 public class V1_DatabaseController {
 
@@ -80,42 +86,49 @@ public class V1_DatabaseController {
 
     public static ReturnCode DeleteBooking(String phone, int booking_ID)
     {
-        Connection connection = null;
-        Statement statement = null;
-        String sql = null;
+            Connection connection = null;
+            Statement statement = null;
+            String sql = null;
 
-        try {
-            connection = DriverManager.getConnection(V1_Database.getDbUrl(), V1_Database.getUSER(), V1_Database.getPASS());
-            statement = connection.createStatement();
+            try {
+                connection = DriverManager.getConnection(V1_Database.getDbUrl(), V1_Database.getUSER(), V1_Database.getPASS());
+                statement = connection.createStatement();
 
-            sql = "DELETE FROM `V1_Bookings` WHERE `Phone` = '"+phone+"' AND `ID` = "+booking_ID;
-            statement.executeUpdate(sql);
+                sql = "DELETE FROM `V1_Bookings` WHERE `Phone` = '"+phone+"' AND `ID` = "+booking_ID;
+                statement.executeUpdate(sql);
 
-            sql = "DELETE FROM `V1_SeatBookings` WHERE `Booking_ID` = "+booking_ID;
-            statement.executeUpdate(sql);
+                sql = "DELETE FROM `V1_SeatBookings` WHERE `Booking_ID` = "+booking_ID;
+                statement.executeUpdate(sql);
 
-            connection.close();
-        }
-
-        catch(Exception e)
-        { // handle errors:
-            e.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
                 connection.close();
-            } catch(Exception e) {
+            }
+
+            catch(Exception e)
+            { // handle errors:
                 e.printStackTrace();
             }
-        }
+            finally
+            {
+                try
+                {
+                    connection.close();
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
-        V1_Database.LoadSeatBookings();
-        V1_Database.LoadBookings();
+            V1_Database.LoadSeatBookings();
+            V1_Database.LoadBookings();
+            searchBooking();
+
+
 
         return ReturnCode.SUCCESS;
+
+
+
     }
+
     public static ArrayList<V1_Cinema> getCinemas() {
         return V1_Database.getCinemas();
     }

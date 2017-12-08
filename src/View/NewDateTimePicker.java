@@ -10,17 +10,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static Controller.NewMoviePickerController.getDates;
-import static Controller.NewMoviePickerController.getMovieIDbyName;
+import static Controller.NewMoviePickerController.*;
 import static Modules.V1_Database.*;
 import static View.ChooseBookingMode.getChooseBookingModeWindow;
 
 public class NewDateTimePicker implements ActionListener
 {
     private JFrame window1;
-    private JComboBox dateBox;
-    private JComboBox timeBox;
-    private JComboBox movieBox;
+    private static JComboBox dateBox;
+    private static JComboBox timeBox;
+    private static JComboBox movieBox;
 
     private JButton findSeats;
     private JButton goBack;
@@ -39,6 +38,37 @@ public class NewDateTimePicker implements ActionListener
     private int pickedShowID;
     private int pickedCinemaID;
 
+    public static JComboBox getDateBox() {
+        return dateBox;
+    }
+
+    public static JComboBox getTimeBox() {
+        return timeBox;
+    }
+
+    public static JComboBox getMovieBox() {
+        return movieBox;
+    }
+
+    public static void setPickedDate(String pickedDate) {
+        NewDateTimePicker.pickedDate = pickedDate;
+    }
+
+    public static void setPickedTime(String pickedTime) {
+        NewDateTimePicker.pickedTime = pickedTime;
+    }
+
+    public static void setPickedMovie(String pickedMovie) {
+        NewDateTimePicker.pickedMovie = pickedMovie;
+    }
+
+    public void setPickedShowID(int pickedShowID) {
+        this.pickedShowID = pickedShowID;
+    }
+
+    public void setPickedCinemaID(int pickedCinemaID) {
+        this.pickedCinemaID = pickedCinemaID;
+    }
 
     public NewDateTimePicker()
     {
@@ -155,6 +185,7 @@ public class NewDateTimePicker implements ActionListener
                 window1.setVisible(false);
                 Cinema cinema = new Cinema(pickedShowID, pickedCinemaID);
 
+
             }
         });
 
@@ -182,28 +213,7 @@ public class NewDateTimePicker implements ActionListener
 
     }*/
 
-    public String[] getTimesByDate(String date)
-    {
-        ArrayList<String> times = new ArrayList<>();
 
-        if (dateBox.getSelectedItem()!=null)
-        {
-            pickedDate = dateBox.getSelectedItem().toString();
-
-            for(V1_Showings s : getShowings())
-            {
-                if(s.getDate().equals(date)&&!(times.contains(s.getTime())))
-                {
-                    times.add(s.getTime());
-                }
-            }
-        }
-        List<String> sortedList = times.subList(0, times.size());
-        Collections.sort(sortedList);
-        sortedList.removeAll(Collections.singleton(null));
-
-        return sortedList.toArray(new String[sortedList.size()]);
-    }
 
 /*    public ArrayList<String> getMovieByTimeAndDate(String date, String time)
     {
@@ -219,29 +229,7 @@ public class NewDateTimePicker implements ActionListener
         return movie;
     }*/
 
-    public String[] getDateMovie(String date, String time)
-    {
-        ArrayList<String> movies = new ArrayList<>();
 
-        if(timeBox.getSelectedItem()!=null)
-        {
-            pickedTime = timeBox.getSelectedItem().toString();
-
-            for(V1_Showings s: getShowings())
-            {
-                if(s.getDate().equals(date)&&s.getTime().equals(time))
-                {
-                    movies.add(getmovie((s.getMovie_ID()-1)).getName());
-                }
-            }
-        }
-
-        List<String> sortedList = movies.subList(0, movies.size());
-        Collections.sort(sortedList);
-        sortedList.removeAll(Collections.singleton(null));
-
-        return sortedList.toArray(new String[sortedList.size()]);
-    }
 
     public void setPickedMovie(ActionEvent evt)
     {
