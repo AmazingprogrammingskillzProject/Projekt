@@ -1,9 +1,6 @@
 package Controller;
 
-import Modules.ReturnCode;
-import Modules.V1_Cinema;
-import Modules.V1_Database;
-import Modules.V1_SeatBookings;
+import Modules.*;
 import View.Bookings;
 
 import javax.swing.*;
@@ -86,6 +83,7 @@ public class V1_DatabaseController {
 
     public static ReturnCode DeleteBooking(String phone, int booking_ID)
     {
+        System.out.println("phone: "+ phone+ "      id:   " + booking_ID);
             Connection connection = null;
             Statement statement = null;
             String sql = null;
@@ -97,7 +95,15 @@ public class V1_DatabaseController {
                 sql = "DELETE FROM `V1_Bookings` WHERE `Phone` = '"+phone+"' AND `ID` = "+booking_ID;
                 statement.executeUpdate(sql);
 
-                sql = "DELETE FROM `V1_SeatBookings` WHERE `Booking_ID` = "+booking_ID;
+
+                for(V1_Bookings b : V1_Database.getBookings()) {
+                    if (b.getPhone().equals((phone)) && b.getID() == booking_ID)
+                    {
+                        sql = "DELETE FROM `V1_SeatBookings` WHERE `Booking_ID` = " + booking_ID;
+                    }
+                }
+
+
                 statement.executeUpdate(sql);
 
                 connection.close();
