@@ -171,7 +171,7 @@ public class NewMovieTimePicker implements ActionListener {
 
     }
 
-/*        public ArrayList<String> getDatesByMovie(String moviename)
+        public ArrayList<String> getDatesByMovie(String moviename)
     {
         ArrayList<String>dates = new ArrayList<>();
         for(V1_Showings s: getShowings())
@@ -182,20 +182,20 @@ public class NewMovieTimePicker implements ActionListener {
             }
         }
         return dates;
-    }*/
-/*    public ArrayList<String> getTimesByDateAndMovie(String moviename, String date)
+    }
+    public ArrayList<String> getTimesByDateAndMovie(String moviename, String date)
     {
         ArrayList<String> times = new ArrayList<>();
         for(V1_Showings s: getShowings())
         {
-            if(getMovieIDbyName(moviename)==s.getMovie_ID()&&s.getDate().equals(pickedDate))
+            if(getMovieIDbyName(moviename)==s.getMovie_ID()&&s.getDate().equals(date))
             {
                 times.add(s.getTime());
             }
         }
         return times;
 
-    }*/
+    }
 
 
     public String[] getTimesByMovie(String moviename)
@@ -214,7 +214,7 @@ public class NewMovieTimePicker implements ActionListener {
             }
 
         }
-        return times.toArray(new String[times.size()]);
+        return times.toArray(new String[getTimesByDateAndMovie(pickedMovie, pickedDate).size()]);
     }
 
     public String[] getDatesByMovieAndTime(String movieName, String time)
@@ -227,12 +227,12 @@ public class NewMovieTimePicker implements ActionListener {
             for(V1_Showings s: getShowings()) {
                 if (getMovieIDbyName(movieName) == s.getMovie_ID() && s.getTime().equals(time))
                 {
-                    dates.add(s.getTime());
+                    dates.add(s.getDate());
                 }
             }
         }
 
-        return dates.toArray(new String[dates.size()]);
+        return dates.toArray(new String[getDatesByMovie(pickedMovie).size()]);
     }
 
 
