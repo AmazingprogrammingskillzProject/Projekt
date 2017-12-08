@@ -14,11 +14,14 @@ import java.util.ArrayList;
 import static Controller.NewMoviePickerController.*;
 
 import static Modules.V1_Database.*;
+import static View.ChooseBookingMode.getChooseBookingModeWindow;
 
 public class NewMovieDatePicker implements ActionListener {
     private JFrame window2;
 
-    private JLabel pickAMovie;
+    private JButton goBack;
+
+
     private JComboBox moviesBox;
     private JComboBox dateBox;
     private JComboBox timeBox;
@@ -36,39 +39,63 @@ public class NewMovieDatePicker implements ActionListener {
 
 
 
-    public static void main(String[] args)
-    {
-        LoadEntireDB();
-        NewMovieDatePicker newDateTimeReservation = new NewMovieDatePicker();
-        newDateTimeReservation.makeFrame();
-
-
-    }
 
     public NewMovieDatePicker()
     {
+        makeFrame();
 
     }
 
+    public JFrame getWindow2() {
+        return window2;
+    }
+
+    public static String getPickedMovie() {
+        return pickedMovie;
+    }
+
+    public static String getPickedDate() {
+        return pickedDate;
+    }
+
+    public static String getPickedTime() {
+        return pickedTime;
+    }
 
     public void makeFrame()
     {
         window2 = new JFrame("Make a new Reservation");
         window2.setVisible(true);
         window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window2.setSize(((int)(width/3)), ((int)(height/2)));
+        window2.setSize(((int)(width/0.2)), ((int)(height/0.1)));
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2,4,5,10));
+        panel.setLayout(new GridLayout(3,5));
+        goBack = new JButton("Go back");
+        panel.add(goBack);
+        goBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                window2.setVisible(false);
+                getChooseBookingModeWindow().setVisible(true);
+            }
+        });
 
+        JPanel emptyCell1 = new JPanel();
+        panel.add(emptyCell1);
 
+        JPanel emptyCell2 = new JPanel();
+        panel.add(emptyCell2);
+
+        JPanel emptyCell3 = new JPanel();
+        panel.add(emptyCell3);
         String[] movies = getMoviesName().toArray(new String[getMoviesName().size()]);
 
 
         moviesBox = new JComboBox(movies);
         panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
-        pickAMovie = new JLabel("Pick first a movie");
-        panel.add(pickAMovie);
+        pickAmovie = new JLabel("Pick first a movie");
+        panel.add(pickAmovie);
 
         JLabel pickAday = new JLabel("Pick a date after");
         panel.add(pickAday);
@@ -142,7 +169,7 @@ public class NewMovieDatePicker implements ActionListener {
 
     }
 
-        public ArrayList<String> getDatesByMovie(String moviename)
+/*        public ArrayList<String> getDatesByMovie(String moviename)
     {
         ArrayList<String>dates = new ArrayList<>();
         for(V1_Showings s: getShowings())
@@ -153,8 +180,8 @@ public class NewMovieDatePicker implements ActionListener {
             }
         }
         return dates;
-    }
-    public ArrayList<String> getTimesByDateAndMovie(String moviename, String date)
+    }*/
+/*    public ArrayList<String> getTimesByDateAndMovie(String moviename, String date)
     {
         ArrayList<String> times = new ArrayList<>();
         for(V1_Showings s: getShowings())
@@ -166,7 +193,7 @@ public class NewMovieDatePicker implements ActionListener {
         }
         return times;
 
-    }
+    }*/
 
 
     public String[] getMovieDates(String moviename)
@@ -185,7 +212,7 @@ public class NewMovieDatePicker implements ActionListener {
             }
 
         }
-        return dates.toArray(new String[getDatesByMovie(pickedMovie).size()]);
+        return dates.toArray(new String[dates.size()]);
     }
 
     public String[] getMovieTimes(String movieName, String date)
@@ -202,10 +229,13 @@ public class NewMovieDatePicker implements ActionListener {
                 }
             }
         }
-        String[] test = times.toArray(new String[getTimesByDateAndMovie(pickedMovie, pickedDate).size()]);
-        return test;
+
+        return times.toArray(new String[times.size()]);
     }
 
+
+
+    //sets picked time
     public void setPickedTime(ActionEvent evt)
     {
         if(timeBox.getSelectedItem()!=null)

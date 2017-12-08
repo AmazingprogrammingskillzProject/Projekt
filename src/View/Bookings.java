@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static View.Main.getMainWindow;
+
 
 public class Bookings implements ActionListener{
 
@@ -23,18 +25,12 @@ public class Bookings implements ActionListener{
     private static JTextField phoneNumber;
     private static JButton backButton;
 
-    public static void main(String[] args) {
-        Bookings bookings = new Bookings();
-        V1_Database.LoadBookings();
-        V1_Database.getBookings();
-        System.out.println();
 
+
+    public Bookings()
+    {
+        makeFrame();
     }
-
-    public Bookings() {
-            makeFrame();
-            V1_Database.LoadBookings();
-        }
 
     public JFrame getReservationWindow() {
         return reservationWindow;
@@ -98,9 +94,17 @@ public class Bookings implements ActionListener{
         basePane.add(northPanel, BorderLayout.NORTH);
         northPanel.setLayout(new GridLayout(1, 4));
 
-        backButton = new JButton("Back");
-        backButton.addActionListener(this);
+        backButton = new JButton("Go back");
+
         northPanel.add(backButton);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                reservationWindow.setVisible(false);
+                getMainWindow().setVisible(true);
+            }
+        });
+
 
         JLabel phoneLabel = new JLabel("Phone number: ");
         phoneLabel.setHorizontalAlignment(JLabel.RIGHT  );
