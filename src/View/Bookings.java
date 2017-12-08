@@ -202,13 +202,14 @@ public class Bookings implements ActionListener{
 
         if(e.getSource() == deleteButton)
         {
+            V1_Database.LoadBookings();
             if(!(BID.getText().matches("[0-9]+"))){
                 JOptionPane.showMessageDialog(null, "Please enter a valid booking ID");
                 return;
             }
             boolean BIDFound = false;
             for(V1_Bookings b: V1_Database.getBookings()){
-                if((BID.getText().equals(b.getID()))){
+                if((Integer.parseInt(BID.getText()) == b.getID())){
                     BIDFound = true;
                 }
             }
