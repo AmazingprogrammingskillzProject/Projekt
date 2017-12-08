@@ -155,7 +155,7 @@ public class NewDateTimePicker implements ActionListener
                 {
                     if(s.getDate().equals(pickedDate)&&s.getTime().equals(pickedTime)&&s.getMovie_ID()==getMovieIDbyName(pickedMovie))
                     {
-                        Cinema cinema = new Cinema(s.getID());
+                        Cinema cinema = new Cinema(s.getID(), s.getCinema_ID());
                     }
                 }
 

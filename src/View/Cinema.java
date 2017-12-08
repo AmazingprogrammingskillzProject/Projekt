@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class Cinema implements ActionListener{
@@ -27,6 +26,7 @@ public class Cinema implements ActionListener{
     private JComboBox ticketBox;
 
     private int showID = -1;
+    private int cinemaNR = -1;
 
     private int cRows = -1;
     private int cSeats = -1;
@@ -61,6 +61,7 @@ public class Cinema implements ActionListener{
 
     public Cinema(int showID, int cinemaNumber){
         this.showID = showID;
+        this.cinemaNR = cinemaNumber;
 
         ArrayList<V1_Cinema> cinemas = V1_DatabaseController.getCinemas();
 
@@ -132,7 +133,7 @@ public class Cinema implements ActionListener{
         backButton = new JButton("back");
         northPanel.add(backButton);
 
-        JLabel cinemaNumber = new JLabel("Cinema 1");
+        JLabel cinemaNumber = new JLabel("Cinema " + cinemaNR);
         cinemaNumber.setHorizontalAlignment(JLabel.CENTER);
         northPanel.add(cinemaNumber);
 
@@ -149,7 +150,6 @@ public class Cinema implements ActionListener{
 
         JPanel centerPanel = new JPanel();
         basePane.add(centerPanel, BorderLayout.CENTER);
-        //centerPanel.getHeight()
         centerPanel.setLayout(new GridLayout(cRows, cSeats, 240/cSeats, 160/cRows));
 
         seatButtonArray = new ArrayList<>();

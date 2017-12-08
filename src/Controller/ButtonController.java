@@ -28,42 +28,36 @@ public class ButtonController {
         ArrayList<V1_Showings> showings = V1_Database.getShowings();
         ArrayList<V1_Movies> movies = V1_Database.getMovies();
 
+        boolean bookingFound = false;
+
         Bookings.getBookingsField().setText("");
 
         String PNR = Bookings.getPhoneNumber().getText();
 
-
         for (V1_Bookings booking : bookings) {
             if (booking.getPhone().equals(PNR)) {
 
+                bookingFound = true;
                // System.out.println("booking ID: " + booking.getID());
 
                 String movieName = null;
-
                 V1_Movies V1movie = null;
-
                 String collectedStrings = Bookings.getBookingsField().getText();
 
+
+                // Med følgende for loops findes film navnet.
                 for (V1_Showings show : showings) {
-
-
                   //  System.out.println("Show ID: " + show.getID() + "      Movie ID: " + show.getMovie_ID());
-
                     if (booking.getShowing_ID() == show.getID()) {
                         for (V1_Movies movie : movies) {
-
                          //   System.out.println("Movie ID: " + movie.getID());
-
                             if (show.getMovie_ID() == movie.getID()) {
-
                                // System.out.println("Movie ID: " + movie.getID() + " Movie name: " + movie.getName());
-
                                 V1movie = movie;
                                 movieName = V1movie.getName();
 
-
                                 Bookings.getBookingsField().setText(collectedStrings + "Phone: " + booking.getPhone() + "    Booking ID: " + booking.getID() +
-                                       /* "    Showing ID: " + booking.getShowing_ID() + */"    Movie name: " + movieName +  "    Date " + show.getDate() + "   Time: " + show.getTime() +
+                                       /* "    Showing ID: " + booking.getShowing_ID() + */"    Movie name: " + movieName +  "    Date: " + show.getDate() + "   Time: " + show.getTime() +
                                         "    Row: " + booking.getRow() + "    First Seat: " + booking.getFirstSeat() + "    Last Seat: " + booking.getLastSeat() + "\n");
 
                             }
@@ -74,6 +68,10 @@ public class ButtonController {
             }
 
             Bookings.getPhone().setText(Bookings.getPhoneNumber().getText());
+        }
+        if (!bookingFound){
+            JOptionPane.showMessageDialog(null, "No Booking found");
+
         }
     }
 }

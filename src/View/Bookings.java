@@ -128,19 +128,24 @@ public class Bookings implements ActionListener{
 
         JPanel centerNorth = new JPanel();
         centerPanel.add(centerNorth);
-        centerNorth.setLayout(new GridLayout(1,6));
+        centerNorth.setLayout(new GridLayout(1,8));
 
         JPanel centerSouth = new JPanel();
-        bookingsField = new JTextArea();
+        bookingsField = new JTextArea(8,8);
         bookingsField.setEditable(false);
+        JScrollPane scroller = new JScrollPane(bookingsField, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         centerSouth.setLayout(new GridLayout(1,1));
+        centerSouth.add(scroller);
+        centerSouth.setVisible(true);
         centerPanel.add(centerSouth);
-        centerSouth.add(bookingsField);
+       // centerSouth.add(bookingsField);
 
 
         JTextField phoneNr = new JTextField("Phone number");
-        JTextField bookingID = new JTextField("BID");
-        JTextField showingID = new JTextField("Showing");
+        JTextField bookingID = new JTextField("Booking ID");
+        JTextField movieName = new JTextField("Movie Name");
+        JTextField date = new JTextField("Date");
+        JTextField time = new JTextField("Time");
         JTextField row = new JTextField("Row");
         JTextField firstSeat = new JTextField("First seat");
         JTextField lastSeat = new JTextField("Last seat");
@@ -149,8 +154,12 @@ public class Bookings implements ActionListener{
         phoneNr.setHorizontalAlignment(JTextField.CENTER);
         centerNorth.add(bookingID);
         bookingID.setHorizontalAlignment(JTextField.CENTER);
-        centerNorth.add(showingID);
-        showingID.setHorizontalAlignment(JTextField.CENTER);
+        centerNorth.add(movieName);
+        movieName.setHorizontalAlignment(JTextField.CENTER);
+        centerNorth.add(date);
+        date.setHorizontalAlignment(JTextField.CENTER);
+        centerNorth.add(time);
+        time.setHorizontalAlignment(JTextField.CENTER);
         centerNorth.add(row);
         row.setHorizontalAlignment(JTextField.CENTER);
         centerNorth.add(firstSeat);
