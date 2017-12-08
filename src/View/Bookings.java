@@ -203,14 +203,36 @@ public class Bookings implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource() == deleteButton){
-            ButtonController.deleteBooking();
+        if(e.getSource() == deleteButton)
+        {
+            if(!(BID.getText().matches("[0-9]+"))){
+                JOptionPane.showMessageDialog(null, "Please enter a valid booking ID");
+                return;
+            }
+            boolean BIDFound = false;
+            for(V1_Bookings b: V1_Database.getBookings()){
+                if((BID.getText().equals(b.getID()))){
+                    BIDFound = true;
+                }
+            }
+            if(!BIDFound){
+                JOptionPane.showMessageDialog(null, "Booking not found");
+                return;
+            }
+
+                ButtonController.deleteBooking();
+
         }
         if(e.getSource() == searchButton) {
+            if(!(phoneNumber.getText().matches("[0-9]+"))){
+                JOptionPane.showMessageDialog(null, "Please enter a valid phone number");
+            }
+
+            else {
             ButtonController.searchBooking();
-        }
-    }
-    }
+            }
+    }}}
+
 
 
 
