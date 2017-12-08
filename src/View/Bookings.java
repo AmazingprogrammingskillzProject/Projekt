@@ -24,7 +24,7 @@ public class Bookings implements ActionListener{
     private static JButton deleteButton;
     private static JTextField BID;
     private static JButton searchButton;
-    private static JFormattedTextField phoneNumber;
+    private static JTextField phoneNumber;
     private static JButton backButton;
 
 
@@ -112,9 +112,8 @@ public class Bookings implements ActionListener{
         phoneLabel.setHorizontalAlignment(JLabel.RIGHT  );
         northPanel.add(phoneLabel);
 
-        Format phoneNumberFormat = NumberFormat.getNumberInstance();
 
-        phoneNumber = new JFormattedTextField(phoneNumberFormat);
+        phoneNumber = new JTextField();
         phoneNumber.setSize(150, 27);
         northPanel.add(phoneNumber);
 
