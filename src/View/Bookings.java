@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.Format;
+import java.text.NumberFormat;
 
 import static View.Main.getMainWindow;
 
@@ -109,6 +111,7 @@ public class Bookings implements ActionListener{
         JLabel phoneLabel = new JLabel("Phone number: ");
         phoneLabel.setHorizontalAlignment(JLabel.RIGHT  );
         northPanel.add(phoneLabel);
+
 
         phoneNumber = new JTextField();
         phoneNumber.setSize(150, 27);
