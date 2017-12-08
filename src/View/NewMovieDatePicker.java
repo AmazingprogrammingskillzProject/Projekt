@@ -51,6 +51,18 @@ public class NewMovieDatePicker implements ActionListener {
 
     }
 
+    public JComboBox getMoviesBox() {
+        return moviesBox;
+    }
+
+    public JComboBox getDateBox() {
+        return dateBox;
+    }
+
+    public JComboBox getTimeBox() {
+        return timeBox;
+    }
+
     public JFrame getWindow2() {
         return window2;
     }
@@ -271,6 +283,8 @@ public class NewMovieDatePicker implements ActionListener {
             }
         }
     }
+
+
 
 
 

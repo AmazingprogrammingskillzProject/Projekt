@@ -185,6 +185,9 @@ public class Bookings implements ActionListener{
         bookingID.setHorizontalAlignment(JLabel.RIGHT);
         phone = new JTextField("");
         BID = new JTextField("");
+        BID.setEnabled(false);
+        BID.setBackground(Color.gray);
+
         deleteButton = new JButton("Delete");
 
         phone.setEditable(false);
