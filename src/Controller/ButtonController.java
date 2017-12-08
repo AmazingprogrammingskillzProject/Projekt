@@ -34,9 +34,11 @@ public class ButtonController {
         ArrayList<V1_Showings> showings = V1_Database.getShowings();
         ArrayList<V1_Movies> movies = V1_Database.getMovies();
 
-        boolean bookingFound = false;
+
 
         Bookings.getBookingsField().setText("");
+
+        boolean bookingFound = false;
 
         String PNR = Bookings.getPhoneNumber().getText();
 
