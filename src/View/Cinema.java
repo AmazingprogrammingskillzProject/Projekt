@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import static Modules.V1_Database.getMovieName;
 import static Modules.V1_Database.getShowings;
-import static View.ChooseBookingMode.getChooseBookingModeWindow;
+import static View.NewMoviePicker.getWindow;
 
 
 public class Cinema implements ActionListener{
@@ -78,6 +78,7 @@ public class Cinema implements ActionListener{
         // In case a cinema is not found, inform user about problem and return
         if(selectedCinema == null) {
             JOptionPane.showMessageDialog(null, "A cinema with given number was not found");
+            getWindow().setVisible(true);
             return;
         }
 
@@ -139,7 +140,7 @@ public class Cinema implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cinemaWindow.setVisible(false);
-                getChooseBookingModeWindow().setVisible(true);
+                getWindow().setVisible(true);
             }
         });
 

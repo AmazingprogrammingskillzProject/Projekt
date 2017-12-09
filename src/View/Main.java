@@ -49,7 +49,7 @@ public class Main
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainWindow.setVisible(false);
-                ChooseBookingMode ChooseBookingMode = new ChooseBookingMode();
+                NewMoviePicker newMoviePicker = new NewMoviePicker();
 
 
             }
