@@ -86,6 +86,8 @@ public class V1_DatabaseController {
 
     public static ReturnCode DeleteBooking(String phone, int booking_ID)
     {
+        if(getBID().getText().matches("[0-9]+")||getPhoneNumber().getText().matches("[0-9]+"))
+        {
             Connection connection = null;
             Statement statement = null;
             String sql = null;
@@ -122,7 +124,11 @@ public class V1_DatabaseController {
             searchBooking();
 
 
-
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Error: Booking ID INVALID!");
+        }
         return ReturnCode.SUCCESS;
 
 
