@@ -62,8 +62,7 @@ public class NewMoviePicker implements ActionListener {
 
     private JButton findSeat3;
 
-
-    private JLabel pickAmovie3;
+    
 
     private static String pickedMovie3;
     private static String pickedDate3;
@@ -330,7 +329,7 @@ public class NewMoviePicker implements ActionListener {
 
         window.add(panel);
         window.pack();
-        window.setSize(((int)(width/3)), ((int)(height/3)));
+        window.setSize(((int)(width/2)), ((int)(height/2)));
         window.setLocationRelativeTo(null);
 
     }

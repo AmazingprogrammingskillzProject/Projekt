@@ -204,17 +204,21 @@ public class Bookings implements ActionListener{
         if(e.getSource() == deleteButton)
         {
             V1_Database.LoadBookings();
-            if(!(BID.getText().matches("[0-9]+"))){
+            if(!(BID.getText().matches("[0-9]+")))
+            {
                 JOptionPane.showMessageDialog(null, "Please enter a valid booking ID");
                 return;
             }
             boolean BIDFound = false;
-            for(V1_Bookings b: V1_Database.getBookings()){
-                if((Integer.parseInt(BID.getText()) == b.getID())){
+            for(V1_Bookings b: V1_Database.getBookings())
+            {
+                if((Integer.parseInt(BID.getText()) == b.getID()))
+                {
                     BIDFound = true;
                 }
             }
-            if(!BIDFound){
+            if(!BIDFound)
+            {
                 JOptionPane.showMessageDialog(null, "Booking not found");
                 return;
             }
@@ -222,15 +226,19 @@ public class Bookings implements ActionListener{
                 ButtonController.deleteBooking();
 
         }
-        if(e.getSource() == searchButton) {
+        if(e.getSource() == searchButton)
+        {
             if(!(phoneNumber.getText().matches("[0-9]+"))){
                 JOptionPane.showMessageDialog(null, "Please enter a valid phone number");
             }
 
-            else {
+            else
+                {
             ButtonController.searchBooking();
             }
-    }}}
+    }
+    }
+}
 
 
 

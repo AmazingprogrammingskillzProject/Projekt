@@ -70,10 +70,10 @@ public class NewMoviePickerController
                 }
             }
         }
-
         List<String> sortedList = movies.subList(0, movies.size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
+
 
         return sortedList.toArray(new String[loadGetMoviesByDateAndTime(getPickedDate2(),getPickedTime2()).size()]);
     }
@@ -117,6 +117,7 @@ public class NewMoviePickerController
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
 
+
         return sortedList.toArray(new String[loadGetTimesByDate(getPickedDate2()).size()]);
     }
     public static List<String> loadGetTimesByDate(String date)
@@ -133,6 +134,7 @@ public class NewMoviePickerController
         List<String> sortedList = times.subList(0, times.size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
+
 
         return sortedList;
     }
@@ -172,6 +174,8 @@ public class NewMoviePickerController
         List<String> sortedList = times.subList(0, times.size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
+
+
         return sortedList.toArray(new String[loadGetTimesByMovieAndDate(getPickedMovie1(),getPickedDate1()).size()]);
     }
 
@@ -211,6 +215,8 @@ public class NewMoviePickerController
         List<String> sortedList = dates.subList(0, dates.size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
+
+
 
         return sortedList.toArray(new String[loadGetDatesByMovie(getPickedMovie1()).size()]);
     }
@@ -288,6 +294,7 @@ public class NewMoviePickerController
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
 
+
         return sortedList.toArray(new String[loadGetDatesByMovieAndTime(getPickedMovie3(),getPickedTime3()).size()]);
     }
     public static List<String> loadGetDatesByMovieAndTime(String movieName, String time)
@@ -324,11 +331,13 @@ public class NewMoviePickerController
             }
 
         }
-        List<String> subList = times.subList(0, times.size());
-        Collections.sort(subList);
-        subList.removeAll(Collections.singleton(null));
+        List<String> sortedList = times.subList(0, times.size());
+        Collections.sort(sortedList);
+        sortedList.removeAll(Collections.singleton(null));
 
-        return subList.toArray(new String[loadGetTimesByMovie(getPickedMovie3()).size()]);
+
+
+        return sortedList.toArray(new String[loadGetTimesByMovie(getPickedMovie3()).size()]);
     }
     public static List<String> loadGetTimesByMovie(String moviename)
     {
