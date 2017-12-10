@@ -151,6 +151,15 @@ public class Bookings implements ActionListener{
         JTextField firstSeat = new JTextField("First seat");
         JTextField lastSeat = new JTextField("Last seat");
 
+        phoneNr.setEditable(false);
+        bookingID.setEditable(false);
+        movieName.setEditable(false);
+        date.setEditable(false);
+        time.setEditable(false);
+        row.setEditable(false);
+        firstSeat.setEditable(false);
+        lastSeat.setEditable(false);
+
         centerNorth.add(phoneNr);
         phoneNr.setHorizontalAlignment(JTextField.CENTER);
         centerNorth.add(bookingID);

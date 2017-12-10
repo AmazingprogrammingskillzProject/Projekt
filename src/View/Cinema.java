@@ -131,13 +131,8 @@ public class Cinema implements ActionListener{
         backButton = new JButton("back");
         northPanel.add(backButton);
 
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cinemaWindow.setVisible(false);
-                getWindow().setVisible(true);
-            }
-        });
+        backButton.addActionListener(this);
+
 
         JLabel cinemaNumber = new JLabel("Cinema " + cinemaNR);
         cinemaNumber.setHorizontalAlignment(JLabel.CENTER);
@@ -340,38 +335,46 @@ public class Cinema implements ActionListener{
     private void makeBooking() {
         System.out.println(phoneField);
 
-        String phone = phoneField.getText();
-        int row = (int) rowBox.getItemAt(rowBox.getSelectedIndex());
 
-        int fseat = (int) firstSeatbox.getItemAt(firstSeatbox.getSelectedIndex());
-        int lseat = (int) lastSeatBox.getItemAt(lastSeatBox.getSelectedIndex());
+        if (phoneField.getText().matches("[0-9]+") && phoneField.getText().length() == 8) {
 
-        System.out.println(phone + " " + showID + " " +row + " "+ fseat + " "+ lseat);
+                String phone = phoneField.getText();
+                int row = (int) rowBox.getItemAt(rowBox.getSelectedIndex());
 
-        ReturnCode rtc = V1_DatabaseController.CreateBooking(phone, showID, row, fseat, lseat);
-        switch (rtc){
-            case SUCCESS:
-                JOptionPane.showMessageDialog(null, "Booking created");
+                int fseat = (int) firstSeatbox.getItemAt(firstSeatbox.getSelectedIndex());
+                int lseat = (int) lastSeatBox.getItemAt(lastSeatBox.getSelectedIndex());
 
-                for(int i = 0; i < seatButtonArray.size(); i ++)
-                    if(i >= selectedFSeat - (cSeats + 1) + cSeats  * selectedRow && i <= selectedLSeat - (cSeats + 1) + cSeats * selectedRow) {
-                        seatButtonArray.get(i).setBackground(Color.RED);
-                    }
+                System.out.println(phone + " " + showID + " " + row + " " + fseat + " " + lseat);
 
-                break;
+                ReturnCode rtc = V1_DatabaseController.CreateBooking(phone, showID, row, fseat, lseat);
+                switch (rtc) {
+                    case SUCCESS:
+                        JOptionPane.showMessageDialog(null, "Booking created");
 
-            case IS_BOOKED:
-                JOptionPane.showMessageDialog(null, "Some selected seats are already booked");
-                break;
+                        for (int i = 0; i < seatButtonArray.size(); i++)
+                            if (i >= selectedFSeat - (cSeats + 1) + cSeats * selectedRow && i <= selectedLSeat - (cSeats + 1) + cSeats * selectedRow) {
+                                seatButtonArray.get(i).setBackground(Color.RED);
+                            }
 
-            default:
-                JOptionPane.showMessageDialog(null, "Unexpected error happened: " + rtc);
-                break;
+                        break;
+
+                    case IS_BOOKED:
+                        JOptionPane.showMessageDialog(null, "Some selected seats are already booked");
+                        break;
+
+                    default:
+                        JOptionPane.showMessageDialog(null, "Unexpected error happened: " + rtc);
+                        break;
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Please enter a valid phone number");
+            }
         }
-    }
-
     private void goBack(){
-
-
+        cinemaWindow.setVisible(false);
+        getWindow().setVisible(true);
     }
+
+
 }
