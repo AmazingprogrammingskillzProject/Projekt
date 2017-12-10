@@ -94,7 +94,7 @@ public class V1_DatabaseController {
 
                 sql = "DELETE FROM `V1_Bookings` WHERE `Phone` = '"+phone+"' AND `ID` = "+booking_ID;
                 statement.executeUpdate(sql);
-
+                JOptionPane.showMessageDialog(null, "Booking deleted");
 
                 for(V1_Bookings b : V1_Database.getBookings()) {
                     if (b.getPhone().equals((phone)) && b.getID() == booking_ID)
@@ -125,13 +125,8 @@ public class V1_DatabaseController {
 
             V1_Database.LoadSeatBookings();
             V1_Database.LoadBookings();
-            searchBooking();
-
-
 
         return ReturnCode.SUCCESS;
-
-
 
     }
 
