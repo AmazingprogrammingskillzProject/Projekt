@@ -330,7 +330,7 @@ public class NewMoviePicker implements ActionListener {
 
         window.add(panel);
         window.pack();
-        window.setSize(720,480);
+        window.setSize((int)(width/2),(int)(height/2));
         window.setLocationRelativeTo(null);
         window.setResizable(false);
 
