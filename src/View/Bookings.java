@@ -31,14 +31,6 @@ public class Bookings implements ActionListener{
         makeFrame();
     }
 
-    public JFrame getReservationWindow() {
-        return reservationWindow;
-    }
-
-    public Container getBasePane() {
-        return basePane;
-    }
-
     public static JTextArea getBookingsField() {
         return bookingsField;
     }
@@ -47,24 +39,12 @@ public class Bookings implements ActionListener{
         return phone;
     }
 
-    public static JButton getDeleteButton() {
-        return deleteButton;
-    }
-
     public static JTextField getBID() {
         return BID;
     }
 
-    public static JButton getSearchButton() {
-        return searchButton;
-    }
-
     public static JTextField getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public static JButton getBackButton() {
-        return backButton;
     }
 
     private void makeFrame () {

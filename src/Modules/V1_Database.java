@@ -48,9 +48,27 @@ public class V1_Database
     public static ArrayList<V1_Cinema> getCinemas() {
         return Cinemas;
     }
-
     public static ArrayList<V1_Showings> getShowings() {
         return Showings;
+    }
+    public static ArrayList<V1_Movies> getMovies()
+    {
+        return Movies;
+    }
+    public static ArrayList<V1_SeatBookings> getSeatBookings() {
+        return SeatBookings;
+    }
+    public static ArrayList<V1_Bookings> getBookings() {
+        return Bookings;
+    }
+
+    public static String getMovieName(int m)
+    {
+        return Movies.get(m).getName();
+    }
+    public static V1_Movies getmovie(int m)
+    {
+        return Movies.get(m);
     }
 
     public static void main(String[] args) {
@@ -69,41 +87,6 @@ public class V1_Database
         {
             System.out.println(movie);
         }
-
-    }
-    public static int getNumbersOfMovies()
-    {
-        return Movies.size();
-    }
-    public static ArrayList<V1_Movies> getMovies()
-    {
-        return Movies;
-    }
-    public static String getMovieName(int m)
-    {
-        return Movies.get(m).getName();
-    }
-
-    public static String getShowingTime(int m)
-    {
-        return Showings.get(m).getTime();
-    }
-
-    public static V1_Movies getmovie(int m)
-    {
-        return Movies.get(m);
-    }
-
-    public static ArrayList<V1_SeatBookings> getSeatBookings() {
-        return SeatBookings;
-    }
-
-    public static ArrayList<V1_Bookings> getBookings() {
-        return Bookings;
-    }
-    public static String getPhone(V1_Bookings b)
-    {
-        return b.getPhone();
     }
 
     public static void LoadEntireDB()
