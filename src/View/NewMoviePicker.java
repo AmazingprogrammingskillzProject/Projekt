@@ -62,7 +62,8 @@ public class NewMoviePicker implements ActionListener {
 
     private JButton findSeat3;
 
-    
+
+    private JLabel pickAmovie3;
 
     private static String pickedMovie3;
     private static String pickedDate3;
@@ -242,12 +243,12 @@ public class NewMoviePicker implements ActionListener {
 
         panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
-        pickAmovie1 = new JLabel("Pick first a movie");
+        pickAmovie1 = new JLabel("Pick a movie first");
         panel.add(pickAmovie1);
 
         makeOneEmptyCells();
 
-        JLabel pickAday = new JLabel("Pick a date after");
+        JLabel pickAday = new JLabel("Pick a date");
         panel.add(pickAday);
         makeOneEmptyCells();
 
@@ -329,8 +330,9 @@ public class NewMoviePicker implements ActionListener {
 
         window.add(panel);
         window.pack();
-        window.setSize(((int)(width/2)), ((int)(height/2)));
+        window.setSize(720,480);
         window.setLocationRelativeTo(null);
+        window.setResizable(false);
 
     }
 
@@ -344,11 +346,11 @@ public class NewMoviePicker implements ActionListener {
         panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
 
-        pickAdate2 = new JLabel("Pick a date first!");
+        pickAdate2 = new JLabel("Pick a date first");
         panel.add(pickAdate2);
         makeOneEmptyCells();
 
-        pickAtime2 = new JLabel("  Pick a time");
+        pickAtime2 = new JLabel("Pick a time");
         panel.add(pickAtime2);
         makeOneEmptyCells();
 
@@ -401,7 +403,7 @@ public class NewMoviePicker implements ActionListener {
         });
         makeOneEmptyCells();
 
-        findSeats2 = new JButton("FindSeat");
+        findSeats2 = new JButton("Find Seats");
         panel.add(findSeats2);
         findSeats2.addActionListener(new ActionListener() {
             @Override
@@ -433,7 +435,7 @@ public class NewMoviePicker implements ActionListener {
 
         panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
-        pickAMovie3 = new JLabel("Pick first a movie");
+        pickAMovie3 = new JLabel("Pick a movie first");
         panel.add(pickAMovie3);
         makeOneEmptyCells();
 
@@ -441,7 +443,7 @@ public class NewMoviePicker implements ActionListener {
         panel.add(pickAtime);
         makeOneEmptyCells();
 
-        JLabel pickAday = new JLabel("Pick a date after");
+        JLabel pickAday = new JLabel("Pick a date");
         panel.add(pickAday);
         makeTwoEmptyCells();
 

@@ -15,7 +15,6 @@ import static View.Bookings.getPhoneNumber;
 
 public class ButtonController {
 
-
     public static void deleteBooking() {
 
             V1_DatabaseController.DeleteBooking(Bookings.getPhone().getText(), Integer.parseInt(getBID().getText()));
@@ -43,9 +42,7 @@ public class ButtonController {
         {
             JOptionPane.showMessageDialog(null, "Error: Make sure the phone number is of 8 digits");
 
-        }
-       else
-        {
+        } else {
             for (V1_Bookings booking : bookings) {
                 if (booking.getPhone().equals(PNR)) {
 
@@ -74,18 +71,17 @@ public class ButtonController {
                                 }
                             }
                         }
-
                     }
                 }
 
-                Bookings.getPhone().setText(Bookings.getPhoneNumber().getText());
+                    Bookings.getPhone().setText(Bookings.getPhoneNumber().getText());
+
             }
+
             if (!bookingFound){
                 JOptionPane.showMessageDialog(null, "No Booking found");
 
             }
         }
-
-
     }
 }
