@@ -42,7 +42,6 @@ public class NewMoviePicker implements ActionListener {
 
     private JButton findSeats2;
 
-
     private JLabel pickAmovie2;
     private JLabel pickAdate2;
     private JLabel pickAtime2;
@@ -54,14 +53,12 @@ public class NewMoviePicker implements ActionListener {
     private static int pickedShowID2;
     private static int pickedCinemaID2;
 
-
     private JLabel pickAMovie3;
     private static JComboBox moviesBox3;
     private static JComboBox dateBox3;
     private static JComboBox timeBox3;
 
     private JButton findSeat3;
-
 
     private JLabel pickAmovie3;
 
@@ -71,9 +68,6 @@ public class NewMoviePicker implements ActionListener {
 
     private static int pickedShowID3;
     private static int pickedCinemaNr3;
-
-
-
 
     public NewMoviePicker()
     {
@@ -160,8 +154,6 @@ public class NewMoviePicker implements ActionListener {
     public static void setPickedCinemaID2(int pickedCinemaID) {
         pickedCinemaID2 = pickedCinemaID;
     }
-
-
 
     public static String getPickedDate2() {
         return pickedDate2;
@@ -252,7 +244,6 @@ public class NewMoviePicker implements ActionListener {
         panel.add(pickAday);
         makeOneEmptyCells();
 
-
         JLabel pickAtime = new JLabel("Pick  a time");
         panel.add(pickAtime);
 
@@ -271,15 +262,8 @@ public class NewMoviePicker implements ActionListener {
                     String[] DB = getDatesByMovie(pickedMovie1);
 
                     dateBox1.addItem(DB[i]);
-
                 }
-
-
-
-
-
             }
-
         });
 
 
@@ -321,12 +305,10 @@ public class NewMoviePicker implements ActionListener {
 
             }
         });
+
         makeSevenEmptyCells();
-
         makePicker2();
-
         makePicker3();
-
 
         window.add(panel);
         window.pack();
@@ -340,11 +322,9 @@ public class NewMoviePicker implements ActionListener {
     public void makePicker2() //Creates the second pick-option to choose
     {
 
-
         String[] dates = getDates().toArray(new String[getDates().size()]);
         dateBox2 = new JComboBox(dates);
         panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-
 
         pickAdate2 = new JLabel("Pick a date first");
         panel.add(pickAdate2);
@@ -376,7 +356,6 @@ public class NewMoviePicker implements ActionListener {
         timeBox2 = new JComboBox();
         panel.add(timeBox2);
 
-
         timeBox2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -390,10 +369,10 @@ public class NewMoviePicker implements ActionListener {
                 }
             }
         });
+
         makeOneEmptyCells();
         movieBox2 = new JComboBox();
         panel.add(movieBox2);
-
 
         movieBox2.addActionListener(new ActionListener() {
             @Override
@@ -401,6 +380,7 @@ public class NewMoviePicker implements ActionListener {
                 setPickedMovie(e);
             }
         });
+
         makeOneEmptyCells();
 
         findSeats2 = new JButton("Find Seats");
@@ -410,18 +390,10 @@ public class NewMoviePicker implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 window.setVisible(false);
                 Cinema cinema = new Cinema(pickedShowID2, pickedCinemaID2);
-
-
             }
         });
 
         makeSevenEmptyCells();
-
-
-
-
-
-
 
     }
 

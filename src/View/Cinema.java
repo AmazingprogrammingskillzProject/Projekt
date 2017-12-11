@@ -39,13 +39,9 @@ public class Cinema implements ActionListener{
 
     private ArrayList<JButton> seatButtonArray;
 
-
     private Integer[] rowArray = {1, 2, 3, 4, 5, 6, 7, 8};
     private Integer[] seatArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
     private Integer[] ticketArray;
-
-    private JButton[][] bookedSeats;
-
 
 
     public Cinema(int showID) {
