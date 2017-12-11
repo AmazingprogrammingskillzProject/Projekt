@@ -18,6 +18,7 @@ public class NewMoviePicker implements ActionListener {
 
     private JButton goBack;
 
+
     private static JComboBox moviesBox1;
     private static JComboBox dateBox1;
     private static JComboBox timeBox1;
@@ -61,12 +62,18 @@ public class NewMoviePicker implements ActionListener {
 
     private JButton findSeat3;
 
+
+    private JLabel pickAmovie3;
+
     private static String pickedMovie3;
     private static String pickedDate3;
     private static String pickedTime3;
 
     private static int pickedShowID3;
     private static int pickedCinemaNr3;
+
+
+
 
     public NewMoviePicker()
     {
@@ -153,6 +160,8 @@ public class NewMoviePicker implements ActionListener {
     public static void setPickedCinemaID2(int pickedCinemaID) {
         pickedCinemaID2 = pickedCinemaID;
     }
+
+
 
     public static String getPickedDate2() {
         return pickedDate2;
@@ -243,6 +252,7 @@ public class NewMoviePicker implements ActionListener {
         panel.add(pickAday);
         makeOneEmptyCells();
 
+
         JLabel pickAtime = new JLabel("Pick  a time");
         panel.add(pickAtime);
 
@@ -261,9 +271,17 @@ public class NewMoviePicker implements ActionListener {
                     String[] DB = getDatesByMovie(pickedMovie1);
 
                     dateBox1.addItem(DB[i]);
+
                 }
+
+
+
+
+
             }
+
         });
+
 
         dateBox1 = new JComboBox();
         dateBox1.addActionListener(new ActionListener() {
@@ -280,6 +298,7 @@ public class NewMoviePicker implements ActionListener {
 
         panel.add(dateBox1);
         makeOneEmptyCells();
+
 
         timeBox1 = new JComboBox();
         timeBox1.addActionListener(new ActionListener() {
@@ -302,10 +321,12 @@ public class NewMoviePicker implements ActionListener {
 
             }
         });
-
         makeSevenEmptyCells();
+
         makePicker2();
+
         makePicker3();
+
 
         window.add(panel);
         window.pack();
@@ -318,8 +339,9 @@ public class NewMoviePicker implements ActionListener {
 
     public void makePicker2() //Creates the second pick-option to choose
     {
-        String[] dates = getDates().toArray(new String[getDates().size()]);
 
+
+        String[] dates = getDates().toArray(new String[getDates().size()]);
         dateBox2 = new JComboBox(dates);
         panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
@@ -350,10 +372,10 @@ public class NewMoviePicker implements ActionListener {
                 }
             }
         });
-
         makeOneEmptyCells();
         timeBox2 = new JComboBox();
         panel.add(timeBox2);
+
 
         timeBox2.addActionListener(new ActionListener() {
             @Override
@@ -368,10 +390,10 @@ public class NewMoviePicker implements ActionListener {
                 }
             }
         });
-
         makeOneEmptyCells();
         movieBox2 = new JComboBox();
         panel.add(movieBox2);
+
 
         movieBox2.addActionListener(new ActionListener() {
             @Override
@@ -379,7 +401,6 @@ public class NewMoviePicker implements ActionListener {
                 setPickedMovie(e);
             }
         });
-
         makeOneEmptyCells();
 
         findSeats2 = new JButton("Find Seats");
@@ -389,15 +410,28 @@ public class NewMoviePicker implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 window.setVisible(false);
                 Cinema cinema = new Cinema(pickedShowID2, pickedCinemaID2);
+
+
             }
         });
 
         makeSevenEmptyCells();
+
+
+
+
+
+
+
     }
 
     public void makePicker3() //Creates the third pick-option to choose
     {
+
+
         String[] movies = getMoviesName().toArray(new String[getMoviesName().size()]);
+
+
 
         panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
@@ -413,8 +447,11 @@ public class NewMoviePicker implements ActionListener {
         panel.add(pickAday);
         makeTwoEmptyCells();
 
+
+
         moviesBox3 = new JComboBox(movies);
         panel.add(moviesBox3);
+
 
         moviesBox3.addActionListener(new ActionListener() {
             @Override

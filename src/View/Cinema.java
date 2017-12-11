@@ -37,7 +37,7 @@ public class Cinema implements ActionListener{
     private int selectedLSeat = -1;
     private int numberOfTickets = -1;
 
-    ArrayList<JButton> seatButtonArray;
+    private ArrayList<JButton> seatButtonArray;
 
 
     private Integer[] rowArray = {1, 2, 3, 4, 5, 6, 7, 8};
@@ -46,11 +46,6 @@ public class Cinema implements ActionListener{
 
     private JButton[][] bookedSeats;
 
-
-    public static void main(String[] args) {
-        V1_Database.LoadEntireDB();
-        Cinema cinema = new Cinema(10, 1);
-    }
 
 
     public Cinema(int showID) {
