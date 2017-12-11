@@ -255,9 +255,9 @@ public class NewMoviePickerView implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 dateBox1.removeAllItems();
 
-                for(int i = 0; i< getDatesByMovie(pickedMovie1).length; i++)
+                for(int i = 0; i< sortedGetDatesByMovie(pickedMovie1).length; i++)
                 {
-                    String[] DB = getDatesByMovie(pickedMovie1);
+                    String[] DB = sortedGetDatesByMovie(pickedMovie1);
 
                     dateBox1.addItem(DB[i]);
                 }
@@ -270,9 +270,9 @@ public class NewMoviePickerView implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timeBox1.removeAllItems();
-                for(int i = 0; i< getTimesByMovie(pickedMovie1, pickedDate1).length; i++)
+                for(int i = 0; i< sortedGetTimesByDateAndMovie(pickedMovie1, pickedDate1).length; i++)
                 {
-                    String [] DB2 = getTimesByMovie(pickedMovie1, pickedDate1);
+                    String [] DB2 = sortedGetTimesByDateAndMovie(pickedMovie1, pickedDate1);
                     timeBox1.addItem(DB2[i]);
                 }
             }
@@ -343,9 +343,9 @@ public class NewMoviePickerView implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 timeBox2.removeAllItems();
 
-                for(int i = 0; i< getTimesByDate(pickedDate2).length; i++)
+                for(int i = 0; i< sortedGetTimesByDate(pickedDate2).length; i++)
                 {
-                    String[] timeBoxItems = getTimesByDate(pickedDate2);
+                    String[] timeBoxItems = sortedGetTimesByDate(pickedDate2);
                     timeBox2.addItem(timeBoxItems[i]);
                 }
             }
@@ -360,9 +360,9 @@ public class NewMoviePickerView implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 movieBox2.removeAllItems();
 
-                for(int i = 0; i< getMoviesByDateAndTime(pickedDate2, pickedTime2).length; i++)
+                for(int i = 0; i< sortedGetMoviesByDateAndTime(pickedDate2, pickedTime2).length; i++)
                 {
-                    String[] movieBoxItems = getMoviesByDateAndTime(pickedDate2, pickedTime2);
+                    String[] movieBoxItems = sortedGetMoviesByDateAndTime(pickedDate2, pickedTime2);
                     movieBox2.addItem(movieBoxItems[i]);
 
                 }
@@ -423,9 +423,9 @@ public class NewMoviePickerView implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 timeBox3.removeAllItems();
 
-                for(int i = 0; i< getTimesByMovie(pickedMovie3).length; i++)
+                for(int i = 0; i< sortedGetTimesByMovie(pickedMovie3).length; i++)
                 {
-                    String[] timeBoxItems = getTimesByMovie(pickedMovie3);
+                    String[] timeBoxItems = sortedGetTimesByMovie(pickedMovie3);
 
                     timeBox3.addItem(timeBoxItems[i]);
 
@@ -440,9 +440,9 @@ public class NewMoviePickerView implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dateBox3.removeAllItems();
-                for(int i = 0; i<getDatesByMovieAndTime(pickedMovie3, pickedTime3).length; i++)
+                for(int i = 0; i<sortedGetDatesByMovieAndTime(pickedMovie3, pickedTime3).length; i++)
                 {
-                    String [] dateBoxItems = getDatesByMovieAndTime(pickedMovie3, pickedTime3);
+                    String [] dateBoxItems = sortedGetDatesByMovieAndTime(pickedMovie3, pickedTime3);
                     dateBox3.addItem(dateBoxItems[i]);
                 }
             }

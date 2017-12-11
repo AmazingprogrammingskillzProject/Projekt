@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
+import Exception.ShowingsNotFoundException;
 
 
 
@@ -280,7 +281,7 @@ public class Database
         }
     }
 
-    public static void LoadShowings()
+    public static void LoadShowings() throws ShowingsNotFoundException
     {
         Connection connection = null;
         Statement statement = null;
@@ -307,8 +308,9 @@ public class Database
                 Showings.add(showing);
             }
 
-            for(Showing showing: Showings){
-                showing.toString();
+            if(Showings.isEmpty())
+            {
+                throw new ShowingsNotFoundException();
             }
 
             connection.close();
