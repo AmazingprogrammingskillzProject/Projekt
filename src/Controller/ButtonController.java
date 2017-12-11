@@ -1,49 +1,48 @@
 package Controller;
 
-import Modules.V1_Bookings;
-import Modules.V1_Database;
-import Modules.V1_Movies;
-import Modules.V1_Showings;
-import View.Bookings;
+import Modules.Booking;
+import Modules.Database;
+import Modules.Movie;
+import Modules.Showing;
+import View.BookingSearcherView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static View.Bookings.getBID;
-import static View.Bookings.getPhoneNumber;
+import static View.BookingSearcherView.getBID;
 
 public class ButtonController {
 
     public static void deleteBooking() {
 
-            V1_DatabaseController.DeleteBooking(Bookings.getPhone().getText(), Integer.parseInt(getBID().getText()));
+            DatabaseController.DeleteBooking(BookingSearcherView.getPhone().getText(), Integer.parseInt(getBID().getText()));
 
             searchBooking();
     }
 
     public static void  searchBooking() {
 
-        V1_Database.LoadBookings();
-        V1_Database.LoadMovies();
-        V1_Database.LoadShowings();
+        Database.LoadBookings();
+        Database.LoadMovies();
+        Database.LoadShowings();
 
-        ArrayList<V1_Bookings> bookings = V1_Database.getBookings();
-        ArrayList<V1_Showings> showings = V1_Database.getShowings();
-        ArrayList<V1_Movies> movies = V1_Database.getMovies();
+        ArrayList<Booking> bookings = Database.getBookings();
+        ArrayList<Showing> showings = Database.getShowings();
+        ArrayList<Movie> movies = Database.getMovies();
 
-        Bookings.getBookingsField().setText("");
+        BookingSearcherView.getBookingsField().setText("");
 
         boolean bookingFound = false;
 
-        String PNR = Bookings.getPhoneNumber().getText();
+        String PNR = BookingSearcherView.getPhoneNumber().getText();
 
         if(PNR.length() < 8 || PNR.length() > 8 || !(PNR.matches("[0-9]+")))
         {
             JOptionPane.showMessageDialog(null, "Error: Make sure the phone number is of 8 digits");
 
         } else {
-            for (V1_Bookings booking : bookings) {
+            for (Booking booking : bookings) {
                 if (booking.getPhone().equals(PNR)) {
 
                     bookingFound = true;
@@ -51,20 +50,20 @@ public class ButtonController {
                     getBID().setBackground(Color.white);
 
                     String movieName = null;
-                    V1_Movies V1movie = null;
+                    Movie V1movie = null;
 
 
-                    String collectedStrings = Bookings.getBookingsField().getText();
+                    String collectedStrings = BookingSearcherView.getBookingsField().getText();
 
                     // Med følgende for loops findes film navnet.
-                    for (V1_Showings show : showings) {
+                    for (Showing show : showings) {
                         if (booking.getShowing_ID() == show.getID()) {
-                            for (V1_Movies movie : movies) {
+                            for (Movie movie : movies) {
                                 if (show.getMovie_ID() == movie.getID()) {
                                     V1movie = movie;
                                     movieName = V1movie.getName();
 
-                                    Bookings.getBookingsField().setText(collectedStrings + "Phone: " + booking.getPhone() + "    Booking ID: " + booking.getID() +
+                                    BookingSearcherView.getBookingsField().setText(collectedStrings + "Phone: " + booking.getPhone() + "    BookingSearcherView ID: " + booking.getID() +
                                             "    Movie name: " + movieName +  "    Date: " + show.getDate() + "   Time: " + show.getTime() +
                                             "    Row: " + booking.getRow() + "    First Seat: " + booking.getFirstSeat() + "    Last Seat: " + booking.getLastSeat() + "\n");
 
@@ -74,12 +73,12 @@ public class ButtonController {
                     }
                 }
 
-                    Bookings.getPhone().setText(Bookings.getPhoneNumber().getText());
+                    BookingSearcherView.getPhone().setText(BookingSearcherView.getPhoneNumber().getText());
 
             }
 
             if (!bookingFound){
-                JOptionPane.showMessageDialog(null, "No Booking found");
+                JOptionPane.showMessageDialog(null, "No BookingSearcherView found");
 
             }
         }

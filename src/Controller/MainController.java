@@ -1,12 +1,12 @@
 package Controller;
 
-import View.Main;
+import View.MainView;
 
 import java.io.IOException;
 import java.net.*;
 import Exception.NoInternetConnectionException;
 
-import static Modules.V1_Database.LoadEntireDB;
+import static Modules.Database.LoadEntireDB;
 
 
 public class MainController
@@ -17,7 +17,7 @@ public class MainController
         if(netIsAvailable()==true)
         {
             LoadEntireDB();
-            Main client = new Main();
+            MainView client = new MainView();
             client.makeFrame();
 
         }

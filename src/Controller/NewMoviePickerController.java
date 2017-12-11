@@ -1,7 +1,7 @@
 package Controller;
 
-import Modules.V1_Movies;
-import Modules.V1_Showings;
+import Modules.Movie;
+import Modules.Showing;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -9,9 +9,9 @@ import java.util.Collections;
 import java.util.List;
 
 
-import static Modules.V1_Database.*;
+import static Modules.Database.*;
 
-import static View.NewMoviePicker.*;
+import static View.NewMoviePickerView.*;
 
 
 
@@ -20,7 +20,7 @@ public class NewMoviePickerController
     public static ArrayList<String>getDates() //gets all possbile dates
     {
         ArrayList<String> dates = new ArrayList<>();
-        for(V1_Showings s: getShowings())
+        for(Showing s: getShowings())
         {
             if(!(dates.contains(s.getDate())))
             {
@@ -36,7 +36,7 @@ public class NewMoviePickerController
     public static int getMovieIDbyName(String movieName) //returns a movie ID when a name is inputed
     {
         int ID = 0;
-        for(V1_Movies m: getMovies())
+        for(Movie m: getMovies())
         {
             if(m.getName().equals(movieName))
             {
@@ -49,7 +49,7 @@ public class NewMoviePickerController
     public static ArrayList<String> getMoviesName() //gets all the movies the cinema offers
     {
         ArrayList<String>movienames = new ArrayList<>();
-        for(V1_Showings s: getShowings())
+        for(Showing s: getShowings())
         {
             if(!(movienames.contains(getMovieName(s.getMovie_ID()-1))))
             movienames.add(getMovieName(s.getMovie_ID()-1));
@@ -65,7 +65,7 @@ public class NewMoviePickerController
         {
             setPickedTime2(getTimeBox2().getSelectedItem().toString());
 
-            for(V1_Showings s: getShowings())
+            for(Showing s: getShowings())
             {
                 if(s.getDate().equals(date)&&s.getTime().equals(time))
                 {
@@ -86,7 +86,7 @@ public class NewMoviePickerController
     {
         ArrayList<String> movies = new ArrayList<>();
 
-            for(V1_Showings s: getShowings())
+            for(Showing s: getShowings())
             {
                 if(s.getDate().equals(date)&&s.getTime().equals(time))
                 {
@@ -108,7 +108,7 @@ public class NewMoviePickerController
         {
             setPickedDate2(getDateBox2().getSelectedItem().toString());
 
-            for(V1_Showings s : getShowings())
+            for(Showing s : getShowings())
             {
                 if(s.getDate().equals(date)&&!(times.contains(s.getTime())))
                 {
@@ -127,7 +127,7 @@ public class NewMoviePickerController
     {
         ArrayList<String> times = new ArrayList<>();
 
-            for(V1_Showings s : getShowings())
+            for(Showing s : getShowings())
             {
                 if(s.getDate().equals(date)&&!(times.contains(s.getTime())))
                 {
@@ -146,7 +146,7 @@ public class NewMoviePickerController
         if(getTimeBox1().getSelectedItem()!=null) {
             setPickedTime1(getTimeBox1().getSelectedItem().toString());
 
-            for (V1_Showings s : getShowings())
+            for (Showing s : getShowings())
             {
                 if (getMovieIDbyName(getPickedMovie1()) == s.getMovie_ID()&&s.getDate().equals(getPickedDate1())&&s.getTime().equals(getPickedTime1()))
                 {
@@ -165,7 +165,7 @@ public class NewMoviePickerController
         if(getDateBox1().getSelectedItem()!=null)
         {
             setPickedDate1(getDateBox1().getSelectedItem().toString());
-            for(V1_Showings s: getShowings()) {
+            for(Showing s: getShowings()) {
                 if (getMovieIDbyName(movieName) == s.getMovie_ID() && s.getDate().equals(date))
                 {
                     times.add(s.getTime());
@@ -186,7 +186,7 @@ public class NewMoviePickerController
     {
         ArrayList<String> times = new ArrayList<>();
 
-            for(V1_Showings s: getShowings()) {
+            for(Showing s: getShowings()) {
                 if (getMovieIDbyName(movieName) == s.getMovie_ID() && s.getDate().equals(date))
                 {
                     times.add(s.getTime());
@@ -205,7 +205,7 @@ public class NewMoviePickerController
         {
             setPickedMovie1(getMoviesBox1().getSelectedItem().toString());
 
-            for(V1_Showings s: getShowings())
+            for(Showing s: getShowings())
             {
                 if(getMovieIDbyName(moviename) == s.getMovie_ID()&&!(dates.contains(s.getDate())))
                 {
@@ -224,7 +224,7 @@ public class NewMoviePickerController
     {
         ArrayList<String>dates = new ArrayList<>();
 
-            for(V1_Showings s: getShowings())
+            for(Showing s: getShowings())
             {
                 if(getMovieIDbyName(moviename) == s.getMovie_ID()&&!(dates.contains(s.getDate())))
                 {
@@ -245,7 +245,7 @@ public class NewMoviePickerController
         {
             setPickedMovie2((getMovieBox2().getSelectedItem().toString()));
 
-            for(V1_Showings s : getShowings())
+            for(Showing s : getShowings())
             {
                 if(s.getTime().equals(getPickedTime2())&&s.getDate().equals(getPickedDate2())&&getMovieIDbyName(getPickedMovie2())==s.getMovie_ID())
                 {
@@ -261,7 +261,7 @@ public class NewMoviePickerController
         if(getDateBox3().getSelectedItem()!=null)
         {
             setPickedDate3(getDateBox3().getSelectedItem().toString());
-            for(V1_Showings s: getShowings())
+            for(Showing s: getShowings())
             {
                 if(getMovieIDbyName(getPickedMovie3())==s.getMovie_ID()&&s.getTime().equals(getPickedTime3())&&s.getDate().equals(getPickedDate3()))
                 {
@@ -280,7 +280,7 @@ public class NewMoviePickerController
         if(getTimeBox3().getSelectedItem()!=null)
         {
             setPickedTime3(getTimeBox3().getSelectedItem().toString());
-            for(V1_Showings s: getShowings()) {
+            for(Showing s: getShowings()) {
                 if (getMovieIDbyName(movieName) == s.getMovie_ID() && s.getTime().equals(time))
                 {
                     dates.add(s.getDate());
@@ -300,7 +300,7 @@ public class NewMoviePickerController
     {
         ArrayList<String> dates = new ArrayList<>();
 
-            for(V1_Showings s: getShowings()) {
+            for(Showing s: getShowings()) {
                 if (getMovieIDbyName(movieName) == s.getMovie_ID() && s.getTime().equals(time))
                 {
                     dates.add(s.getDate());
@@ -320,7 +320,7 @@ public class NewMoviePickerController
         {
             setPickedMovie3(getMoviesBox3().getSelectedItem().toString());
 
-            for(V1_Showings s: getShowings())
+            for(Showing s: getShowings())
             {
                 if(getMovieIDbyName(moviename) == s.getMovie_ID()&&!(times.contains(s.getTime())))
                 {
@@ -341,7 +341,7 @@ public class NewMoviePickerController
         ArrayList<String>times = new ArrayList<>();
 
 
-            for(V1_Showings s: getShowings())
+            for(Showing s: getShowings())
             {
                 if(getMovieIDbyName(moviename) == s.getMovie_ID()&&!(times.contains(s.getTime())))
                 {
