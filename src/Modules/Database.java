@@ -111,7 +111,7 @@ public class Database
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             statement = connection.createStatement();
 
-            sql = "SELECT * FROM `V1_Bookings`";
+            sql = "SELECT * FROM Bookings";
             rs = statement.executeQuery(sql);
             while(rs.next())
             {
@@ -160,7 +160,7 @@ public class Database
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             statement = connection.createStatement();
 
-            sql = "SELECT * FROM `V1_Cinema`";
+            sql = "SELECT * FROM Cinemas";
             rs = statement.executeQuery(sql);
             while(rs.next())
             {
@@ -205,7 +205,7 @@ public class Database
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             statement = connection.createStatement();
 
-            sql = "SELECT * FROM `V1_Movies`";
+            sql = "SELECT * FROM Movies";
             rs = statement.executeQuery(sql);
             while(rs.next())
             {
@@ -249,7 +249,7 @@ public class Database
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             statement = connection.createStatement();
 
-            sql = "SELECT * FROM `V1_SeatBookings`";
+            sql = "SELECT * FROM SeatBookings";
             rs = statement.executeQuery(sql);
             while(rs.next())
             {
@@ -293,7 +293,7 @@ public class Database
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             statement = connection.createStatement();
 
-            sql = "SELECT * FROM `V1_Showings`";
+            sql = "SELECT * FROM Showings";
             rs = statement.executeQuery(sql);
             while(rs.next())
             {
@@ -379,7 +379,7 @@ public class Database
                 }
             }
 
-            sql = "INSERT INTO `V1_Showings`(`Cinema_ID`, `Movie_ID`, `Date`, `Time`) VALUES ("+cinema_ID+", "+movie_ID+", '"+date+"', '"+time+"')";
+            sql = "INSERT INTO Showings(`Cinema_ID`, `Movie_ID`, `Date`, `Time`) VALUES ("+cinema_ID+", "+movie_ID+", '"+date+"', '"+time+"')";
             statement.executeUpdate(sql);
 
             connection.close();

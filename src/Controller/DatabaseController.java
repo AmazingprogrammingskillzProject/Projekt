@@ -38,17 +38,17 @@ public class DatabaseController {
             connection = DriverManager.getConnection(Database.getDbUrl(), Database.getUSER(), Database.getPASS());
             statement = connection.createStatement();
 
-            sql = "INSERT INTO `V1_Bookings`(`Phone`, `Showing_ID`, `Row`, `FirstSeat`, `LastSeat`) VALUES ('"+phone+"', "+showing_ID+", "+row+", "+firstSeat+", "+lastSeat+")";
+            sql = "INSERT INTO Bookings(`Phone`, `Showing_ID`, `Row`, `FirstSeat`, `LastSeat`) VALUES ('"+phone+"', "+showing_ID+", "+row+", "+firstSeat+", "+lastSeat+")";
             statement.executeUpdate(sql);
 
-            sql = "SELECT * FROM `V1_Bookings` WHERE `Phone` = '"+phone+"' AND `Showing_ID` = "+showing_ID+" AND `Row` = "+row+" AND `FirstSeat` = "+firstSeat+" AND `LastSeat` = "+lastSeat;
+            sql = "SELECT * FROM Bookings WHERE `Phone` = '"+phone+"' AND `Showing_ID` = "+showing_ID+" AND `Row` = "+row+" AND `FirstSeat` = "+firstSeat+" AND `LastSeat` = "+lastSeat;
             rs = statement.executeQuery(sql);
 
             rs.next();
             int booking_ID = rs.getInt("ID");
 
             for(int i = firstSeat; i <= lastSeat; i++){
-                sql = "INSERT INTO `V1_SeatBookings`(`Booking_ID`, `Showing_ID`, `Row`, `Seat`) VALUES ("+booking_ID+", "+showing_ID+", "+row+", "+i+")";
+                sql = "INSERT INTO SeatBookings(`Booking_ID`, `Showing_ID`, `Row`, `Seat`) VALUES ("+booking_ID+", "+showing_ID+", "+row+", "+i+")";
                 statement.executeUpdate(sql);
             }
 
@@ -87,14 +87,14 @@ public class DatabaseController {
                 connection = DriverManager.getConnection(Database.getDbUrl(), Database.getUSER(), Database.getPASS());
                 statement = connection.createStatement();
 
-                sql = "DELETE FROM `V1_Bookings` WHERE `Phone` = '"+phone+"' AND `ID` = "+booking_ID;
+                sql = "DELETE FROM Bookings WHERE `Phone` = '"+phone+"' AND `ID` = "+booking_ID;
                 statement.executeUpdate(sql);
                 JOptionPane.showMessageDialog(null, "BookingSearcherView deleted");
 
                 for(Booking b : Database.getBookings()) {
                     if (b.getPhone().equals((phone)) && b.getID() == booking_ID)
                     {
-                        sql = "DELETE FROM `V1_SeatBookings` WHERE `Booking_ID` = " + booking_ID;
+                        sql = "DELETE FROM SeatBookings WHERE `Booking_ID` = " + booking_ID;
                     }
                 }
 

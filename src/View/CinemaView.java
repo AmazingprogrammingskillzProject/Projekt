@@ -93,7 +93,7 @@ public class CinemaView implements ActionListener{
 
     private void makeFrame() {
 
-        cinemaWindow = new JFrame("CinemaView");
+        cinemaWindow = new JFrame("Cinema");
         cinemaWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cinemaWindow.setVisible(true);
         cinemaWindow.setResizable(false);
@@ -130,7 +130,7 @@ public class CinemaView implements ActionListener{
         backButton.addActionListener(this);
 
 
-        JLabel cinemaNumber = new JLabel("CinemaView " + cinemaNR);
+        JLabel cinemaNumber = new JLabel("Cinema " + cinemaNR);
         cinemaNumber.setHorizontalAlignment(JLabel.CENTER);
         northPanel.add(cinemaNumber);
 

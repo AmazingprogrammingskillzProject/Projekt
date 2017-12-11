@@ -497,8 +497,6 @@ public class NewMoviePickerView implements ActionListener {
         }
     }
 
-
-
     public void makeTwoEmptyCells()
     {
         for(int i = 0; i<2;i++)

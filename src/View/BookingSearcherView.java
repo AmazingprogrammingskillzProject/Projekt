@@ -120,7 +120,7 @@ public class BookingSearcherView implements ActionListener{
 
 
         JTextField phoneNr = new JTextField("Phone number");
-        JTextField bookingID = new JTextField("BookingSearcherView ID");
+        JTextField bookingID = new JTextField("Booking ID");
         JTextField movieName = new JTextField("Movie Name");
         JTextField date = new JTextField("Date");
         JTextField time = new JTextField("Time");
@@ -164,7 +164,7 @@ public class BookingSearcherView implements ActionListener{
 
         JLabel phoneNr = new JLabel("Phone number:");
         phoneNr.setHorizontalAlignment(JLabel.RIGHT);
-        JLabel bookingID = new JLabel("BookingSearcherView ID:");
+        JLabel bookingID = new JLabel("Booking ID:");
         bookingID.setHorizontalAlignment(JLabel.RIGHT);
         phone = new JTextField("");
         BID = new JTextField("");
@@ -205,7 +205,7 @@ public class BookingSearcherView implements ActionListener{
             }
             if(!BIDFound)
             {
-                JOptionPane.showMessageDialog(null, "BookingSearcherView not found");
+                JOptionPane.showMessageDialog(null, "Booking not found");
                 return;
             }
 
