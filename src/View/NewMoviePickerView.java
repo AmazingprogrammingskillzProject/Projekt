@@ -60,8 +60,6 @@ public class NewMoviePickerView implements ActionListener {
 
     private JButton findSeat3;
 
-    private JLabel pickAmovie3;
-
     private static String pickedMovie3;
     private static String pickedDate3;
     private static String pickedTime3;
@@ -281,8 +279,8 @@ public class NewMoviePickerView implements ActionListener {
         });
 
         panel.add(dateBox1);
-        makeOneEmptyCells();
 
+        makeOneEmptyCells();
 
         timeBox1 = new JComboBox();
         timeBox1.addActionListener(new ActionListener() {
@@ -352,6 +350,7 @@ public class NewMoviePickerView implements ActionListener {
                 }
             }
         });
+
         makeOneEmptyCells();
         timeBox2 = new JComboBox();
         panel.add(timeBox2);
@@ -400,10 +399,7 @@ public class NewMoviePickerView implements ActionListener {
     public void makePicker3() //Creates the third pick-option to choose
     {
 
-
         String[] movies = getMoviesName().toArray(new String[getMoviesName().size()]);
-
-
 
         panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
@@ -419,11 +415,8 @@ public class NewMoviePickerView implements ActionListener {
         panel.add(pickAday);
         makeTwoEmptyCells();
 
-
-
         moviesBox3 = new JComboBox(movies);
         panel.add(moviesBox3);
-
 
         moviesBox3.addActionListener(new ActionListener() {
             @Override
@@ -513,9 +506,7 @@ public class NewMoviePickerView implements ActionListener {
 
     public void actionPerformed(ActionEvent e)
     {
-
-
-
+        // Kunne være blevet brugt til at håndtere knapperne
     }
 
 }

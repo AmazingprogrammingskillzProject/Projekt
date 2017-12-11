@@ -63,7 +63,7 @@ public class ButtonController {
                                     V1movie = movie;
                                     movieName = V1movie.getName();
 
-                                    BookingSearcherView.getBookingsField().setText(collectedStrings + "Phone: " + booking.getPhone() + "    BookingSearcherView ID: " + booking.getID() +
+                                    BookingSearcherView.getBookingsField().setText(collectedStrings + "Phone: " + booking.getPhone() + "    Booking ID: " + booking.getID() +
                                             "    Movie name: " + movieName +  "    Date: " + show.getDate() + "   Time: " + show.getTime() +
                                             "    Row: " + booking.getRow() + "    First Seat: " + booking.getFirstSeat() + "    Last Seat: " + booking.getLastSeat() + "\n");
 
@@ -78,7 +78,7 @@ public class ButtonController {
             }
 
             if (!bookingFound){
-                JOptionPane.showMessageDialog(null, "No BookingSearcherView found");
+                JOptionPane.showMessageDialog(null, "No Booking found");
 
             }
         }

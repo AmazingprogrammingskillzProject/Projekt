@@ -31,7 +31,6 @@ public class NewMoviePickerController
         dates.removeAll(Collections.singleton(null));
         return dates;
 
-
     }
     public static int getMovieIDbyName(String movieName) //returns a movie ID when a name is inputed
     {
@@ -94,7 +93,6 @@ public class NewMoviePickerController
                 }
             }
 
-
         movies.removeAll(Collections.singleton(null));
 
         return movies;
@@ -136,7 +134,6 @@ public class NewMoviePickerController
             }
         times.removeAll(Collections.singleton(null));
 
-
         return times;
     }
 
@@ -153,7 +150,6 @@ public class NewMoviePickerController
                     setPickedShowID1(s.getID());
                     setPickedCinemaID1(s.getCinema_ID());
                 }
-
             }
         }
     }
@@ -176,9 +172,6 @@ public class NewMoviePickerController
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
 
-
-
-
         return sortedList.toArray(new String[loadGetTimesByMovieAndDate(getPickedMovie1(),getPickedDate1()).size()]);
     }
 
@@ -192,8 +185,6 @@ public class NewMoviePickerController
                     times.add(s.getTime());
                 }
             }
-
-
         times.removeAll(Collections.singleton(null));
         return times;
     }
@@ -232,12 +223,8 @@ public class NewMoviePickerController
                 }
             }
 
-
-
         return dates;
     }
-
-
 
     public static void setPickedMovie(ActionEvent evt)
     {
@@ -291,12 +278,11 @@ public class NewMoviePickerController
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
 
-
-
-
         return sortedList.toArray(new String[loadGetDatesByMovieAndTime(getPickedMovie3(),getPickedTime3()).size()]);
+
     }
-    public static ArrayList<String> loadGetDatesByMovieAndTime(String movieName, String time)
+
+         public static ArrayList<String> loadGetDatesByMovieAndTime(String movieName, String time)
     {
         ArrayList<String> dates = new ArrayList<>();
 
@@ -306,9 +292,6 @@ public class NewMoviePickerController
                     dates.add(s.getDate());
                 }
             }
-
-
-
 
         return dates;
     }
@@ -327,7 +310,6 @@ public class NewMoviePickerController
                     times.add(s.getTime());
                 }
             }
-
         }
 
         List<String> sortedList = times.subList(0, times.size());
@@ -349,16 +331,6 @@ public class NewMoviePickerController
                 }
             }
 
-
         return times;
     }
-
-
-
-
-
-
-
-
-
 }
