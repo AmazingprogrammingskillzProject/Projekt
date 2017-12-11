@@ -9,9 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import static View.Main.getMainWindow;
-
+import java.text.Format;
+import java.text.NumberFormat;
 
 public class Bookings implements ActionListener{
 
@@ -85,6 +84,7 @@ public class Bookings implements ActionListener{
 
         reservationWindow.pack();
         reservationWindow.setSize(840, 480);
+        reservationWindow.setLocationRelativeTo(null);
 
     }
 
@@ -101,7 +101,7 @@ public class Bookings implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 reservationWindow.setVisible(false);
-                getMainWindow().setVisible(true);
+                Main.getMainWindow().setVisible(true);
             }
         });
 
@@ -109,6 +109,7 @@ public class Bookings implements ActionListener{
         JLabel phoneLabel = new JLabel("Phone number: ");
         phoneLabel.setHorizontalAlignment(JLabel.RIGHT  );
         northPanel.add(phoneLabel);
+
 
         phoneNumber = new JTextField();
         phoneNumber.setSize(150, 27);
@@ -149,6 +150,15 @@ public class Bookings implements ActionListener{
         JTextField row = new JTextField("Row");
         JTextField firstSeat = new JTextField("First seat");
         JTextField lastSeat = new JTextField("Last seat");
+
+        phoneNr.setEditable(false);
+        bookingID.setEditable(false);
+        movieName.setEditable(false);
+        date.setEditable(false);
+        time.setEditable(false);
+        row.setEditable(false);
+        firstSeat.setEditable(false);
+        lastSeat.setEditable(false);
 
         centerNorth.add(phoneNr);
         phoneNr.setHorizontalAlignment(JTextField.CENTER);
@@ -200,14 +210,45 @@ public class Bookings implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource() == deleteButton){
-            ButtonController.deleteBooking();
+        if(e.getSource() == deleteButton)
+        {
+            V1_Database.LoadBookings();
+            if(!(BID.getText().matches("[0-9]+")))
+            {
+                JOptionPane.showMessageDialog(null, "Please enter a valid booking ID");
+                return;
+            }
+            boolean BIDFound = false;
+            for(V1_Bookings b: V1_Database.getBookings())
+            {
+                if((Integer.parseInt(BID.getText()) == b.getID()))
+                {
+                    BIDFound = true;
+                }
+            }
+            if(!BIDFound)
+            {
+                JOptionPane.showMessageDialog(null, "Booking not found");
+                return;
+            }
+
+                ButtonController.deleteBooking();
+
         }
-        if(e.getSource() == searchButton) {
+        if(e.getSource() == searchButton)
+        {
+            if(!(phoneNumber.getText().matches("[0-9]+"))){
+                JOptionPane.showMessageDialog(null, "Please enter a valid phone number");
+            }
+
+            else
+                {
             ButtonController.searchBooking();
-        }
+            }
     }
     }
+}
+
 
 
 
