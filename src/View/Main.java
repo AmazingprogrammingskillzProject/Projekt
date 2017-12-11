@@ -18,12 +18,7 @@ public class Main
     private Double width = screenSize.getWidth();
     private Double height = screenSize.getHeight();
 
-    public static void main(String[] args)
-    {
-        LoadEntireDB();
-        Main client = new Main();
-        client.makeFrame();
-    }
+
 
     public static JFrame getMainWindow()
     {
