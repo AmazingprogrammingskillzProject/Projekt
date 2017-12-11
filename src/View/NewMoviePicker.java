@@ -18,7 +18,7 @@ public class NewMoviePicker implements ActionListener {
 
     private JButton goBack;
 
-
+//1 represents the first option, 2 the second and 3 the third
     private static JComboBox moviesBox1;
     private static JComboBox dateBox1;
     private static JComboBox timeBox1;
