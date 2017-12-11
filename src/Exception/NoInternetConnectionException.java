@@ -2,9 +2,9 @@ package Exception;
 
 import javax.swing.*;
 
-public class NoInternetConnectException extends Exception
+public class NoInternetConnectionException extends Exception
 {
-    public NoInternetConnectException()
+    public NoInternetConnectionException()
     {
         super("No Internet");
         JOptionPane error = new JOptionPane();

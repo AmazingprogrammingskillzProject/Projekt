@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import Exception.ShowingsNotFoundException;
+
 
 import static Modules.V1_Database.*;
 
@@ -17,7 +17,7 @@ import static View.NewMoviePicker.*;
 
 public class NewMoviePickerController
 {
-    public static List<String>getDates() throws ShowingsNotFoundException//gets all possbile dates
+    public static ArrayList<String>getDates() //gets all possbile dates
     {
         ArrayList<String> dates = new ArrayList<>();
         for(V1_Showings s: getShowings())
@@ -27,15 +27,11 @@ public class NewMoviePickerController
                 dates.add(s.getDate());
             }
         }
-        List<String> sortedList = dates.subList(0, dates.size());
-        Collections.sort(sortedList);
-        sortedList.removeAll(Collections.singleton(null));
 
-        if (sortedList.isEmpty())
-        {
-            throw new ShowingsNotFoundException();
-        }
-        return sortedList;
+        dates.removeAll(Collections.singleton(null));
+        return dates;
+
+
     }
     public static int getMovieIDbyName(String movieName) //returns a movie ID when a name is inputed
     {
@@ -53,14 +49,15 @@ public class NewMoviePickerController
     public static ArrayList<String> getMoviesName() //gets all the movies the cinema offers
     {
         ArrayList<String>movienames = new ArrayList<>();
-        for(V1_Movies m: getMovies())
+        for(V1_Showings s: getShowings())
         {
-            movienames.add(m.getName());
+            if(!(movienames.contains(getMovieName(s.getMovie_ID()-1))))
+            movienames.add(getMovieName(s.getMovie_ID()-1));
         }
         return movienames;
     }
 
-    public static String[] getMoviesByDateAndTime(String date, String time) throws ShowingsNotFoundException//gets all possible movies when a date and a time is picked
+    public static String[] getMoviesByDateAndTime(String date, String time) //gets all possible movies when a date and a time is picked
     {
         ArrayList<String> movies = new ArrayList<>();
 
@@ -80,15 +77,12 @@ public class NewMoviePickerController
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
 
-        if(sortedList.isEmpty())
-        {
-            throw new ShowingsNotFoundException();
-        }
+
         return sortedList.toArray(new String[loadGetMoviesByDateAndTime(getPickedDate2(),getPickedTime2()).size()]);
     }
     //This one loads "getMoviesByDateAndTime". All the loads methods loads the get method. If these aren't loaded, it will require to choose an item
     // two times before it pick  object
-    public static List<String> loadGetMoviesByDateAndTime(String date, String time) //This one loads "getMoviesByDateAndTime".
+    public static ArrayList<String> loadGetMoviesByDateAndTime(String date, String time) //This one loads "getMoviesByDateAndTime".
     {
         ArrayList<String> movies = new ArrayList<>();
 
@@ -101,14 +95,12 @@ public class NewMoviePickerController
             }
 
 
-        List<String> sortedList = movies.subList(0, movies.size());
-        Collections.sort(sortedList);
-        sortedList.removeAll(Collections.singleton(null));
+        movies.removeAll(Collections.singleton(null));
 
-        return sortedList;
+        return movies;
     }
 
-    public static String[] getTimesByDate(String date) throws ShowingsNotFoundException//gets all possible Times when date is chosen
+    public static String[] getTimesByDate(String date) //gets all possible Times when date is chosen
     {
         ArrayList<String> times = new ArrayList<>();
 
@@ -127,14 +119,11 @@ public class NewMoviePickerController
         List<String> sortedList = times.subList(0, times.size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
-        if(sortedList.isEmpty())
-        {
-            throw new ShowingsNotFoundException();
-        }
+
 
         return sortedList.toArray(new String[loadGetTimesByDate(getPickedDate2()).size()]);
     }
-    public static List<String> loadGetTimesByDate(String date)
+    public static ArrayList<String> loadGetTimesByDate(String date)
     {
         ArrayList<String> times = new ArrayList<>();
 
@@ -145,12 +134,10 @@ public class NewMoviePickerController
                     times.add(s.getTime());
                 }
             }
-        List<String> sortedList = times.subList(0, times.size());
-        Collections.sort(sortedList);
-        sortedList.removeAll(Collections.singleton(null));
+        times.removeAll(Collections.singleton(null));
 
 
-        return sortedList;
+        return times;
     }
 
 
@@ -171,7 +158,7 @@ public class NewMoviePickerController
         }
     }
 
-    public static String[] getTimesByMovie(String movieName, String date) throws ShowingsNotFoundException //gets all possible times when movie is chosen
+    public static String[] getTimesByMovie(String movieName, String date)  //gets all possible times when movie is chosen
     {
         ArrayList<String> times = new ArrayList<>();
 
@@ -189,16 +176,13 @@ public class NewMoviePickerController
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
 
-        if(sortedList.isEmpty())
-        {
-            throw new ShowingsNotFoundException();
-        }
+
 
 
         return sortedList.toArray(new String[loadGetTimesByMovieAndDate(getPickedMovie1(),getPickedDate1()).size()]);
     }
 
-    public static List<String> loadGetTimesByMovieAndDate(String movieName, String date)
+    public static ArrayList<String> loadGetTimesByMovieAndDate(String movieName, String date)
     {
         ArrayList<String> times = new ArrayList<>();
 
@@ -209,13 +193,12 @@ public class NewMoviePickerController
                 }
             }
 
-        List<String> sortedList = times.subList(0, times.size());
-        Collections.sort(sortedList);
-        sortedList.removeAll(Collections.singleton(null));
-        return sortedList;
+
+        times.removeAll(Collections.singleton(null));
+        return times;
     }
 
-    public static String[] getDatesByMovie(String moviename)throws ShowingsNotFoundException
+    public static String[] getDatesByMovie(String moviename)
     {
         ArrayList<String>dates = new ArrayList<>();
         if(getMoviesBox1().getSelectedItem()!=null)
@@ -234,11 +217,6 @@ public class NewMoviePickerController
         List<String> sortedList = dates.subList(0, dates.size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
-        if(sortedList.isEmpty())
-        {
-            throw new ShowingsNotFoundException();
-        }
-
 
         return sortedList.toArray(new String[loadGetDatesByMovie(getPickedMovie1()).size()]);
     }
@@ -255,9 +233,6 @@ public class NewMoviePickerController
             }
 
 
-        List<String> sortedList = dates.subList(0, dates.size());
-        Collections.sort(sortedList);
-        sortedList.removeAll(Collections.singleton(null));
 
         return dates;
     }
@@ -316,15 +291,12 @@ public class NewMoviePickerController
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
 
-        if(sortedList.isEmpty())
-        {
-            throw new ShowingsNotFoundException();
-        }
+
 
 
         return sortedList.toArray(new String[loadGetDatesByMovieAndTime(getPickedMovie3(),getPickedTime3()).size()]);
     }
-    public static List<String> loadGetDatesByMovieAndTime(String movieName, String time)
+    public static ArrayList<String> loadGetDatesByMovieAndTime(String movieName, String time)
     {
         ArrayList<String> dates = new ArrayList<>();
 
@@ -335,15 +307,13 @@ public class NewMoviePickerController
                 }
             }
 
-        List<String> sortedList = dates.subList(0,dates.size());
-        Collections.sort(sortedList);
-        sortedList.removeAll(Collections.singleton(null));
 
 
-        return sortedList;
+
+        return dates;
     }
 
-    public static String[] getTimesByMovie(String moviename) throws ShowingsNotFoundException
+    public static String[] getTimesByMovie(String moviename)
     {
         ArrayList<String>times = new ArrayList<>();
         if(getMoviesBox3().getSelectedItem()!=null)
@@ -363,14 +333,10 @@ public class NewMoviePickerController
         List<String> sortedList = times.subList(0, times.size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
-        if(sortedList.isEmpty())
-        {
-            throw new ShowingsNotFoundException();
-        }
 
         return sortedList.toArray(new String[loadGetTimesByMovie(getPickedMovie3()).size()]);
     }
-    public static List<String> loadGetTimesByMovie(String moviename)
+    public static ArrayList<String> loadGetTimesByMovie(String moviename)
     {
         ArrayList<String>times = new ArrayList<>();
 
@@ -383,11 +349,8 @@ public class NewMoviePickerController
                 }
             }
 
-        List<String> subList = times.subList(0, times.size());
-        Collections.sort(subList);
-        subList.removeAll(Collections.singleton(null));
 
-        return subList;
+        return times;
     }
 
 

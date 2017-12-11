@@ -2,11 +2,9 @@ package Controller;
 
 import View.Main;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.*;
-
-import Exception.NoInternetConnectException;
+import Exception.NoInternetConnectionException;
 
 import static Modules.V1_Database.LoadEntireDB;
 
@@ -14,7 +12,7 @@ import static Modules.V1_Database.LoadEntireDB;
 public class MainController
 {
 
-    public static void main(String[] args) throws NoInternetConnectException {
+    public static void main(String[] args) throws NoInternetConnectionException {
 
         if(netIsAvailable()==true)
         {
@@ -25,7 +23,7 @@ public class MainController
         }
         else
         {
-            throw new NoInternetConnectException();
+            throw new NoInternetConnectionException();
 
         }
 

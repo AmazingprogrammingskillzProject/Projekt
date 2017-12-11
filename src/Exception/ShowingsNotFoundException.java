@@ -1,3 +1,4 @@
+/*
 package Exception;
 
 import javax.swing.*;
@@ -14,3 +15,4 @@ public class ShowingsNotFoundException extends RuntimeException
 
     }
 }
+*/
