@@ -89,7 +89,7 @@ public class DatabaseController {
 
                 sql = "DELETE FROM Bookings WHERE `Phone` = '"+phone+"' AND `ID` = "+booking_ID;
                 statement.executeUpdate(sql);
-                JOptionPane.showMessageDialog(null, "BookingSearcherView deleted");
+                JOptionPane.showMessageDialog(null, "Booking deleted");
 
                 for(Booking b : Database.getBookings()) {
                     if (b.getPhone().equals((phone)) && b.getID() == booking_ID)
