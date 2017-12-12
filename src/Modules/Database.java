@@ -80,7 +80,7 @@ public class Database
     // og indsætter disse i arraylister.
     // Alle Load metoder kan kaldes individuelt for at lave opdateringer på data.
 
-    public static void LoadEntireDB()
+    public static void LoadEntireDB() throws ShowingsNotFoundException
     {
         LoadMovies();
         LoadBookings();
@@ -323,7 +323,7 @@ public class Database
     }
 
     // Denne metode kan bruges til at oprette nye forestillinger i databasen
-    public static ReturnCode InsertIntoShowings(int cinema_ID, int movie_ID, String date, String time)
+    public static ReturnCode InsertIntoShowings(int cinema_ID, int movie_ID, String date, String time) throws ShowingsNotFoundException
     {
         Connection connection = null;
         Statement statement = null;
