@@ -2,6 +2,8 @@ package Modules;
 
 import static Modules.Database.getShowings;
 
+
+// Bruges til oprettelsen af Showing Objekter
 public class Showing {
 
     private int ID;

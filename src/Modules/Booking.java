@@ -10,7 +10,7 @@ public class Booking {
     private int LastSeat;
 
 
-
+    // Bruges til oprettelse af Booking objekter
     public Booking(int ID, String phones, int showing_ID, int row, int firstSeat, int lastSeat) {
         this.ID = ID;
         Phone = phones;

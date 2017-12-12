@@ -26,6 +26,7 @@ public class CinemaView implements ActionListener{
     private JTextField phoneField;
     private JComboBox ticketBox;
 
+    // Fields initialisere originalt med en -1 værdi, så det er nemt at finde fejl.
     private int showID = -1;
     private int cinemaNR = -1;
 

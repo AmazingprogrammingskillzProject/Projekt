@@ -4,7 +4,7 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 
 
-
+// Bruges til oprettelsen af Movie objekter
 public class Movie {
 
     private int ID;
