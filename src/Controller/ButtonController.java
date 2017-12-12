@@ -41,7 +41,8 @@ public class ButtonController {
         {
             JOptionPane.showMessageDialog(null, "Error: Make sure the phone number is of 8 digits");
 
-        } else {
+        }
+        else {
             for (Booking booking : bookings) {
                 if (booking.getPhone().equals(PNR)) {
 

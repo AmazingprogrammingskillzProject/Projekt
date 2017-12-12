@@ -72,25 +72,8 @@ public class Database
         return Movies.get(m);
     }
 
-    public static void main(String[] args) {
-        LoadEntireDB();
-        for(Showing cinema: Showings) {
 
-            System.out.println(cinema);
-        }
-        ReturnCode rc = DatabaseController.CreateBooking("+4520112852", 7, 5, 3, 5);
-//        ReturnCode rc = DeleteBooking("+4520112852", 10);
-//        ReturnCode rc = InsertIntoShowings(1, 1, "2017-12-13","18:00:00");
-
-        System.out.println(rc);
-
-        for(Movie movie: Movies)
-        {
-            System.out.println(movie);
-        }
-    }
-
-    public static void LoadEntireDB()
+    public static void LoadEntireDB() throws ShowingsNotFoundException
     {
         LoadMovies();
         LoadBookings();
@@ -332,7 +315,7 @@ public class Database
         }
     }
 
-    public static ReturnCode InsertIntoShowings(int cinema_ID, int movie_ID, String date, String time)
+    public static ReturnCode InsertIntoShowings(int cinema_ID, int movie_ID, String date, String time) throws ShowingsNotFoundException
     {
         Connection connection = null;
         Statement statement = null;

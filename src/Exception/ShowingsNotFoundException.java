@@ -3,7 +3,7 @@ package Exception;
 import javax.swing.*;
 
 
-public class ShowingsNotFoundException extends RuntimeException
+public class ShowingsNotFoundException extends Exception
 {
     public ShowingsNotFoundException()
     {
