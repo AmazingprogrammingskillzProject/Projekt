@@ -170,6 +170,7 @@ public class CinemaView implements ActionListener{
                 JButton button = new JButton(bttLabel);
                 button.setFont(new Font("Times New Roman", Font.PLAIN, 10));
                 button.setBackground(Color.GREEN);
+                button.setOpaque(true);
 
                 // gemmer række og sæde for knappen der blev trykket på
                 button.addActionListener(e -> {
