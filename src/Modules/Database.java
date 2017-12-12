@@ -6,13 +6,13 @@
 
 package Modules;
 
-import Controller.DatabaseController;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
+
+import Enums.ReturnCode;
 import Exception.ShowingsNotFoundException;
 
 
@@ -75,23 +75,6 @@ public class Database
         return Movies.get(m);
     }
 
-    public static void main(String[] args) {
-        LoadEntireDB();
-        for(Showing cinema: Showings) {
-
-            System.out.println(cinema);
-        }
-//        ReturnCode rc = DatabaseController.CreateBooking("+4520112852", 7, 5, 3, 5);
-//        ReturnCode rc = DeleteBooking("+4520112852", 10);
-//        ReturnCode rc = InsertIntoShowings(1, 1, "2017-12-13","18:00:00");
-
-//        System.out.println(rc);
-
-        for(Movie movie: Movies)
-        {
-            System.out.println(movie);
-        }
-    }
 
     // Alle LoadXYZ metoder loader en individuel tabel fra databsen, og opretter de respektive obejekter
     // og indsætter disse i arraylister.

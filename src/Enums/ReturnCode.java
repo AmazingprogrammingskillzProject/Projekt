@@ -1,4 +1,4 @@
-package Modules;
+package Enums;
 
 
 // Vi bruger denne ENUM til at håndtere forskellige fejl i programmet

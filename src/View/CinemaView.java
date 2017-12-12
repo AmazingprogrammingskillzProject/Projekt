@@ -1,6 +1,7 @@
 package View;
 
 import Controller.DatabaseController;
+import Enums.ReturnCode;
 import Modules.*;
 
 import javax.swing.*;
