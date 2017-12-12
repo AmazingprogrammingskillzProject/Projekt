@@ -170,25 +170,24 @@ public class CinemaView implements ActionListener{
                 JButton button = new JButton(bttLabel);
                 button.setFont(new Font("Times New Roman", Font.PLAIN, 10));
                 button.setBackground(Color.GREEN);
+                button.setOpaque(true);
 
                 // gemmer række og sæde for knappen der blev trykket på
-                button.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
+                button.addActionListener(e -> {
 
-                        numberOfTickets = (int) ticketBox.getItemAt(ticketBox.getSelectedIndex());
+                    numberOfTickets = (int) ticketBox.getItemAt(ticketBox.getSelectedIndex());
 
-                        System.out.println(numberOfTickets);
+                    System.out.println(numberOfTickets);
 
-                        selectedRow = bttRow;
-                        selectedFSeat = bttSeat;
-                        selectedLSeat = bttSeat + numberOfTickets -1;
-                        if(selectedLSeat > seatArray.length){
-                            JOptionPane.showMessageDialog(null, "Error selecting seats");
-                            selectedLSeat = bttSeat;
-                        }
-                        selectSeat();
-
+                    selectedRow = bttRow;
+                    selectedFSeat = bttSeat;
+                    selectedLSeat = bttSeat + numberOfTickets -1;
+                    if(selectedLSeat > seatArray.length){
+                        JOptionPane.showMessageDialog(null, "Error selecting seats");
+                        selectedLSeat = bttSeat;
                     }
+                    selectSeat();
+
                 });
 
                 for(SeatBooking booked : Database.getSeatBookings()) {
