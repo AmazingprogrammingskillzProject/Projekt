@@ -1,13 +1,14 @@
 package View;
 
 import Controller.ButtonController;
-import Modules.Booking;
-import Modules.Database;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static Controller.DatabaseController.LoadBookingFromController;
+import static Controller.DatabaseController.checkBookingID;
 
 
 // Denne klasse er vores Vooking vindue.
@@ -196,20 +197,16 @@ public class BookingSearcherView implements ActionListener{
 
         if(e.getSource() == deleteButton)
         {
-            Database.LoadBookings();
+            LoadBookingFromController();
             if(!(BID.getText().matches("[0-9]+")))
             {
                 JOptionPane.showMessageDialog(null, "Please enter a valid booking ID");
                 return;
             }
             boolean BIDFound = false;
-            for(Booking b: Database.getBookings())
-            {
-                if((Integer.parseInt(BID.getText()) == b.getID()))
-                {
-                    BIDFound = true;
-                }
-            }
+
+            BIDFound = checkBookingID(BID);
+
             if(!BIDFound)
             {
                 JOptionPane.showMessageDialog(null, "Booking not found");

@@ -80,15 +80,6 @@ public class Database
     // og indsætter disse i arraylister.
     // Alle Load metoder kan kaldes individuelt for at lave opdateringer på data.
 
-    public static void LoadEntireDB() throws ShowingsNotFoundException
-    {
-        LoadMovies();
-        LoadBookings();
-        LoadCinema();
-        LoadSeatBookings();
-        LoadShowings();
-    }
-
     public static void LoadBookings()
     {
         Connection connection = null;
@@ -271,7 +262,7 @@ public class Database
         }
     }
 
-    public static void LoadShowings() throws ShowingsNotFoundException
+    public static void LoadShowings()
     {
         Connection connection = null;
         Statement statement = null;

@@ -9,6 +9,7 @@ import View.BookingSearcherView;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import Exception.ShowingsNotFoundException;
 
 import static View.BookingSearcherView.getBID;
 
@@ -18,7 +19,7 @@ public class ButtonController {
 
 
     // En del af det der slette bookings
-    public static void deleteBooking() throws Exception.ShowingsNotFoundException
+    public static void deleteBooking()
     {
 
             DatabaseController.DeleteBooking(BookingSearcherView.getPhone().getText(), Integer.parseInt(getBID().getText()));
@@ -27,7 +28,7 @@ public class ButtonController {
     }
 
     // Søger bookings frem på det givne telefonnummer, og skriver disse ud i et TextField
-    public static void  searchBooking() throws Exception.ShowingsNotFoundException
+    public static void  searchBooking()
     {
 
         Database.LoadBookings();

@@ -4,14 +4,27 @@ import Enums.ReturnCode;
 import Modules.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import static Modules.Database.getMovieName;
+import static Modules.Database.getShowings;
+import static View.NewMoviePickerView.getWindow;
+
 // Denne klasse sørger for selv oprettelsen og sletningen af bookings.
-public class DatabaseController {
+public class DatabaseController
+{
+
+
+    private static Cinema selectedCinema = null;
+
+    public static Cinema getSelectedCinema() {
+        return selectedCinema;
+    }
 
     // Metoden der opretter bookings i databasen, samt tilhørende seatBookings
     public static ReturnCode CreateBooking(String phone, int showing_ID, int row, int firstSeat, int lastSeat)
@@ -131,8 +144,72 @@ public class DatabaseController {
         return ReturnCode.SUCCESS;
 
     }
+    public static void setShowingInfo(JLabel showingInfo, int cinemaNR, int showID)
+    {
+        for(Showing s: getShowings())
+        {
+            if(s.getCinema_ID()==cinemaNR&&s.getID()==showID)
+            {
+                showingInfo.setText(getMovieName(s.getMovie_ID()-1)+" - "+s.getDate()+" - "+s.getTime());
+            }
+        }
+    }
+
+    public static void setCinemaNumber(int cinemaNumber)
+    {
+
+
+        for(Cinema c : getCinemas()){
+            if(c.getNumber() == cinemaNumber){
+                selectedCinema = c;
+                break;
+            }
+        }
+        if(selectedCinema == null) {
+            JOptionPane.showMessageDialog(null, "A cinema with given number was not found");
+            getWindow().setVisible(true);
+            return;
+        }
+    }
+    public static void setSeatRow(int r, int s, int showID, JButton button)
+    {
+        for(SeatBooking booked : Database.getSeatBookings()) {
+
+            if(booked.getShowing_ID() == showID) {
+                if(r == booked.getRow() && s == booked.getSeat()) {
+                    button.setBackground(Color.RED);
+                }
+            }
+        }
+
+    }
 
     public static ArrayList<Cinema> getCinemas() {
         return Database.getCinemas();
+    }
+
+    public static void LoadEntireDB()
+    {
+        Database.LoadMovies();
+        Database.LoadBookings();
+        Database.LoadCinema();
+        Database.LoadSeatBookings();
+        Database.LoadShowings();
+    }
+    public static void LoadBookingFromController()
+    {
+        Database.LoadBookings();
+    }
+    public static boolean checkBookingID(JTextField BID)
+    {
+        boolean BIDfound = false;
+        for(Booking b: Database.getBookings())
+        {
+            if((Integer.parseInt(BID.getText()) == b.getID()))
+            {
+                BIDfound = true;
+            }
+        }
+        return BIDfound;
     }
 }

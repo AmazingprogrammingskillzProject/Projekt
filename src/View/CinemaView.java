@@ -2,7 +2,6 @@ package View;
 
 import Controller.DatabaseController;
 import Enums.ReturnCode;
-import Modules.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,8 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import static Modules.Database.getMovieName;
-import static Modules.Database.getShowings;
+import static Controller.DatabaseController.*;
 import static View.NewMoviePickerView.getWindow;
 
 
@@ -57,26 +55,14 @@ public class CinemaView implements ActionListener{
         this.showID = showID;
         this.cinemaNR = cinemaNumber;
 
-        ArrayList<Cinema> cinemas = DatabaseController.getCinemas();
+        setCinemaNumber(cinemaNumber);
 
-        Cinema selectedCinema = null;
-
-        for(Cinema c : cinemas){
-            if(c.getNumber() == cinemaNumber){
-                selectedCinema = c;
-                break;
-            }
-        }
 
         // In case a cinema is not found, inform user about problem and return
-        if(selectedCinema == null) {
-            JOptionPane.showMessageDialog(null, "A cinema with given number was not found");
-            getWindow().setVisible(true);
-            return;
-        }
 
-        this.cRows = selectedCinema.getRows();
-        this.cSeats = selectedCinema.getSeats();
+
+        this.cRows = getSelectedCinema().getRows();
+        this.cSeats = getSelectedCinema().getSeats();
 
         ticketArray = new Integer[cSeats];
         rowArray = new Integer[cRows];
@@ -137,13 +123,7 @@ public class CinemaView implements ActionListener{
         northPanel.add(cinemaNumber);
 
         JLabel showingInfo = new JLabel();
-        for(Showing s: getShowings())
-        {
-            if(s.getCinema_ID()==cinemaNR&&s.getID()==showID)
-            {
-                showingInfo.setText(getMovieName(s.getMovie_ID()-1)+" - "+s.getDate()+" - "+s.getTime());
-            }
-        }
+        setShowingInfo(showingInfo, cinemaNR, showID);
         showingInfo.setHorizontalAlignment(JLabel.CENTER);
         northPanel.add(showingInfo);
 
@@ -152,7 +132,7 @@ public class CinemaView implements ActionListener{
     private void makeCenterPane() {
 
 
-        Database.LoadEntireDB();
+        LoadEntireDB();
 
         JPanel centerPanel = new JPanel();
         basePane.add(centerPanel, BorderLayout.CENTER);
@@ -191,14 +171,8 @@ public class CinemaView implements ActionListener{
 
                 });
 
-                for(SeatBooking booked : Database.getSeatBookings()) {
+                setSeatRow(r,s,showID,button);
 
-                    if(booked.getShowing_ID() == showID) {
-                        if(r == booked.getRow() && s == booked.getSeat()) {
-                            button.setBackground(Color.RED);
-                        }
-                    }
-                }
                 seatButtonArray.add(button);
                 centerPanel.add(button);
 

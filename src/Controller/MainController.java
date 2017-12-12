@@ -5,14 +5,14 @@ import View.MainView;
 import java.io.IOException;
 import java.net.*;
 import Exception.NoInternetConnectionException;
-
-import static Modules.Database.LoadEntireDB;
+import Exception.ShowingsNotFoundException;
+import static Controller.DatabaseController.LoadEntireDB;
 
 
 public class MainController
 {
 
-    public static void main(String[] args) throws NoInternetConnectionException {
+    public static void main(String[] args) throws NoInternetConnectionException, ShowingsNotFoundException {
 
         if(netIsAvailable()==true)
         {
