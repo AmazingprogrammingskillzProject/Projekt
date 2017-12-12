@@ -23,6 +23,8 @@ public class Cinema {
         return Seats;
     }
 
+
+    // Bruges til oprettelse af Cinema objekter
     public Cinema(int ID, int number, int rows, int seats) {
         this.ID = ID;
         Number = number;

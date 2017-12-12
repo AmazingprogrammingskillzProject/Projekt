@@ -38,14 +38,11 @@ public class MainView
         bookAnewReservation = new JButton("Book a new reservation");
         panel.add(bookAnewReservation);
 
-        bookAnewReservation.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainWindow.setVisible(false);
-                NewMoviePickerView newMoviePickerView = new NewMoviePickerView();
+        bookAnewReservation.addActionListener(e -> {
+            mainWindow.setVisible(false);
+            NewMoviePickerView newMoviePickerView = new NewMoviePickerView();
 
 
-            }
         });
 
         searchOrCancelReservation = new JButton("Search or cancel reservation");

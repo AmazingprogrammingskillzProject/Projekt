@@ -1,5 +1,6 @@
 package Controller;
 
+import Enums.ReturnCode;
 import Modules.*;
 
 import javax.swing.*;
@@ -9,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+// Denne klasse sørger for selv oprettelsen og sletningen af bookings.
 public class DatabaseController {
 
+    // Metoden der opretter bookings i databasen, samt tilhørende seatBookings
     public static ReturnCode CreateBooking(String phone, int showing_ID, int row, int firstSeat, int lastSeat)
     {
         Connection connection = null;
@@ -22,6 +25,7 @@ public class DatabaseController {
 
         Database.LoadSeatBookings();
 
+        // Her tjekker vi om de valgte sæder allerede er booket.
         for(SeatBooking sb: Database.getSeatBookings()) {
             if (sb.getShowing_ID() == showing_ID && sb.getRow() == row) {
                 if(sb.getSeat() >= firstSeat && sb.getSeat() <= lastSeat) {
@@ -29,6 +33,7 @@ public class DatabaseController {
                 }
             }
         }
+
 
         if (isBooked) {
             return ReturnCode.IS_BOOKED;
@@ -76,6 +81,7 @@ public class DatabaseController {
         return ReturnCode.SUCCESS;
     }
 
+    // Metodes der sletter bookings fra databasen
     public static ReturnCode DeleteBooking(String phone, int booking_ID)
     {
         System.out.println("phone: "+ phone+ "      id:   " + booking_ID);
@@ -91,6 +97,7 @@ public class DatabaseController {
                 statement.executeUpdate(sql);
                 JOptionPane.showMessageDialog(null, "Booking deleted");
 
+                // Her sørges der for at seatbookings kun slettes hvis de hører til det rigtige booking ID
                 for(Booking b : Database.getBookings()) {
                     if (b.getPhone().equals((phone)) && b.getID() == booking_ID)
                     {

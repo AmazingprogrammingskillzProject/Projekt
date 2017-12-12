@@ -531,438 +531,180 @@
     <table id="133" parent="2" name="Bookings">
       <Engine>MyISAM</Engine>
     </table>
-    <table id="134" parent="2" name="Dato">
+    <table id="134" parent="2" name="Cinemas">
       <Engine>MyISAM</Engine>
     </table>
-    <table id="135" parent="2" name="FID">
+    <table id="135" parent="2" name="Movies">
       <Engine>MyISAM</Engine>
     </table>
-    <table id="136" parent="2" name="FIlm">
+    <table id="136" parent="2" name="SeatBookings">
       <Engine>MyISAM</Engine>
     </table>
-    <table id="137" parent="2" name="Reservations(Unsorted)">
+    <table id="137" parent="2" name="Showings">
       <Engine>MyISAM</Engine>
     </table>
-    <table id="138" parent="2" name="Reserveret">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="139" parent="2" name="Rækker">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="140" parent="2" name="SeatReservations">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="141" parent="2" name="Shows">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="142" parent="2" name="Sæder">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="143" parent="2" name="V1_Bookings">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="144" parent="2" name="V1_Cinema">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="145" parent="2" name="V1_Movies">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="146" parent="2" name="V1_SeatBookings">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="147" parent="2" name="V1_Showings">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="148" parent="2" name="joined">
-      <Engine>MyISAM</Engine>
-    </table>
-    <column id="149" parent="133" name="Phone">
-      <Position>1</Position>
-      <DataType>varchar(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="150" parent="133" name="Movie">
-      <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="151" parent="133" name="Date">
-      <Position>3</Position>
-      <DataType>varchar(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="152" parent="133" name="Time">
-      <Position>4</Position>
-      <DataType>varchar(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="153" parent="133" name="CinemaNr">
-      <Position>5</Position>
-      <DataType>int(10)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="154" parent="133" name="Row">
-      <Position>6</Position>
-      <DataType>int(20)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="155" parent="133" name="Seat">
-      <Position>7</Position>
-      <DataType>int(20)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="156" parent="133" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>Phone</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="157" parent="134" name="Dato">
-      <Position>1</Position>
-      <DataType>datetime|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="158" parent="135" name="FID">
-      <Position>1</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="159" parent="135" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>FID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="160" parent="136" name="FilmID">
-      <Position>1</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="161" parent="136" name="Name">
-      <Position>2</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="162" parent="136" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>FilmID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="163" parent="137" name="Reserveret">
-      <Position>1</Position>
-      <DataType>tinyint(1)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="164" parent="137" name="Sæde">
-      <Position>2</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="165" parent="137" name="Rækker">
-      <Position>3</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="166" parent="137" name="FID">
-      <Position>4</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="167" parent="138" name="Reserveret">
-      <Position>1</Position>
-      <DataType>tinyint(1)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="168" parent="139" name="Rækker">
-      <Position>1</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="169" parent="139" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>Rækker</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="170" parent="140" name="Reserved">
-      <Position>1</Position>
-      <DataType>tinyint(1)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="171" parent="140" name="Seat">
-      <Position>2</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="172" parent="140" name="Row">
-      <Position>3</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="173" parent="140" name="FID">
-      <Position>4</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="174" parent="140" name="CinemaNr">
-      <Position>5</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;1&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="175" parent="141" name="FID">
-      <Position>1</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="176" parent="141" name="CinemaNr">
-      <Position>2</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="177" parent="141" name="Movie">
-      <Position>3</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="178" parent="141" name="Time">
-      <Position>4</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="179" parent="141" name="Date">
-      <Position>5</Position>
-      <DataType>date|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="180" parent="141" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>FID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="181" parent="142" name="Sæde">
-      <Position>1</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="182" parent="142" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>Sæde</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="183" parent="143" name="ID">
+    <column id="138" parent="133" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="184" parent="143" name="Phone">
+    <column id="139" parent="133" name="Phone">
       <Position>2</Position>
       <DataType>varchar(15)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="185" parent="143" name="Showing_ID">
+    <column id="140" parent="133" name="Showing_ID">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;-1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="186" parent="143" name="Row">
+    <column id="141" parent="133" name="Row">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="187" parent="143" name="FirstSeat">
+    <column id="142" parent="133" name="FirstSeat">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="188" parent="143" name="LastSeat">
+    <column id="143" parent="133" name="LastSeat">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="189" parent="143" name="PRIMARY">
+    <key id="144" parent="133" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="190" parent="144" name="ID">
+    <column id="145" parent="134" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="191" parent="144" name="Number">
+    <column id="146" parent="134" name="Number">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;-1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="192" parent="144" name="Rows">
+    <column id="147" parent="134" name="Rows">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;-1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="193" parent="144" name="Seats">
+    <column id="148" parent="134" name="Seats">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;-1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="194" parent="144" name="PRIMARY">
+    <key id="149" parent="134" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="195" parent="145" name="ID">
+    <column id="150" parent="135" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="196" parent="145" name="Name">
+    <column id="151" parent="135" name="Name">
       <Position>2</Position>
       <DataType>varchar(100)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="197" parent="145" name="Length">
+    <column id="152" parent="135" name="Length">
       <Position>3</Position>
       <DataType>time|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;00:00:00&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="198" parent="145" name="Description">
+    <column id="153" parent="135" name="Description">
       <Position>4</Position>
       <DataType>varchar(1000)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="199" parent="145" name="PRIMARY">
+    <key id="154" parent="135" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="200" parent="146" name="Booking_ID">
+    <column id="155" parent="136" name="Booking_ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;-1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="201" parent="146" name="Showing_ID">
+    <column id="156" parent="136" name="Showing_ID">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;-1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="202" parent="146" name="Row">
+    <column id="157" parent="136" name="Row">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="203" parent="146" name="Seat">
+    <column id="158" parent="136" name="Seat">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="204" parent="147" name="ID">
+    <column id="159" parent="137" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="205" parent="147" name="Cinema_ID">
+    <column id="160" parent="137" name="Cinema_ID">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;-1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="206" parent="147" name="Movie_ID">
+    <column id="161" parent="137" name="Movie_ID">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;-1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="207" parent="147" name="Date">
+    <column id="162" parent="137" name="Date">
       <Position>4</Position>
       <DataType>date|0</DataType>
       <DefaultExpression>&apos;1970-01-01&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="208" parent="147" name="Time">
+    <column id="163" parent="137" name="Time">
       <Position>5</Position>
       <DataType>time|0</DataType>
       <DefaultExpression>&apos;00:00:00&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="209" parent="147" name="PRIMARY">
+    <key id="164" parent="137" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="210" parent="148" name="Sæde">
-      <Position>1</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="211" parent="148" name="Rækker">
-      <Position>2</Position>
-      <DataType>int(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
   </database-model>
 </dataSource>

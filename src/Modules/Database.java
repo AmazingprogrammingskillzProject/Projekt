@@ -6,16 +6,19 @@
 
 package Modules;
 
-import Controller.DatabaseController;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
+
+import Enums.ReturnCode;
 import Exception.ShowingsNotFoundException;
 
 
+// Denne klasse indeholder alt data fra databasen.
+// Den loader samtlige tabeller ind, og opretter de respektive objekter til dem
+// Alle disse objekter bliver lagt ind i arraylister, som senere kan bruges forskellige steder i GUI'en
 
 public class Database
 {
@@ -73,7 +76,11 @@ public class Database
     }
 
 
-    public static void LoadEntireDB() throws ShowingsNotFoundException
+    // Alle LoadXYZ metoder loader en individuel tabel fra databsen, og opretter de respektive obejekter
+    // og indsætter disse i arraylister.
+    // Alle Load metoder kan kaldes individuelt for at lave opdateringer på data.
+
+    public static void LoadEntireDB()
     {
         LoadMovies();
         LoadBookings();
@@ -315,7 +322,8 @@ public class Database
         }
     }
 
-    public static ReturnCode InsertIntoShowings(int cinema_ID, int movie_ID, String date, String time) throws ShowingsNotFoundException
+    // Denne metode kan bruges til at oprette nye forestillinger i databasen
+    public static ReturnCode InsertIntoShowings(int cinema_ID, int movie_ID, String date, String time)
     {
         Connection connection = null;
         Statement statement = null;
