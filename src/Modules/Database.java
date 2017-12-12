@@ -13,8 +13,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
+import Exception.ShowingsNotFoundException;
 
 
+// Denne klasse indeholder alt data fra databasen.
+// Den loader samtlige tabeller ind, og opretter de respektive objekter til dem
+// Alle disse objekter bliver lagt ind i arraylister, som senere kan bruges forskellige steder i GUI'en
 
 public class Database
 {
@@ -77,17 +81,21 @@ public class Database
 
             System.out.println(cinema);
         }
-        ReturnCode rc = DatabaseController.CreateBooking("+4520112852", 7, 5, 3, 5);
+//        ReturnCode rc = DatabaseController.CreateBooking("+4520112852", 7, 5, 3, 5);
 //        ReturnCode rc = DeleteBooking("+4520112852", 10);
 //        ReturnCode rc = InsertIntoShowings(1, 1, "2017-12-13","18:00:00");
 
-        System.out.println(rc);
+//        System.out.println(rc);
 
         for(Movie movie: Movies)
         {
             System.out.println(movie);
         }
     }
+
+    // Alle LoadXYZ metoder loader en individuel tabel fra databsen, og opretter de respektive obejekter
+    // og indsætter disse i arraylister.
+    // Alle Load metoder kan kaldes individuelt for at lave opdateringer på data.
 
     public static void LoadEntireDB()
     {
@@ -280,7 +288,7 @@ public class Database
         }
     }
 
-    public static void LoadShowings()
+    public static void LoadShowings() throws ShowingsNotFoundException
     {
         Connection connection = null;
         Statement statement = null;
@@ -307,8 +315,9 @@ public class Database
                 Showings.add(showing);
             }
 
-            for(Showing showing: Showings){
-                showing.toString();
+            if(Showings.isEmpty())
+            {
+                throw new ShowingsNotFoundException();
             }
 
             connection.close();
@@ -330,6 +339,7 @@ public class Database
         }
     }
 
+    // Denne metode kan bruges til at oprette nye forestillinger i databasen
     public static ReturnCode InsertIntoShowings(int cinema_ID, int movie_ID, String date, String time)
     {
         Connection connection = null;

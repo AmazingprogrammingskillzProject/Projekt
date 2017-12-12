@@ -1,5 +1,8 @@
 package Modules;
 
+
+
+// Bruges til oprettelsen af SeatBooking Objekter
 public class SeatBooking {
 
     private int Booking_ID;

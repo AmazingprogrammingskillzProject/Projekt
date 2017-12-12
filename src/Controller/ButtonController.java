@@ -12,8 +12,12 @@ import java.util.ArrayList;
 
 import static View.BookingSearcherView.getBID;
 
+
+// Den her klasse er brugt til at håndtere de to knapper vi har i BookingSeacherView
 public class ButtonController {
 
+
+    // En del af det der slette bookings
     public static void deleteBooking() {
 
             DatabaseController.DeleteBooking(BookingSearcherView.getPhone().getText(), Integer.parseInt(getBID().getText()));
@@ -21,6 +25,7 @@ public class ButtonController {
             searchBooking();
     }
 
+    // Søger bookings frem på det givne telefonnummer, og skriver disse ud i et TextField
     public static void  searchBooking() {
 
         Database.LoadBookings();
@@ -37,6 +42,8 @@ public class ButtonController {
 
         String PNR = BookingSearcherView.getPhoneNumber().getText();
 
+        // Tjekker om det er et telefonnummer der er skrevet ind i textFielded
+        // er det ikke er, får brugeren det at vide via en pop op besked
         if(PNR.length() < 8 || PNR.length() > 8 || !(PNR.matches("[0-9]+")))
         {
             JOptionPane.showMessageDialog(null, "Error: Make sure the phone number is of 8 digits");
@@ -63,6 +70,7 @@ public class ButtonController {
                                     V1movie = movie;
                                     movieName = V1movie.getName();
 
+                                    // Her skrives alt booking informationen ind i et textField
                                     BookingSearcherView.getBookingsField().setText(collectedStrings + "Phone: " + booking.getPhone() + "    Booking ID: " + booking.getID() +
                                             "    Movie name: " + movieName +  "    Date: " + show.getDate() + "   Time: " + show.getTime() +
                                             "    Row: " + booking.getRow() + "    First Seat: " + booking.getFirstSeat() + "    Last Seat: " + booking.getLastSeat() + "\n");
@@ -77,6 +85,7 @@ public class ButtonController {
 
             }
 
+            // Hvis der ikke er en booking på telefonnummeret, få brugeren besked om dette.
             if (!bookingFound){
                 JOptionPane.showMessageDialog(null, "No Booking found");
 

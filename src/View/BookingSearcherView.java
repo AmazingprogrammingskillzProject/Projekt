@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+// Denne klasse er vores Vooking vindue.
+// Dette er vinduet hvorfra man kan søge efter bookings, og slette dem hvis nødvendigt.
 public class BookingSearcherView implements ActionListener{
 
     private static JFrame reservationWindow;
@@ -43,6 +46,13 @@ public class BookingSearcherView implements ActionListener{
     public static JTextField getPhoneNumber() {
         return phoneNumber;
     }
+
+    /*
+    Oprettelsen af vinduet og alle de tilhørende komponenter er delt op i flere metoder.
+    Detter gør det nemmere at finde frem til en specifik komponent hvis der skal laves rettelser.
+    Metoderne er navngivet efter hvilken region de har i et BorderLayout
+     */
+
 
     private void makeFrame () {
         reservationWindow = new JFrame("Reservation");

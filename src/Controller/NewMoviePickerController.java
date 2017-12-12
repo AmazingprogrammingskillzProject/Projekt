@@ -13,11 +13,9 @@ import static Modules.Database.*;
 
 import static View.NewMoviePickerView.*;
 
-
-
 public class NewMoviePickerController
 {
-    public static ArrayList<String>getDates() //gets all possbile dates
+    public static ArrayList<String>getDates() //gets all possbile dates and sorts it
     {
         ArrayList<String> dates = new ArrayList<>();
         for(Showing s: getShowings())
@@ -27,11 +25,11 @@ public class NewMoviePickerController
                 dates.add(s.getDate());
             }
         }
-
         dates.removeAll(Collections.singleton(null));
+        Collections.sort(dates);
         return dates;
-
     }
+
     public static int getMovieIDbyName(String movieName) //returns a movie ID when a name is inputed
     {
         int ID = 0;
@@ -42,10 +40,11 @@ public class NewMoviePickerController
                 ID = m.getID();
             }
         }
+
         return ID;
     }
 
-    public static ArrayList<String> getMoviesName() //gets all the movies the cinema offers
+    public static ArrayList<String> getMoviesName() //gets all the movies the cinema offers and sorts it.
     {
         ArrayList<String>movienames = new ArrayList<>();
         for(Showing s: getShowings())
@@ -53,38 +52,29 @@ public class NewMoviePickerController
             if(!(movienames.contains(getMovieName(s.getMovie_ID()-1))))
             movienames.add(getMovieName(s.getMovie_ID()-1));
         }
+
+        Collections.sort(movienames);
         return movienames;
     }
 
-    public static String[] getMoviesByDateAndTime(String date, String time) //gets all possible movies when a date and a time is picked
+    public static String[] sortedGetMoviesByDateAndTime(String date, String time) //sorts the ArrayList getMoviesByDateAndTime()
     {
-        ArrayList<String> movies = new ArrayList<>();
-
         if(getTimeBox2().getSelectedItem()!=null)
         {
             setPickedTime2(getTimeBox2().getSelectedItem().toString());
-
-            for(Showing s: getShowings())
-            {
-                if(s.getDate().equals(date)&&s.getTime().equals(time))
-                {
-                    movies.add(getmovie((s.getMovie_ID()-1)).getName());
-                }
-            }
         }
-        List<String> sortedList = movies.subList(0, movies.size());
+        List<String> sortedList = getMoviesByDateAndTime(date,time).subList(0, getMoviesByDateAndTime(date,time).size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
 
-
-        return sortedList.toArray(new String[loadGetMoviesByDateAndTime(getPickedDate2(),getPickedTime2()).size()]);
+        return sortedList.toArray(new String[getMoviesByDateAndTime(getPickedDate2(),getPickedTime2()).size()]);
     }
-    //This one loads "getMoviesByDateAndTime". All the loads methods loads the get method. If these aren't loaded, it will require to choose an item
-    // two times before it pick  object
-    public static ArrayList<String> loadGetMoviesByDateAndTime(String date, String time) //This one loads "getMoviesByDateAndTime".
+
+
+
+    public static ArrayList<String> getMoviesByDateAndTime(String date, String time) //This gets movies depended on date and time
     {
         ArrayList<String> movies = new ArrayList<>();
-
             for(Showing s: getShowings())
             {
                 if(s.getDate().equals(date)&&s.getTime().equals(time))
@@ -92,36 +82,24 @@ public class NewMoviePickerController
                     movies.add(getmovie((s.getMovie_ID()-1)).getName());
                 }
             }
-
         movies.removeAll(Collections.singleton(null));
-
         return movies;
     }
 
-    public static String[] getTimesByDate(String date) //gets all possible Times when date is chosen
+    public static String[] sortedGetTimesByDate(String date) //This one sorts the ArrayList getTimesByDate()
     {
-        ArrayList<String> times = new ArrayList<>();
-
         if (getDateBox2().getSelectedItem()!=null)
         {
             setPickedDate2(getDateBox2().getSelectedItem().toString());
-
-            for(Showing s : getShowings())
-            {
-                if(s.getDate().equals(date)&&!(times.contains(s.getTime())))
-                {
-                    times.add(s.getTime());
-                }
-            }
         }
-        List<String> sortedList = times.subList(0, times.size());
+        List<String> sortedList = getTimesByDate(date).subList(0, getTimesByDate(date).size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
-
-
-        return sortedList.toArray(new String[loadGetTimesByDate(getPickedDate2()).size()]);
+        return sortedList.toArray(new String[getTimesByDate(getPickedDate2()).size()]);
     }
-    public static ArrayList<String> loadGetTimesByDate(String date)
+
+
+    public static ArrayList<String> getTimesByDate(String date) //This gets all possible times
     {
         ArrayList<String> times = new ArrayList<>();
 
@@ -154,64 +132,24 @@ public class NewMoviePickerController
         }
     }
 
-    public static String[] getTimesByMovie(String movieName, String date)  //gets all possible times when movie is chosen
+
+
+
+
+    public static String[] sortedGetDatesByMovie(String moviename) //this sorts the ArrayList getDatesByMovie()
     {
-        ArrayList<String> times = new ArrayList<>();
-
-        if(getDateBox1().getSelectedItem()!=null)
-        {
-            setPickedDate1(getDateBox1().getSelectedItem().toString());
-            for(Showing s: getShowings()) {
-                if (getMovieIDbyName(movieName) == s.getMovie_ID() && s.getDate().equals(date))
-                {
-                    times.add(s.getTime());
-                }
-            }
-        }
-        List<String> sortedList = times.subList(0, times.size());
-        Collections.sort(sortedList);
-        sortedList.removeAll(Collections.singleton(null));
-
-        return sortedList.toArray(new String[loadGetTimesByMovieAndDate(getPickedMovie1(),getPickedDate1()).size()]);
-    }
-
-    public static ArrayList<String> loadGetTimesByMovieAndDate(String movieName, String date)
-    {
-        ArrayList<String> times = new ArrayList<>();
-
-            for(Showing s: getShowings()) {
-                if (getMovieIDbyName(movieName) == s.getMovie_ID() && s.getDate().equals(date))
-                {
-                    times.add(s.getTime());
-                }
-            }
-        times.removeAll(Collections.singleton(null));
-        return times;
-    }
-
-    public static String[] getDatesByMovie(String moviename)
-    {
-        ArrayList<String>dates = new ArrayList<>();
         if(getMoviesBox1().getSelectedItem()!=null)
         {
             setPickedMovie1(getMoviesBox1().getSelectedItem().toString());
-
-            for(Showing s: getShowings())
-            {
-                if(getMovieIDbyName(moviename) == s.getMovie_ID()&&!(dates.contains(s.getDate())))
-                {
-                    dates.add(s.getDate());
-                }
-            }
-
         }
-        List<String> sortedList = dates.subList(0, dates.size());
+        List<String> sortedList = getDatesByMovie(moviename).subList(0, getDatesByMovie(moviename).size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
 
-        return sortedList.toArray(new String[loadGetDatesByMovie(getPickedMovie1()).size()]);
+        return sortedList.toArray(new String[getDatesByMovie(getPickedMovie1()).size()]);
     }
-    public static ArrayList<String> loadGetDatesByMovie(String moviename)
+
+    public static ArrayList<String> getDatesByMovie(String moviename) //gets the date depended on the picked movie
     {
         ArrayList<String>dates = new ArrayList<>();
 
@@ -222,6 +160,7 @@ public class NewMoviePickerController
                     dates.add(s.getDate());
                 }
             }
+        dates.removeAll(Collections.singleton(null));
 
         return dates;
     }
@@ -260,29 +199,19 @@ public class NewMoviePickerController
             }
         }
     }
-    public static String[] getDatesByMovieAndTime(String movieName, String time)
+    public static String[] sortedGetDatesByMovieAndTime(String movieName, String time) //sorts the ArrayList getDatesByMovieAndTime()
     {
-        ArrayList<String> dates = new ArrayList<>();
-
         if(getTimeBox3().getSelectedItem()!=null)
         {
             setPickedTime3(getTimeBox3().getSelectedItem().toString());
-            for(Showing s: getShowings()) {
-                if (getMovieIDbyName(movieName) == s.getMovie_ID() && s.getTime().equals(time))
-                {
-                    dates.add(s.getDate());
-                }
-            }
         }
-        List<String> sortedList = dates.subList(0,dates.size());
+        List<String> sortedList = getDatesByMovieAndTime(movieName,time).subList(0,getDatesByMovieAndTime(movieName,time).size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
-
-        return sortedList.toArray(new String[loadGetDatesByMovieAndTime(getPickedMovie3(),getPickedTime3()).size()]);
-
+        return sortedList.toArray(new String[getDatesByMovieAndTime(getPickedMovie3(),getPickedTime3()).size()]);
     }
 
-         public static ArrayList<String> loadGetDatesByMovieAndTime(String movieName, String time)
+         public static ArrayList<String> getDatesByMovieAndTime(String movieName, String time) //gets the dates depended on the picked movie and time
     {
         ArrayList<String> dates = new ArrayList<>();
 
@@ -292,45 +221,70 @@ public class NewMoviePickerController
                     dates.add(s.getDate());
                 }
             }
+        dates.removeAll(Collections.singleton(null));
 
         return dates;
     }
 
-    public static String[] getTimesByMovie(String moviename)
+
+    public static String[] sortedGetTimesByDateAndMovie(String movieName, String date)  //gets all possible times when movie is chosen
+    {
+        if(getDateBox1().getSelectedItem()!=null)
+        {
+            setPickedDate1(getDateBox1().getSelectedItem().toString());
+        }
+        List<String> sortedList = getTimesByDateAndMovie(movieName,date).subList(0, getTimesByDateAndMovie(movieName,date).size());
+        Collections.sort(sortedList);
+        sortedList.removeAll(Collections.singleton(null));
+
+        return sortedList.toArray(new String[getTimesByDateAndMovie(getPickedMovie1(),getPickedDate1()).size()]);
+    }
+
+    public static ArrayList<String> getTimesByDateAndMovie(String movieName, String date)  //gets the times depended on the picked date and movie
+    {
+        ArrayList<String> times = new ArrayList<>();
+
+        for(Showing s: getShowings()) {
+            if (getMovieIDbyName(movieName) == s.getMovie_ID() && s.getDate().equals(date))
+            {
+                times.add(s.getTime());
+            }
+        }
+        times.removeAll(Collections.singleton(null));
+        return times;
+    }
+
+
+    public static ArrayList<String> getTimesByMovie(String moviename) //gets the times depended on the picked movie
     {
         ArrayList<String>times = new ArrayList<>();
+
+
+            for(Showing s: getShowings())
+            {
+                if(getMovieIDbyName(moviename) == s.getMovie_ID()&&!(times.contains(s.getTime())))
+                {
+                    times.add(s.getTime());
+                }
+            }
+        times.removeAll(Collections.singleton(null));
+
+        return times;
+    }
+
+    public static String[] sortedGetTimesByMovie(String moviename) //sorts the ArrayList getTimesByMovie()
+    {
+
         if(getMoviesBox3().getSelectedItem()!=null)
         {
             setPickedMovie3(getMoviesBox3().getSelectedItem().toString());
 
-            for(Showing s: getShowings())
-            {
-                if(getMovieIDbyName(moviename) == s.getMovie_ID()&&!(times.contains(s.getTime())))
-                {
-                    times.add(s.getTime());
-                }
-            }
         }
 
-        List<String> sortedList = times.subList(0, times.size());
+        List<String> sortedList = getTimesByMovie(moviename).subList(0, getTimesByMovie(moviename).size());
         Collections.sort(sortedList);
         sortedList.removeAll(Collections.singleton(null));
 
-        return sortedList.toArray(new String[loadGetTimesByMovie(getPickedMovie3()).size()]);
-    }
-    public static ArrayList<String> loadGetTimesByMovie(String moviename)
-    {
-        ArrayList<String>times = new ArrayList<>();
-
-
-            for(Showing s: getShowings())
-            {
-                if(getMovieIDbyName(moviename) == s.getMovie_ID()&&!(times.contains(s.getTime())))
-                {
-                    times.add(s.getTime());
-                }
-            }
-
-        return times;
+        return sortedList.toArray(new String[getTimesByMovie(getPickedMovie3()).size()]);
     }
 }
