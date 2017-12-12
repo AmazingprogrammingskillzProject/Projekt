@@ -218,12 +218,9 @@ public class NewMoviePickerView implements ActionListener {
         panel.setLayout(new GridLayout(10,7));
         goBack = new JButton("Go back");
         panel.add(goBack);
-        goBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                window.setVisible(false);
-                getMainWindow().setVisible(true);
-            }
+        goBack.addActionListener(e -> {
+            window.setVisible(false);
+            getMainWindow().setVisible(true);
         });
 
         makeSixEmptyCells();
@@ -250,17 +247,14 @@ public class NewMoviePickerView implements ActionListener {
         panel.add(moviesBox1);
         makeOneEmptyCells();
 
-        moviesBox1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dateBox1.removeAllItems();
+        moviesBox1.addActionListener(e -> {
+            dateBox1.removeAllItems();
 
-                for(int i = 0; i< sortedGetDatesByMovie(pickedMovie1).length; i++)
-                {
-                    String[] DB = sortedGetDatesByMovie(pickedMovie1);
+            for(int i = 0; i< sortedGetDatesByMovie(pickedMovie1).length; i++)
+            {
+                String[] DB = sortedGetDatesByMovie(pickedMovie1);
 
-                    dateBox1.addItem(DB[i]);
-                }
+                dateBox1.addItem(DB[i]);
             }
         });
 
@@ -283,25 +277,17 @@ public class NewMoviePickerView implements ActionListener {
         makeOneEmptyCells();
 
         timeBox1 = new JComboBox();
-        timeBox1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setPickedTime(e);
-            }
-        });
+        timeBox1.addActionListener(e -> setPickedTime(e));
 
         panel.add(timeBox1);
         makeOneEmptyCells();
 
         JButton findSeat = new JButton("Find Seats");
         panel.add(findSeat);
-        findSeat.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                window.setVisible(false);
-                CinemaView cinemaView = new CinemaView(pickedShowID1, pickedCinemaID1);
+        findSeat.addActionListener(e -> {
+            window.setVisible(false);
+            CinemaView cinemaView = new CinemaView(pickedShowID1, pickedCinemaID1);
 
-            }
         });
 
         makeSevenEmptyCells();
@@ -338,16 +324,13 @@ public class NewMoviePickerView implements ActionListener {
         makeTwoEmptyCells();
         panel.add(dateBox2);
 
-        dateBox2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                timeBox2.removeAllItems();
+        dateBox2.addActionListener(e -> {
+            timeBox2.removeAllItems();
 
-                for(int i = 0; i< sortedGetTimesByDate(pickedDate2).length; i++)
-                {
-                    String[] timeBoxItems = sortedGetTimesByDate(pickedDate2);
-                    timeBox2.addItem(timeBoxItems[i]);
-                }
+            for(int i = 0; i< sortedGetTimesByDate(pickedDate2).length; i++)
+            {
+                String[] timeBoxItems = sortedGetTimesByDate(pickedDate2);
+                timeBox2.addItem(timeBoxItems[i]);
             }
         });
 
@@ -355,17 +338,14 @@ public class NewMoviePickerView implements ActionListener {
         timeBox2 = new JComboBox();
         panel.add(timeBox2);
 
-        timeBox2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                movieBox2.removeAllItems();
+        timeBox2.addActionListener(e -> {
+            movieBox2.removeAllItems();
 
-                for(int i = 0; i< sortedGetMoviesByDateAndTime(pickedDate2, pickedTime2).length; i++)
-                {
-                    String[] movieBoxItems = sortedGetMoviesByDateAndTime(pickedDate2, pickedTime2);
-                    movieBox2.addItem(movieBoxItems[i]);
+            for(int i = 0; i< sortedGetMoviesByDateAndTime(pickedDate2, pickedTime2).length; i++)
+            {
+                String[] movieBoxItems = sortedGetMoviesByDateAndTime(pickedDate2, pickedTime2);
+                movieBox2.addItem(movieBoxItems[i]);
 
-                }
             }
         });
 
@@ -373,23 +353,15 @@ public class NewMoviePickerView implements ActionListener {
         movieBox2 = new JComboBox();
         panel.add(movieBox2);
 
-        movieBox2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setPickedMovie(e);
-            }
-        });
+        movieBox2.addActionListener(e -> setPickedMovie(e));
 
         makeOneEmptyCells();
 
         findSeats2 = new JButton("Find Seats");
         panel.add(findSeats2);
-        findSeats2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                window.setVisible(false);
-                CinemaView cinemaView = new CinemaView(pickedShowID2, pickedCinemaID2);
-            }
+        findSeats2.addActionListener(e -> {
+            window.setVisible(false);
+            CinemaView cinemaView = new CinemaView(pickedShowID2, pickedCinemaID2);
         });
 
         makeSevenEmptyCells();
@@ -418,56 +390,41 @@ public class NewMoviePickerView implements ActionListener {
         moviesBox3 = new JComboBox(movies);
         panel.add(moviesBox3);
 
-        moviesBox3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                timeBox3.removeAllItems();
+        moviesBox3.addActionListener(e -> {
+            timeBox3.removeAllItems();
 
-                for(int i = 0; i< sortedGetTimesByMovie(pickedMovie3).length; i++)
-                {
-                    String[] timeBoxItems = sortedGetTimesByMovie(pickedMovie3);
+            for(int i = 0; i< sortedGetTimesByMovie(pickedMovie3).length; i++)
+            {
+                String[] timeBoxItems = sortedGetTimesByMovie(pickedMovie3);
 
-                    timeBox3.addItem(timeBoxItems[i]);
+                timeBox3.addItem(timeBoxItems[i]);
 
-                }
             }
         });
 
         makeOneEmptyCells();
         timeBox3 = new JComboBox();
         panel.add(timeBox3);
-        timeBox3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dateBox3.removeAllItems();
-                for(int i = 0; i<sortedGetDatesByMovieAndTime(pickedMovie3, pickedTime3).length; i++)
-                {
-                    String [] dateBoxItems = sortedGetDatesByMovieAndTime(pickedMovie3, pickedTime3);
-                    dateBox3.addItem(dateBoxItems[i]);
-                }
+        timeBox3.addActionListener(e -> {
+            dateBox3.removeAllItems();
+            for(int i = 0; i<sortedGetDatesByMovieAndTime(pickedMovie3, pickedTime3).length; i++)
+            {
+                String [] dateBoxItems = sortedGetDatesByMovieAndTime(pickedMovie3, pickedTime3);
+                dateBox3.addItem(dateBoxItems[i]);
             }
         });
 
         makeOneEmptyCells();
         dateBox3 = new JComboBox();
-        dateBox3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                setPickedDate(e);
-            }
-        });
+        dateBox3.addActionListener(e -> setPickedDate(e));
 
         panel.add(dateBox3);
         makeOneEmptyCells();
         findSeat3 = new JButton("Find Seats");
         panel.add(findSeat3);
-        findSeat3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                window.setVisible(false);
-                CinemaView cinemaView = new CinemaView(pickedShowID3, pickedCinemaNr3);
-            }
+        findSeat3.addActionListener(e -> {
+            window.setVisible(false);
+            CinemaView cinemaView = new CinemaView(pickedShowID3, pickedCinemaNr3);
         });
         makeSevenEmptyCells();
     }

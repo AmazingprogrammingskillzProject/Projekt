@@ -84,12 +84,9 @@ public class BookingSearcherView implements ActionListener{
         backButton = new JButton("Go back");
 
         northPanel.add(backButton);
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                reservationWindow.setVisible(false);
-                MainView.getMainWindow().setVisible(true);
-            }
+        backButton.addActionListener(e -> {
+            reservationWindow.setVisible(false);
+            MainView.getMainWindow().setVisible(true);
         });
 
 
