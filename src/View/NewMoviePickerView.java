@@ -297,7 +297,7 @@ public class NewMoviePickerView implements ActionListener {
 
         window.add(panel);
         window.pack();
-        window.setSize((int)(width/2),(int)(height/2));
+        window.setSize((int)(width/1.2),(int)(height/1.2));
         window.setLocationRelativeTo(null);
         window.setResizable(false);
 
