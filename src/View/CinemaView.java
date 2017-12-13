@@ -158,7 +158,7 @@ public class CinemaView implements ActionListener{
 
                     numberOfTickets = (int) ticketBox.getItemAt(ticketBox.getSelectedIndex());
 
-                    System.out.println(numberOfTickets);
+
 
                     selectedRow = bttRow;
                     selectedFSeat = bttSeat;
@@ -190,12 +190,12 @@ public class CinemaView implements ActionListener{
                 JB.setBackground(Color.GREEN);
             }
         }
-        System.out.println(numberOfTickets);
+
 
         rowBox.setSelectedIndex(selectedRow -1);
         firstSeatbox.setSelectedIndex(selectedFSeat -1);
         lastSeatBox.setSelectedIndex(selectedLSeat -1);
-        System.out.println(selectedLSeat);
+
 
 
 
