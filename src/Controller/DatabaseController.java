@@ -108,6 +108,7 @@ public class DatabaseController
                 sql = "DELETE FROM Bookings WHERE `Phone` = '"+phone+"' AND `ID` = "+booking_ID;
                 statement.executeUpdate(sql);
                 boolean BIDmatched = false;
+
                 // Her sørges der for at seatbookings kun slettes hvis de hører til det rigtige booking ID
                 for(Booking b : Database.getBookings())
                 {

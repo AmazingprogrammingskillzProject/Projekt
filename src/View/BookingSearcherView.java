@@ -211,7 +211,7 @@ public class BookingSearcherView implements ActionListener{
 
             System.out.println(BIDFound);
 
-            if(BIDFound)
+            if(!BIDFound)
             {
                 JOptionPane.showMessageDialog(null, "Booking not found");
                 return;
