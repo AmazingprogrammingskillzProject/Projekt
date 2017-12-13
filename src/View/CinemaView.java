@@ -57,10 +57,6 @@ public class CinemaView implements ActionListener{
 
         setCinemaNumber(cinemaNumber);
 
-
-        // In case a cinema is not found, inform user about problem and return
-
-
         this.cRows = getSelectedCinema().getRows();
         this.cSeats = getSelectedCinema().getSeats();
 
@@ -90,10 +86,6 @@ public class CinemaView implements ActionListener{
         basePane.setLayout(new BorderLayout(6,6));
         basePane.setVisible(true);
 
-
-//        JTextField west = new JTextField("                 ");
-//        basePane.add(west, BorderLayout.WEST);
-//
         makeNorthPane();
         makeCenterPane();
         makeSouthPane();
@@ -117,7 +109,6 @@ public class CinemaView implements ActionListener{
 
         backButton.addActionListener(this);
 
-
         JLabel cinemaNumber = new JLabel("Cinema " + cinemaNR);
         cinemaNumber.setHorizontalAlignment(JLabel.CENTER);
         northPanel.add(cinemaNumber);
@@ -130,8 +121,6 @@ public class CinemaView implements ActionListener{
     }
 
     private void makeCenterPane() {
-
-
         LoadEntireDB();
 
         JPanel centerPanel = new JPanel();
@@ -158,8 +147,6 @@ public class CinemaView implements ActionListener{
 
                     numberOfTickets = (int) ticketBox.getItemAt(ticketBox.getSelectedIndex());
 
-
-
                     selectedRow = bttRow;
                     selectedFSeat = bttSeat;
                     selectedLSeat = bttSeat + numberOfTickets -1;
@@ -175,8 +162,6 @@ public class CinemaView implements ActionListener{
 
                 seatButtonArray.add(button);
                 centerPanel.add(button);
-
-
             }
         }
 
@@ -191,13 +176,9 @@ public class CinemaView implements ActionListener{
             }
         }
 
-
         rowBox.setSelectedIndex(selectedRow -1);
         firstSeatbox.setSelectedIndex(selectedFSeat -1);
         lastSeatBox.setSelectedIndex(selectedLSeat -1);
-
-
-
 
         JOptionPane.showMessageDialog(null, "Row: " + selectedRow + " Seat: " + selectedFSeat + " - " + selectedLSeat);
 
@@ -304,8 +285,6 @@ public class CinemaView implements ActionListener{
     }
 
     private void makeBooking() {
-        System.out.println(phoneField);
-
 
         if (phoneField.getText().matches("[0-9]+") && phoneField.getText().length() == 8) {
 
@@ -314,8 +293,6 @@ public class CinemaView implements ActionListener{
 
                 int fseat = (int) firstSeatbox.getItemAt(firstSeatbox.getSelectedIndex());
                 int lseat = (int) lastSeatBox.getItemAt(lastSeatBox.getSelectedIndex());
-
-                System.out.println(phone + " " + showID + " " + row + " " + fseat + " " + lseat);
 
                 ReturnCode rtc = DatabaseController.CreateBooking(phone, showID, row, fseat, lseat);
                 switch (rtc) {

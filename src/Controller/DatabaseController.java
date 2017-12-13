@@ -97,7 +97,6 @@ public class DatabaseController
     // Metodes der sletter bookings fra databasen
     public static ReturnCode DeleteBooking(String phone, int booking_ID)
     {
-        System.out.println("phone: "+ phone+ "      id:   " + booking_ID);
             Connection connection = null;
             Statement statement = null;
             String sql = null;
@@ -160,10 +159,9 @@ public class DatabaseController
         }
     }
 
+    // In case a cinema is not found, inform user about problem and return
     public static void setCinemaNumber(int cinemaNumber)
     {
-
-
         for(Cinema c : getCinemas()){
             if(c.getNumber() == cinemaNumber){
                 selectedCinema = c;

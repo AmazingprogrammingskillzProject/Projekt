@@ -198,16 +198,20 @@ public class BookingSearcherView implements ActionListener{
         if(e.getSource() == deleteButton)
         {
             LoadBookingFromController();
+
             if(!(BID.getText().matches("[0-9]+")))
             {
                 JOptionPane.showMessageDialog(null, "Please enter a valid booking ID");
                 return;
             }
-            boolean BIDFound = false;
+
+            Boolean BIDFound = false;
 
             BIDFound = checkBookingID(BID);
 
-            if(!BIDFound)
+            System.out.println(BIDFound);
+
+            if(BIDFound)
             {
                 JOptionPane.showMessageDialog(null, "Booking not found");
                 return;
