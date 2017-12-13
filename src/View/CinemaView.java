@@ -44,13 +44,6 @@ public class CinemaView implements ActionListener{
     private Integer[] ticketArray;
 
 
-    public CinemaView(int showID) {
-        this.showID = showID;
-        cRows = 8;
-        cSeats = 12;
-        makeFrame();
-    }
-
     public CinemaView(int showID, int cinemaNumber){
         this.showID = showID;
         this.cinemaNR = cinemaNumber;
@@ -320,7 +313,7 @@ public class CinemaView implements ActionListener{
             }
         }
     private void goBack(){
-        cinemaWindow.setVisible(false);
+        cinemaWindow.dispose();
         getWindow().setVisible(true);
     }
 

@@ -175,6 +175,7 @@ public class DatabaseController
             return;
         }
     }
+
     public static void setSeatRow(int r, int s, int showID, JButton button)
     {
         for(SeatBooking booked : Database.getSeatBookings()) {

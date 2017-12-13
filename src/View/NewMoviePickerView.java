@@ -28,6 +28,7 @@ public class NewMoviePickerView implements ActionListener {
     private Double height = screenSize.getHeight();
 
     private JLabel pickAmovie1;
+    private JButton findSeats1;
 
     private static String pickedMovie1;
     private static String pickedDate1;
@@ -65,7 +66,7 @@ public class NewMoviePickerView implements ActionListener {
     private static String pickedTime3;
 
     private static int pickedShowID3;
-    private static int pickedCinemaNr3;
+    private static int pickedCinemaID3;
 
     public NewMoviePickerView()
     {
@@ -206,7 +207,7 @@ public class NewMoviePickerView implements ActionListener {
     }
 
     public static void setPickedCinemaID3(int pickedCinemaNr) {
-        pickedCinemaNr3 = pickedCinemaNr;
+        pickedCinemaID3 = pickedCinemaNr;
     }
 
     public void makePicker1() //Creates JFrame and the first pick-option to choose
@@ -282,11 +283,11 @@ public class NewMoviePickerView implements ActionListener {
         panel.add(timeBox1);
         makeOneEmptyCells();
 
-        JButton findSeat = new JButton("Find Seats");
-        panel.add(findSeat);
-        findSeat.addActionListener(e -> {
-            window.setVisible(false);
-            CinemaView cinemaView = new CinemaView(pickedShowID1, pickedCinemaID1);
+        findSeats1 = new JButton("Find Seats");
+        panel.add(findSeats1);
+        findSeats1.addActionListener(e -> {
+            goToCinema(pickedShowID1,pickedCinemaID1);
+
 
         });
 
@@ -360,8 +361,8 @@ public class NewMoviePickerView implements ActionListener {
         findSeats2 = new JButton("Find Seats");
         panel.add(findSeats2);
         findSeats2.addActionListener(e -> {
-            window.setVisible(false);
-            CinemaView cinemaView = new CinemaView(pickedShowID2, pickedCinemaID2);
+            goToCinema(pickedShowID2,pickedCinemaID2);
+
         });
 
         makeSevenEmptyCells();
@@ -423,8 +424,7 @@ public class NewMoviePickerView implements ActionListener {
         findSeat3 = new JButton("Find Seats");
         panel.add(findSeat3);
         findSeat3.addActionListener(e -> {
-            window.setVisible(false);
-            CinemaView cinemaView = new CinemaView(pickedShowID3, pickedCinemaNr3);
+            goToCinema(pickedShowID3,pickedCinemaID3);
         });
         makeSevenEmptyCells();
     }
@@ -464,6 +464,18 @@ public class NewMoviePickerView implements ActionListener {
     public void actionPerformed(ActionEvent e)
     {
         // Kunne være blevet brugt til at håndtere knapperne
+    }
+    public void goToCinema(int pickedShowID, int pickedCinemaID)
+    {
+        if(pickedShowID==0 ||pickedCinemaID==0)
+        {
+            JOptionPane.showMessageDialog(null, "Choose something!");
+        }
+        else
+        {
+            window.setVisible(false);
+            CinemaView cinemaView = new CinemaView(pickedShowID, pickedCinemaID);
+        }
     }
 
 }
